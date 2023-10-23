@@ -44,7 +44,7 @@ namespace Cosmetic_App
 
         internal bool GetAdmin()
         {
-            return bool.Parse(GetColValue("Admin").ToString());
+            return bool.Parse(GetColValue(2).ToString());
         }
     }
 }

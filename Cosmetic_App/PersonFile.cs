@@ -50,33 +50,44 @@ namespace Cosmetic_App
         {
             Person.Grab(id);
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
-            if (SaveProfile())
+
+            switch (profile_control.SelectedIndex)
             {
-                MessageBox.Show("נשמר");
+                case 0:
+                    if (SavePerson())
+                        MessageBox.Show("פרטי אדם נשמר במערכת");
+                    else
+                        MessageBox.Show("Error Human");
+                    break;
+                case 1:
+                    if (SaveWorker())
+                    {
+                        if (DialogResult.Yes == MessageBox.Show("פרטי עובד נשמרו, האם תרצה לשמור את נתוני האדם שלו גם?", "", MessageBoxButtons.YesNo))
+                            if(SavePerson())
+                                MessageBox.Show("פרטי אדם נשמר במערכת");
+                        else 
+                                MessageBox.Show("Error Human");
+                    }
+                    else 
+                        MessageBox.Show("Error Worker");
+                    break;
             }
-            else
-                MessageBox.Show("היה טעות");
         }
         private bool IsWorkerPageIsEmpty()
         {
             return Password.Text.Length == 0 && RePassword.Text.Length == 0;
         }
-        private bool SaveProfile()
-        {
-           return SavePerson() & SaveWorker();
-        }
         private bool SaveWorker()
         {
             bool result = true;
-            foreach (TextBox box in Worker_Layout.Controls.OfType<TextBox>()))
+            foreach (TextBox box in Worker_Layout.Controls.OfType<TextBox>())
                 result &= Input.Verify(Password, null);
             if(result==false)return false;
             if (Password.Text == RePassword.Text)
                 Worker.SetColValue("password", Password.Text);
-            Worker.SetColValue("Admin", Admin_checkBox.Checked);
+            Worker.SetColValue(2, Admin_checkBox.Checked);
             return Worker.Update();
         }
         private bool SavePerson()
@@ -86,7 +97,7 @@ namespace Cosmetic_App
                 result &= Input.Verify(box, null);
             if (result == false)
                 return false;
-            foreach (TextBox box in Controls.OfType<TextBox>())
+            foreach (TextBox box in Profile_Layout.Controls.OfType<TextBox>())
                 Person.SetColValue(box.Name, box.Text);
             Person.SetColValue(birthday.Name, birthday.Text);
             return Person.Update();
@@ -111,6 +122,11 @@ namespace Cosmetic_App
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+            Input.Reset(Password);
         }
     }
 }

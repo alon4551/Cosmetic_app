@@ -44,31 +44,31 @@
             this.birthday = new System.Windows.Forms.DateTimePicker();
             this.profile_control = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Profile_Layout = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Worker_Layout = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.RePassword = new System.Windows.Forms.TextBox();
             this.Admin_checkBox = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.profile_control.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.Profile_Layout.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.Worker_Layout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.Profile_Layout.SuspendLayout();
-            this.Worker_Layout.SuspendLayout();
             this.SuspendLayout();
             // 
             // id
             // 
             this.id.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.id.Location = new System.Drawing.Point(24, 113);
+            this.id.Location = new System.Drawing.Point(25, 113);
             this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(336, 22);
+            this.id.Size = new System.Drawing.Size(335, 22);
             this.id.TabIndex = 0;
             this.id.TextChanged += new System.EventHandler(this.TextBox_Click);
             // 
@@ -76,9 +76,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(24, 151);
+            this.label1.Location = new System.Drawing.Point(25, 151);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(336, 16);
+            this.label1.Size = new System.Drawing.Size(335, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "שם פרטי";
             // 
@@ -86,18 +86,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Location = new System.Drawing.Point(24, 207);
+            this.label2.Location = new System.Drawing.Point(25, 207);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(336, 16);
+            this.label2.Size = new System.Drawing.Size(335, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "שם משפחה";
             // 
             // firstname
             // 
             this.firstname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.firstname.Location = new System.Drawing.Point(24, 170);
+            this.firstname.Location = new System.Drawing.Point(25, 170);
             this.firstname.Name = "firstname";
-            this.firstname.Size = new System.Drawing.Size(336, 22);
+            this.firstname.Size = new System.Drawing.Size(335, 22);
             this.firstname.TabIndex = 2;
             this.firstname.Click += new System.EventHandler(this.TextBox_Click);
             // 
@@ -105,18 +105,18 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label3.Location = new System.Drawing.Point(24, 94);
+            this.label3.Location = new System.Drawing.Point(25, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(336, 16);
+            this.label3.Size = new System.Drawing.Size(335, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "תעודת זהות";
             // 
             // lastname
             // 
             this.lastname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lastname.Location = new System.Drawing.Point(24, 226);
+            this.lastname.Location = new System.Drawing.Point(25, 226);
             this.lastname.Name = "lastname";
-            this.lastname.Size = new System.Drawing.Size(336, 22);
+            this.lastname.Size = new System.Drawing.Size(335, 22);
             this.lastname.TabIndex = 4;
             this.lastname.Click += new System.EventHandler(this.TextBox_Click);
             // 
@@ -124,9 +124,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label4.Location = new System.Drawing.Point(24, 263);
+            this.label4.Location = new System.Drawing.Point(25, 263);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(336, 16);
+            this.label4.Size = new System.Drawing.Size(335, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "יום הולדת";
             // 
@@ -134,18 +134,18 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label5.Location = new System.Drawing.Point(24, 315);
+            this.label5.Location = new System.Drawing.Point(25, 315);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(336, 16);
+            this.label5.Size = new System.Drawing.Size(335, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "פאלפון";
             // 
             // phone
             // 
             this.phone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.phone.Location = new System.Drawing.Point(24, 334);
+            this.phone.Location = new System.Drawing.Point(25, 334);
             this.phone.Name = "phone";
-            this.phone.Size = new System.Drawing.Size(336, 22);
+            this.phone.Size = new System.Drawing.Size(335, 22);
             this.phone.TabIndex = 8;
             this.phone.Click += new System.EventHandler(this.TextBox_Click);
             // 
@@ -153,18 +153,18 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label6.Location = new System.Drawing.Point(24, 361);
+            this.label6.Location = new System.Drawing.Point(25, 361);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(336, 16);
+            this.label6.Size = new System.Drawing.Size(335, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "דואר אלקטרוני";
             // 
             // email
             // 
             this.email.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.email.Location = new System.Drawing.Point(24, 380);
+            this.email.Location = new System.Drawing.Point(25, 380);
             this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(336, 22);
+            this.email.Size = new System.Drawing.Size(335, 22);
             this.email.TabIndex = 10;
             this.email.Click += new System.EventHandler(this.TextBox_Click);
             // 
@@ -195,11 +195,11 @@
             this.birthday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.birthday.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.birthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday.Location = new System.Drawing.Point(24, 282);
+            this.birthday.Location = new System.Drawing.Point(25, 282);
             this.birthday.Name = "birthday";
             this.birthday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.birthday.RightToLeftLayout = true;
-            this.birthday.Size = new System.Drawing.Size(336, 22);
+            this.birthday.Size = new System.Drawing.Size(335, 22);
             this.birthday.TabIndex = 16;
             // 
             // profile_control
@@ -226,53 +226,12 @@
             this.tabPage1.Text = "פרופיל אדם";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.Worker_Layout);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(386, 465);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "פרופיל עובד";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.profile_control, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.25271F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.747293F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 554);
-            this.tableLayoutPanel1.TabIndex = 18;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 503);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 48);
-            this.tableLayoutPanel2.TabIndex = 18;
-            // 
             // Profile_Layout
             // 
             this.Profile_Layout.ColumnCount = 3;
             this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
             this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.2381F));
-            this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.Profile_Layout.Controls.Add(this.label3, 1, 1);
             this.Profile_Layout.Controls.Add(this.label6, 1, 11);
             this.Profile_Layout.Controls.Add(this.birthday, 1, 8);
@@ -305,6 +264,17 @@
             this.Profile_Layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.Profile_Layout.Size = new System.Drawing.Size(380, 459);
             this.Profile_Layout.TabIndex = 17;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.Worker_Layout);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(386, 465);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "פרופיל עובד";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Worker_Layout
             // 
@@ -357,16 +327,20 @@
             this.Password.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Password.Location = new System.Drawing.Point(36, 117);
             this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(310, 22);
             this.Password.TabIndex = 3;
+            this.Password.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // RePassword
             // 
             this.RePassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RePassword.Location = new System.Drawing.Point(36, 231);
             this.RePassword.Name = "RePassword";
+            this.RePassword.PasswordChar = '*';
             this.RePassword.Size = new System.Drawing.Size(310, 22);
             this.RePassword.TabIndex = 4;
+            this.RePassword.TextChanged += new System.EventHandler(this.Password_TextChanged);
             // 
             // Admin_checkBox
             // 
@@ -380,6 +354,36 @@
             this.Admin_checkBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Admin_checkBox.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.profile_control, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.25271F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.747293F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 554);
+            this.tableLayoutPanel1.TabIndex = 18;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.button3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 503);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(394, 48);
+            this.tableLayoutPanel2.TabIndex = 18;
+            // 
             // PersonFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -392,13 +396,13 @@
             this.Load += new System.EventHandler(this.PersonFile_Load);
             this.profile_control.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.Profile_Layout.ResumeLayout(false);
             this.Profile_Layout.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.Worker_Layout.ResumeLayout(false);
             this.Worker_Layout.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

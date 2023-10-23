@@ -14,11 +14,14 @@ namespace Cosmetic_App.Audit
         public static bool Text(string text, string type)
         {
             text = text.Trim();
-            switch(type)
+            if( text.Contains("'"))
+                return false;
+            switch(type.ToLower())
             {
                 case "id":
                     return VerifyId(text);
                 case "password":
+                case "repassword":
                     return text != "";
                 case "email":
                     return VerifyEmail(text);
