@@ -40,3 +40,4 @@ C:\Users\alon4\source\repos\Cosmetic_App\Cosmetic_App\obj\Debug\Cosmetic_App.Cus
 C:\Users\alon4\source\repos\Cosmetic_App\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.Appoitment_view.resources
 C:\Users\alon4\source\repos\Cosmetic_App\Cosmetic_App\obj\Debug\Cosmetic_App.PersonFile.resources
 C:\Users\alon4\source\repos\Cosmetic_App\Cosmetic_App\obj\Debug\Cosmetic_App.Manager_Verification.resources
+C:\Users\alon4\source\repos\Cosmetic_App\Cosmetic_App\obj\Debug\Cosmetic_App.Worker_Profile.resources

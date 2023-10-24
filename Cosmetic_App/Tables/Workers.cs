@@ -12,9 +12,16 @@ namespace Cosmetic_App
     public class Workers:DB_Object
     {
         public Person Person { get; set; } = new Person();
-        public Workers():base(Database_Names.Workers,Database_Names.Workers_Columes){ }
+        public Workers():base(Database_Names.Workers,Database_Names.Workers_Columes)
+        {
+            SetColValue("admin", false);
+        }
         public Workers (string id): base(Database_Names.Workers,Database_Names.Workers_Columes) {
             Grab(id);
+        }
+        public void Grab(string id)
+        {
+            base.Grab(id);
             Person.Grab(id);
         }
         public static bool Verify_Account(string id,string password)
@@ -41,7 +48,21 @@ namespace Cosmetic_App
             shift.SetColValue("day", date);
             shift.Insert();
         }
-
+        internal bool Update()
+        {
+            List<Col> list = new List<Col>();
+            foreach(Col col in Row.Columes)
+            {
+                if(col.GetField()!="id")
+                    list.Add(col);
+            }
+            if (Value == null) Value = Row.Columes[0].GetValue();
+            string query = SQL_Queries.Update(Table, list, new Condition(Id, Value));
+            if (IsExist(Value))
+                return Access.Execute(query);
+            else
+                return base.Insert();
+        }
         internal bool GetAdmin()
         {
             return bool.Parse(GetColValue(2).ToString());

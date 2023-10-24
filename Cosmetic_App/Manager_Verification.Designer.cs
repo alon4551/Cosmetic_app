@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.password = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.TextBox();
+            this.password = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +98,15 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "סיסמא";
             // 
+            // id
+            // 
+            this.id.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.id.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.id.Location = new System.Drawing.Point(94, 95);
+            this.id.Name = "id";
+            this.id.Size = new System.Drawing.Size(367, 30);
+            this.id.TabIndex = 4;
+            // 
             // password
             // 
             this.password.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -107,15 +116,6 @@
             this.password.PasswordChar = '*';
             this.password.Size = new System.Drawing.Size(367, 30);
             this.password.TabIndex = 3;
-            // 
-            // id
-            // 
-            this.id.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.id.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.id.Location = new System.Drawing.Point(94, 95);
-            this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(367, 30);
-            this.id.TabIndex = 4;
             // 
             // button1
             // 

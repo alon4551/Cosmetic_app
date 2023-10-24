@@ -16,7 +16,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PersonFile("206517336"));
+            Application.Run(new Worker_Profile("206517336"));
         }
     }
 }

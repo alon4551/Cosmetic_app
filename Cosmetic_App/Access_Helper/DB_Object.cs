@@ -6,9 +6,9 @@ using System.Text;
 public class DB_Object
 {
     public Row Row { get; set; } = new Row();
-    string Table { get; set; }
-    string Id { get; set; } 
-    object Value { get; set; } = null;
+    public string Table { get; set; }
+    public string Id { get; set; } 
+    public object Value { get; set; } = null;
     public static object GetColValue(string table, List<string> fields,string id,string field)
     {
         DB_Object db = new DB_Object(table,fields);
