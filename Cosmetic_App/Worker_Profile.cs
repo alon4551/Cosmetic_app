@@ -26,14 +26,18 @@ namespace Cosmetic_App
         }
         public void Load_Personal_Information()
         {
+            
             if (!Worker.Person.IsEmpty())
             {
                 id.Text = Worker.Person.GetColValue("id").ToString();
                 fullname.Text = Worker.Person.GetFullName();
                 phone.Text = Worker.Person.GetColValue("phone").ToString();
-                email.Text=Worker.Person.GetColValue("email").ToString();
+                email.Text = Worker.Person.GetColValue("email").ToString();
                 birthday.Text = Worker.Person.GetColValue("birthday").ToString();
+                personal_info_button.Text = "עדכון פרטים אישיים";
             }
+            else
+                personal_info_button.Text = "יצירת אדם חדש";
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -49,10 +53,12 @@ namespace Cosmetic_App
         {
             Worker.Grab(id);
             Load_Personal_Information();
+            Load_Worker_status();
         }
         private void Worker_Profile_Load(object sender, EventArgs e)
         {
             Load_Personal_Information();
+            Load_Worker_status();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -84,6 +90,48 @@ namespace Cosmetic_App
         private void password_TextChanged(object sender, EventArgs e)
         {
             Input.Reset((TextBox) sender);
+        }
+        private void Load_Worker_status()
+        {
+            button1.Enabled = true;
+            if (Worker.IsEmpty())
+            {
+                label8.Text = "עובד לא נמצא במערכת";
+                button1.Text = "כדי להפוך עובד מערכת למנהל עליך ליצור סיסמא לעובד";
+                button1.Enabled = false;
+            }
+            else if (Worker.GetAdmin())
+            {
+                label8.Text = "העובד הוא מנהל מערכת";
+                button1.Text = "להפוך עובד למנהל מערכת";
+            }
+            else
+            {
+                label8.Text = "העובד לא מנהל מערכת";
+                button1.Text = "להפוך מנהל מערכת לעובד רגיל";
+
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (Manager_Verification verification = new Manager_Verification())
+            {
+                verification.ShowDialog();
+                if (verification.result)
+                {
+                    Worker.SetColValue("admin", !Worker.GetAdmin());
+                    if (Worker.Update())
+                    {
+                        MessageBox.Show("העובד הפך למנהל מערכת");
+                    }
+                    else
+                        MessageBox.Show("Error");
+                }
+                else
+                    MessageBox.Show("סיסמא אינה נכונה");
+                Reload(Worker.Id);
+            }
         }
     }
 }
