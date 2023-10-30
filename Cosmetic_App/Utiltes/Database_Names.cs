@@ -26,7 +26,7 @@ namespace Cosmetic_App.Utiltes
         public static List<string> Cart_Columes = new List<string>() { "id", "order_id","product_id" };
         public static List<string> Income_Columes = new List<string>() { "id", "total","client","worker","date_of_purchase","recipt" };
         public static List<string> Outcome_Columes = new List<string>() { "id","total","date_of_purchase","recipt","supplier" };
-        public static List<string> Product_Columes = new List<string>() { "id","product_name","price","inventory" };
+        public static List<string> Product_Columes = new List<string>() { "id","product_name","price","inventory,istreatment" };
         public static List<string> Shifts_Columes = new List<string>() { "id","worker","day","start_time","end_time" };
         public static List<string> Treatment_Columes = new List<string>() { "id","duration" };
     }

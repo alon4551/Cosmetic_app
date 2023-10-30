@@ -31,6 +31,8 @@ namespace Cosmetic_App.Tables
         }
         public bool Delete()
         {
+            if(Value.ToString()=="0")
+                return false;
             bool result = Access.Execute(SQL_Queries.Delete(Database_Names.Workers, new Condition(Id, Value)));
             return result & base.Delete();
         }

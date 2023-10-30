@@ -267,6 +267,7 @@
             this.id.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.id.Location = new System.Drawing.Point(24, 83);
             this.id.Name = "id";
+            this.id.ReadOnly = true;
             this.id.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.id.Size = new System.Drawing.Size(197, 22);
             this.id.TabIndex = 6;
@@ -276,6 +277,7 @@
             this.fullname.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.fullname.Location = new System.Drawing.Point(24, 137);
             this.fullname.Name = "fullname";
+            this.fullname.ReadOnly = true;
             this.fullname.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.fullname.Size = new System.Drawing.Size(197, 22);
             this.fullname.TabIndex = 7;
@@ -285,6 +287,7 @@
             this.phone.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.phone.Location = new System.Drawing.Point(24, 191);
             this.phone.Name = "phone";
+            this.phone.ReadOnly = true;
             this.phone.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.phone.Size = new System.Drawing.Size(197, 22);
             this.phone.TabIndex = 8;
@@ -294,6 +297,7 @@
             this.email.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.email.Location = new System.Drawing.Point(24, 245);
             this.email.Name = "email";
+            this.email.ReadOnly = true;
             this.email.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.email.Size = new System.Drawing.Size(197, 22);
             this.email.TabIndex = 9;
@@ -303,6 +307,7 @@
             this.birthday.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.birthday.Location = new System.Drawing.Point(24, 299);
             this.birthday.Name = "birthday";
+            this.birthday.ReadOnly = true;
             this.birthday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.birthday.Size = new System.Drawing.Size(197, 22);
             this.birthday.TabIndex = 10;
@@ -312,6 +317,7 @@
             this.status.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.status.Location = new System.Drawing.Point(24, 353);
             this.status.Name = "status";
+            this.status.ReadOnly = true;
             this.status.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.status.Size = new System.Drawing.Size(197, 22);
             this.status.TabIndex = 11;
@@ -386,14 +392,14 @@
             // אדםחדשToolStripMenuItem
             // 
             this.אדםחדשToolStripMenuItem.Name = "אדםחדשToolStripMenuItem";
-            this.אדםחדשToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.אדםחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.אדםחדשToolStripMenuItem.Text = "אדם חדש במערכת";
             this.אדםחדשToolStripMenuItem.Click += new System.EventHandler(this.אדםחדשToolStripMenuItem_Click);
             // 
             // עובדחדשToolStripMenuItem
             // 
             this.עובדחדשToolStripMenuItem.Name = "עובדחדשToolStripMenuItem";
-            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.עובדחדשToolStripMenuItem.Text = "עובד חדש";
             this.עובדחדשToolStripMenuItem.Click += new System.EventHandler(this.עובדחדשToolStripMenuItem_Click);
             // 

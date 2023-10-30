@@ -37,10 +37,13 @@ namespace Cosmetic_App
         }
         public void LoadPerson()
         {
+            id.Enabled = true;
             if (Person.IsEmpty()) return;
             foreach(TextBox box in Profile_Layout.Controls.OfType<TextBox>())
                 box.Text = Person.GetColValue(box.Name).ToString();
             birthday.Text = Person.GetColValue("birthday").ToString();
+            if (Person.Value.ToString() == "0")
+                id.Enabled = false;
         }
         public void SetPerson(string id)
         {

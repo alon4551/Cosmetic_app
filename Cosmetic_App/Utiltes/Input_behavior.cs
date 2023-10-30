@@ -46,6 +46,8 @@ namespace Cosmetic_App
                     return (obg as TextBox).Tag;
                 case "Person_Profile_View":
                     return (obg as Person_Profile_View).Tag;
+                case "ProductView":
+                    return (obg as ProductView).Tag;
             }
             return null;
         }
@@ -61,8 +63,13 @@ namespace Cosmetic_App
                         break;
                     case "status":
                         break;
+                        
                     default:
+                        try
+                        {
                             box.Text = obj.GetColValue(box.Name).ToString();
+                        }
+                        catch { }
                         break;
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmetic_App.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PeopleList());
+            Application.Run(new Product_Dashbord());
         }
     }
 }

@@ -47,6 +47,8 @@ namespace Cosmetic_App
             shift.SetColValue(4, time);
             shift.Update();
         }
+        
+
         internal bool Update()
         {
             List<Col> list = new List<Col>();

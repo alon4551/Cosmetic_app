@@ -85,6 +85,13 @@ public class DB_Object
             objects.Add(new DB_Object(Table,r));
         return objects;
     }
+    public static List<DB_Object> GrabAll(string Table)
+    {
+        List<DB_Object> records = new List<DB_Object>();
+        foreach (Row row in Access.getObjects(SQL_Queries.Select(Table)))
+            records.Add(new DB_Object(Table, row));
+        return records;
+    }
     public  bool Grab(object id)
     {
         List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, id)));
