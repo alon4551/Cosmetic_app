@@ -13,6 +13,29 @@ namespace Cosmetic_App.Utiltes
         private static DateTime DisplayTime = DateTime.Now;
         
         private static List<Row> Apooitments = new List<Row>();
+        public static void DisplayCalenderOnAppoitments(FlowLayoutPanel panel,Label mouth)
+        {
+            mouth.Text = $@"חודש: {DisplayTime.Month}/{DisplayTime.Year}";
+            DayApooitment_view Day;
+            panel.Controls.Clear();
+            int i;
+            DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
+            DateTime endOfTheMouth;
+            int days = DateTime.DaysInMonth(DisplayTime.Year, DisplayTime.Month);
+            int dayofweek = int.Parse(startOfTheMouth.DayOfWeek.ToString("d"));
+            for (i = 0; i < dayofweek; i++)
+                panel.Controls.Add(new DayApooitment_view("", -1));
+            for (i = 1; i <= days; i++)
+            {
+                DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
+                Day = new DayApooitment_view(time.Day.ToString(), DateTime.Today.CompareTo(time));
+                panel.Controls.Add(Day);
+            }
+            endOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, i - 1);
+            i = int.Parse(endOfTheMouth.DayOfWeek.ToString("d"));
+            for (; i < 6; i++)
+                panel.Controls.Add(new DayApooitment_view("", 1));
+        }
         public static void DisplayDays_OnCalender(FlowLayoutPanel panel, Label mouth)
         {
             panel.Controls.Clear();

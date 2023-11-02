@@ -34,8 +34,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.s = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.insert_button = new System.Windows.Forms.Button();
             this.layout_product_all = new System.Windows.Forms.TableLayoutPanel();
             this.product_table_layout = new System.Windows.Forms.TableLayoutPanel();
             this.product_name = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@
             this.p_info_label = new System.Windows.Forms.Label();
             this.p_price_label = new System.Windows.Forms.Label();
             this.p_name_label = new System.Windows.Forms.Label();
+            this.update_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -61,7 +61,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.32804F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.291006F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.insert_button, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.layout_product_all, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -133,32 +133,23 @@
             this.s.Size = new System.Drawing.Size(305, 341);
             this.s.TabIndex = 1;
             // 
-            // button1
+            // insert_button
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(3, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(305, 32);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "עדכון פרטים";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(394, 435);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(311, 32);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "מוצר / טיפול חדש";
-            this.button2.UseVisualStyleBackColor = true;
+            this.insert_button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.insert_button.Location = new System.Drawing.Point(394, 435);
+            this.insert_button.Name = "insert_button";
+            this.insert_button.Size = new System.Drawing.Size(311, 32);
+            this.insert_button.TabIndex = 3;
+            this.insert_button.Text = "מוצר / טיפול חדש";
+            this.insert_button.UseVisualStyleBackColor = true;
+            this.insert_button.Click += new System.EventHandler(this.NewProduct_Click);
             // 
             // layout_product_all
             // 
             this.layout_product_all.ColumnCount = 1;
             this.layout_product_all.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layout_product_all.Controls.Add(this.product_table_layout, 0, 1);
-            this.layout_product_all.Controls.Add(this.button1, 0, 2);
+            this.layout_product_all.Controls.Add(this.update_button, 0, 2);
             this.layout_product_all.Controls.Add(this.label1, 0, 0);
             this.layout_product_all.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layout_product_all.Location = new System.Drawing.Point(42, 46);
@@ -254,6 +245,17 @@
             this.p_name_label.Text = "שם";
             this.p_name_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // update_button
+            // 
+            this.update_button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.update_button.Location = new System.Drawing.Point(3, 212);
+            this.update_button.Name = "update_button";
+            this.update_button.Size = new System.Drawing.Size(305, 32);
+            this.update_button.TabIndex = 2;
+            this.update_button.Text = "עדכון פרטים";
+            this.update_button.UseVisualStyleBackColor = true;
+            this.update_button.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -297,8 +299,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label p_name_label;
         private System.Windows.Forms.FlowLayoutPanel s;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button update_button;
+        private System.Windows.Forms.Button insert_button;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label p_price_label;
         private System.Windows.Forms.Label p_info_label;

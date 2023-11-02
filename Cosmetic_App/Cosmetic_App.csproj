@@ -91,6 +91,12 @@
     <Compile Include="Custom_View\Appoitment_view.Designer.cs">
       <DependentUpon>Appoitment_view.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom_View\InputView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\InputView.Designer.cs">
+      <DependentUpon>InputView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom_View\MonthCalender_Blank.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +114,18 @@
     </Compile>
     <Compile Include="Custom_View\ProductView.Designer.cs">
       <DependentUpon>ProductView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom_View\week_Calender_view.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\week_Calender_view.Designer.cs">
+      <DependentUpon>week_Calender_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DayCalender.cs">
       <SubType>Form</SubType>
@@ -157,6 +175,18 @@
     <Compile Include="Forms\Product_Profile.Designer.cs">
       <DependentUpon>Product_Profile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectApoitmentTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectApoitmentTime.Designer.cs">
+      <DependentUpon>SelectApoitmentTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SetAppoitment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SetAppoitment.Designer.cs">
+      <DependentUpon>SetAppoitment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\Calender_Table.cs" />
     <Compile Include="Tables\Person.cs" />
     <Compile Include="Tables\Shifts.cs" />
@@ -193,6 +223,9 @@
     <EmbeddedResource Include="Custom_View\Appoitment_view.resx">
       <DependentUpon>Appoitment_view.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\InputView.resx">
+      <DependentUpon>InputView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\MonthCalender_Blank.resx">
       <DependentUpon>MonthCalender_Blank.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +234,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\ProductView.resx">
       <DependentUpon>ProductView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\week_Calender_view.resx">
+      <DependentUpon>week_Calender_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CustomMessageBox.resx">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DayCalender.resx">
       <DependentUpon>DayCalender.cs</DependentUpon>
@@ -228,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Product_Profile.resx">
       <DependentUpon>Product_Profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectApoitmentTime.resx">
+      <DependentUpon>SelectApoitmentTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SetAppoitment.resx">
+      <DependentUpon>SetAppoitment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

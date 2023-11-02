@@ -89,3 +89,6 @@ C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\C
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.PeopleList.resources
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.ProductView.resources
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Product_Dashbord.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Product_Profile.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.InputView.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.CustomMessageBox.resources

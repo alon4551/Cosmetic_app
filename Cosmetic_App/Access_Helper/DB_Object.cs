@@ -125,6 +125,16 @@ public class DB_Object
             objects.Add(new DB_Object(Table, r));
         return objects;
     }
+
+    public bool IsExist()
+    {
+        if(Value == null) return false;
+        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, Value)));
+        foreach (Row r in rows)
+            if (r.GetColValue(0).ToString() == Value.ToString())
+                return true;
+        return false;
+    }
     public bool IsExist(object id)
     {
         List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, id)));

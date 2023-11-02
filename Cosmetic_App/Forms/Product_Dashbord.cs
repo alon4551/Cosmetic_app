@@ -15,6 +15,7 @@ namespace Cosmetic_App.Forms
     public partial class Product_Dashbord : Form
     {
         List<Products> products = new List<Products>(),filter=new List<Products>();
+        int selected_id;
         public Product_Dashbord()
         {
             InitializeComponent();
@@ -22,8 +23,7 @@ namespace Cosmetic_App.Forms
 
         private void Product_Dashbord_Load(object sender, EventArgs e)
         {
-            products = Products.GrabAll();
-            Load_List(products);
+            Reload();
         }
         private void Load_List(List<Products> list) 
         {
@@ -41,6 +41,7 @@ namespace Cosmetic_App.Forms
             foreach (Products p in products)
                 if ((int)p.Value == id)
                 {
+                    selected_id = id;
                     Input.Load_TextBox_Information(product_table_layout, p);
                     if (p.IsTreatment())
                     {
@@ -61,7 +62,35 @@ namespace Cosmetic_App.Forms
            Load_Information((int) Input.GetTag(sender));
         }
 
-       
+        private void NewProduct_Click(object sender, EventArgs e)
+        {
+            string result = CustomMessageBox.Show();
+            bool state = result == "טיפול";
+            if (result == "")
+                return;
+            using (Product_Profile profile = new Product_Profile(state))
+            {
+                profile.ShowDialog();
+                Reload();
+            }
+        }
+        public void Reload()
+        {
+            products = Products.GrabAll();
+            Load_List(products);
+            Input.Clear_Textbox_Information(product_table_layout);
+            selected_id = -1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (selected_id == -1) return;
+            using (Product_Profile profile = new Product_Profile(selected_id))
+            {
+                profile.ShowDialog();
+                Reload();
+            }
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

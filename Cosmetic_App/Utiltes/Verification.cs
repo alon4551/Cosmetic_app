@@ -16,7 +16,8 @@ namespace Cosmetic_App.Audit
             text = text.Trim();
             if( text.Contains("'"))
                 return false;
-            switch(type.ToLower())
+          
+            switch (type.ToLower())
             {
                 case "id":
                     return VerifyId(text);
@@ -33,10 +34,33 @@ namespace Cosmetic_App.Audit
                     return text != "";
                 case "birthday":
                     return VerifyBirthday(text);
+                case "count":
+                    return VerifyNumber(text);
+                case "amount":
+                case "price":
+                    {
+                        if (VerifyNumber(text))
+                            if (int.Parse(text) >= 0)
+                                return true; ;
+                        return false;
+                    }
             }
+            if (text != "")
+                return true;
             return false;
         }
-
+        private static bool VerifyNumber(string price)
+        {
+            if(price=="") return false;
+            foreach (char c in price)
+            {
+                if (c == price[0] && c == '-')
+                    continue;
+                if (c > '9' || c < '0')
+                    return false;
+            }
+            return true;
+        }
         private static bool VerifyBirthday(string text)
         {
             try

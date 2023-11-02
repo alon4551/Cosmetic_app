@@ -3,6 +3,7 @@ using Cosmetic_App.Custom_View;
 using Cosmetic_App.Tables;
 using Cosmetic_App.Utiltes;
 using Org.BouncyCastle.Asn1.Crmf;
+using Org.BouncyCastle.Asn1.IsisMtt.X509;
 using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,15 @@ namespace Cosmetic_App
 {
     public static class Input
     {
+        public static void TextChangeAfterError(object sender, EventArgs e)
+        {
+            Reset((TextBox) sender);
+        }
+        public static void Reset(TextBox input,Label hint)
+        {
+            input.BackColor = Color.White;
+            hint.Text = "";
+        }
         public static void Reset(TextBox input)
         {
             input.BackColor = Color.White;
@@ -30,10 +40,16 @@ namespace Cosmetic_App
             if (Verification.Text(input.Text, input.Name) == false)
             {
                 input.BackColor = Color.Red;
-                if(hint != null) 
-                    hint.Text = Messages.Get(input.Name);
+                if (hint != null)
+                    if (input.Text == "")
+                        hint.Text = Messages.Get("null");
+                    else
+                        hint.Text = Messages.Get(input.Name);
+
                 return false;
             }
+            else
+                Reset(hint);
             return true;
         }
          public static object GetTag(object obg)
@@ -50,6 +66,11 @@ namespace Cosmetic_App
                     return (obg as ProductView).Tag;
             }
             return null;
+        }
+        public static void Clear_Textbox_Information(TableLayoutPanel layout)
+        {
+            foreach(TextBox box in layout.Controls.OfType<TextBox>())
+                box.Text = "";
         }
         public static void Load_TextBox_Information(TableLayoutPanel layout,DB_Object obj)
         {
