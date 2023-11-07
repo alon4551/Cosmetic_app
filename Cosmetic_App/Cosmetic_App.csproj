@@ -91,6 +91,12 @@
     <Compile Include="Custom_View\Appoitment_view.Designer.cs">
       <DependentUpon>Appoitment_view.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom_View\DisplayHour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\DisplayHour.Designer.cs">
+      <DependentUpon>DisplayHour.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom_View\InputView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -199,6 +205,7 @@
     <Compile Include="Custom_View\MonthCalender_Day.Designer.cs">
       <DependentUpon>MonthCalender_Day.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utiltes\ApooitmentsCalander.cs" />
     <Compile Include="Utiltes\calender.cs" />
     <Compile Include="Utiltes\Database_Names.cs" />
     <Compile Include="Utiltes\gmail_helper.cs" />
@@ -222,6 +229,9 @@
     </Compile>
     <EmbeddedResource Include="Custom_View\Appoitment_view.resx">
       <DependentUpon>Appoitment_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\DisplayHour.resx">
+      <DependentUpon>DisplayHour.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\InputView.resx">
       <DependentUpon>InputView.cs</DependentUpon>

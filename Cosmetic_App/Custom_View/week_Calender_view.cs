@@ -12,14 +12,31 @@ namespace Cosmetic_App.Custom_View
 {
     public partial class DayApooitment_view : UserControl
     {
+        public DateTime date{ get; set; }
         public DayApooitment_view()
         {
+            
             InitializeComponent();
+            
         }
-        public DayApooitment_view(string day,int state)
+        public DayApooitment_view( int state)
         {
-            Day.Text= day;
+            InitializeComponent();
             Setstate(state);
+            Day.Text = "";
+        }
+
+        public DayApooitment_view(DateTime day,int state)
+        {
+            InitializeComponent();
+            if(day.Year!=date.Year)
+                Day.Text= day.Day.ToString();
+            Setstate(state);
+        }
+        public void SetAction(EventHandler action)
+        {
+            this.Click += action;
+            Day.Click += action;
         }
         public void SetDay(string day)
         {
@@ -30,13 +47,13 @@ namespace Cosmetic_App.Custom_View
             switch (state)
             {
                 case -1:
-                    this.BackColor = SystemColors.GrayText;
+                    this.BackColor = SystemColors.Window;
                     break;
                 case 0:
                     this.BackColor = SystemColors.Info;
                     break;
                 case 1:
-                    this.BackColor = SystemColors.Window;
+                    this.BackColor = SystemColors.GrayText;
                     break;
             }
         }

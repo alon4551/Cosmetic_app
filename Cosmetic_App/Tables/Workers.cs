@@ -86,5 +86,9 @@ namespace Cosmetic_App
                     return true;
             return false;
         }
+        public List<Calender_Table> GetAppoitments(string date)
+        {
+            return Calender_Table.GetAppoitments(date);
+        }
     }
 }

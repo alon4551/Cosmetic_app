@@ -21,20 +21,20 @@ namespace Cosmetic_App
         private void HomePage_Load(object sender, EventArgs e)
         {
             int i = 0;
-            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8);
+            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8, calender.CalenderSize);
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             calender.ChangeMouth(true);
-            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8);
+            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8,calender.CalenderSize);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             calender.ChangeMouth(false);
-            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8);
+            calender.DisplayDays_OnCalender(flowLayoutPanel1, label8, calender.CalenderSize);
         }
     }
 }

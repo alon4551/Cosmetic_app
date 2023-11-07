@@ -66,7 +66,7 @@ namespace Cosmetic_App.Tables
                 return Treatment.GetColValue("duration").ToString();
             else return "";
         }
-
+       
         internal void SetInvetory(int v)
         {
             SetColValue("inventory", v);

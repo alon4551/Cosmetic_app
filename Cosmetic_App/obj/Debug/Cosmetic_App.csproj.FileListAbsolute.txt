@@ -92,3 +92,7 @@ C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\C
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Product_Profile.resources
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.InputView.resources
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.CustomMessageBox.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.DayApooitment_view.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.SelectApoitmentTime.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.SetAppoitment.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Custom_View.DisplayHour.resources

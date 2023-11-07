@@ -10,8 +10,26 @@ namespace Cosmetic_App
 {
     public class Calender_Table:DB_Object
     {
+        Products Product {  get; set; } = new Products();
+        Person Client { get; set; } = new Person();
+        Workers Worker { get; set; } = new Workers();
         public Calender_Table():base(Database_Names.Calendrer,Database_Names.Calender_Columes) { }
-        public Calender_Table(DB_Object obj):base(obj) { }
+        public Calender_Table(DB_Object obj):base(obj) 
+        {
+            Reload();
+        }
+        public Calender_Table(int id) : base(Database_Names.Calendrer, Database_Names.Calender_Columes)
+        {
+            Value = id;
+            Reload();
+        }
+        public void Reload()
+        {
+            Grab(Value);
+            Product.Grab(GetColValue("treatment_id"));
+            Client.Grab(GetColValue("client_id"));
+            Worker.Grab(GetColValue("worker_id").ToString());
+        }
         public static List<Row> GetApoitmentsInfomation(string date)
         {
             List<Row> rows = new List<Row>();
@@ -42,6 +60,58 @@ namespace Cosmetic_App
         public static int TreatmentsInDay(DateTime time)
         {
            return GetApoitmentsInfomation(time.ToShortDateString()).Count;
+        }
+        public static List<Calender_Table> GetAppoitments(string date)
+        {
+            Calender_Table calender = new Calender_Table();
+            List<Calender_Table> list=new List<Calender_Table>();
+            foreach(DB_Object obj in calender.Grab(Database_Names.Calender_Columes[5], date ,Database_Names.Calendrer))
+                list.Add(new Calender_Table(obj));
+            return list;
+        }
+        public DateTime GetApooitmentStartingTime()
+        {
+            DateTime day = DateTime.Parse(GetColValue("day").ToString());
+            DateTime time = DateTime.Parse(GetColValue("time").ToString());
+            return new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
+        }
+        public DateTime GetApooitmentEndingTime()
+        {
+            DateTime day = DateTime.Parse(GetColValue("day").ToString());
+            DateTime time = DateTime.Parse(GetColValue("time").ToString());
+            DateTime selected = new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
+            return selected.AddMinutes(double.Parse(Product.GetDuration())) ;
+        }
+        internal int GetDuration()
+        {
+            return int.Parse(Product.GetDuration());
+        }
+
+        internal string getTreatmentInformation()
+        {
+            return $"{Product.getName()}";
+        }
+
+        internal string GetCustomerFullName()
+        {
+            return Client.GetFullName();
+        }
+        public bool IsDateTimeWithInRange(DateTime date)
+        {
+            TimeSpan start = GetApooitmentStartingTime().Subtract(date);
+            TimeSpan end = GetApooitmentEndingTime().Subtract(date);
+            if (start.Minutes + start.Hours * 60 <= 0 && end.Minutes + end.Hours * 60 >= 0)
+                return true;
+            return false;
+        }
+        public bool IsDateTimeInEdge(DateTime date,bool start)
+        {
+            TimeSpan span;
+            if (start)
+                span = GetApooitmentStartingTime().Subtract(date);
+            else
+                span = GetApooitmentEndingTime().Subtract(date);
+            return span.Minutes + span.Hours * 60 == 0;
         }
     }
 }

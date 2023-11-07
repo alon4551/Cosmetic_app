@@ -106,6 +106,17 @@ public class DB_Object
         }
         return false;
     }
+    public List<DB_Object> Grab(List<string> fileds, List<object> ids, string Table)
+    {
+        List<Condition> conditions = new List<Condition>();
+        for(int i = 0; i < fileds.Count; i++)
+            conditions.Add(new Condition(fileds[i], ids[i]));
+        List<Row> Rows = Access.getObjects(SQL_Queries.Select(Table,conditions,"AND"));
+        List<DB_Object> objects = new List<DB_Object>();
+        foreach (Row r in Rows)
+            objects.Add(new DB_Object(Table, r));
+        return objects;
+    }
     public List<DB_Object> Grab(string filed, object id, string Table)
     {
         List<Row> Rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(filed, id)));
@@ -186,4 +197,5 @@ public class DB_Object
                 return false;
         return true;
     }
+   
 }

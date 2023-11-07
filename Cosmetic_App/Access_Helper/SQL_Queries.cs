@@ -85,7 +85,32 @@ public class SQL_Queries
     {
         return $"select * from {MainTable},{InharetTable} where {MainTable}.{commonField} = {InharetTable}.{commonField};";
     }
- 
+    public static string Join(Row MainTable, List<Row> SeconderyTables)//the seco
+    {
+        string query = $"select * from {MainTable.Table}, ";
+        foreach(Row R in SeconderyTables)
+        {
+            query += $"{R.Table}, ";
+        }
+        query += $"from {MainTable.Table} ";
+        for(int i = 0; i < MainTable.Columes.Count; i++)
+        {
+            query += $"JOIN {SeconderyTables[i].Table} ON {MainTable.Table}.{MainTable.Columes[i].GetField()} = {SeconderyTables[i].Table}.{SeconderyTables[i].Columes[0].GetField()}";
+        }
+        return query+=";";
+    }
+    public static string Join(Row MainTable, List<Row> SeconderyTables, Col Condition)//the seco
+    {
+        string query = $"select * from {MainTable.Table} ";
+        for (int i = 0; i < MainTable.Columes.Count; i++)
+        {
+                if (SeconderyTables[i].Additional_Name=="")
+                    query += $"JOIN {SeconderyTables[i].Table} ON {MainTable.Table}.{MainTable.Columes[i].GetField()} = {SeconderyTables[i].Table}.{SeconderyTables[i].Columes[0].GetField()} ";
+                else
+                    query += $"JOIN {SeconderyTables[i].Table} AS {SeconderyTables[i].Additional_Name} ON {MainTable.Table}.{MainTable.Columes[i].GetField()} = {SeconderyTables[i].Table}.{SeconderyTables[i].Columes[0].GetField()} ";
+        }
+        return query += $"where {MainTable.Table}.{Condition.GetField()} = {SQL_Syntax(Condition.GetValue())};";
+    }
     public static string Seperate(string MainTable, string Sparate, string commonfield)
     {
         return $"select * from {MainTable} where {commonfield} not in (select {commonfield} from {Sparate});";

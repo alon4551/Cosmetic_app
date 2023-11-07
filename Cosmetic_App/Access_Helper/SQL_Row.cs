@@ -4,14 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Row{
+public class Row {
 
     public List<Col> Columes { get; set; } = new List<Col>();
     public string Table { get; set; }
+    public string Additional_Name { get; set; } = "";
     public Row(List<Col> cols,string table)
     {
         Table = table;
         Columes = cols;
+    }
+    public Row(List<Col> cols, string table,string additional_name)
+    {
+        Table = table;
+        Columes = cols;
+        Additional_Name = additional_name;
     }
     public Row(List<Col> cols)
     {
