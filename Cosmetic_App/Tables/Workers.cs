@@ -39,7 +39,7 @@ namespace Cosmetic_App
         }
         public bool ClockIn(string date,string time)
         {
-           return Shifts.ClockIn(Id, date, time);
+           return Shifts.ClockIn(Field, date, time);
         }
         public void ClockOut(string date,string time)
         {
@@ -58,7 +58,7 @@ namespace Cosmetic_App
                     list.Add(col);
             }
             if (Value == null) Value = Row.Columes[0].GetValue();
-            string query = SQL_Queries.Update(Table, list, new Condition(Id, Value));
+            string query = SQL_Queries.Update(Table, list, new Condition(Field, Value));
             if (IsExist(Value))
                 return Access.Execute(query);
             else
@@ -89,6 +89,15 @@ namespace Cosmetic_App
         public List<Calender_Table> GetAppoitments(string date)
         {
             return Calender_Table.GetAppoitments(date);
+        }
+        public string GetFullName() { return Person.GetFullName(); }
+        public static List<Workers> GrabAll()
+        {
+            List<Workers> list = new List<Workers>();
+            List<Row> all = Access.getObjects(SQL_Queries.Select(Database_Names.Workers));
+            foreach (Row obj in all)
+                list.Add(new Workers(obj.GetColValue(0).ToString()));
+            return list;
         }
     }
 }

@@ -1,0 +1,159 @@
+﻿using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Cosmetic_App.Forms
+{
+    public partial class Calander_Dashbord : Form
+    {
+        public Income order = new Income();
+        public Products Product = new Products();
+        public List<Workers> workers = Workers.GrabAll();
+        public Calender_Table Apooitment = new Calender_Table();
+        public Calander_Dashbord(string id)
+        {
+            InitializeComponent();
+        }
+        public Calander_Dashbord(int id)
+        {
+            order = new Income(id);
+            InitializeComponent();
+        }
+        public void Reload()
+        {
+            order.Relaod();
+            Load_Information();
+        }
+        private void Calander_Dashbord_Load(object sender, EventArgs e)
+        {
+            Load_Worker_List();
+            Load_Information();
+        }
+        public void Load_Worker_List()
+        {
+            worker_list.Items.Clear();
+            foreach(Workers worker in workers)
+                worker_list.Items.Add(worker.GetFullName());
+        }
+       
+        public void Load_Information()
+        {
+            order_id_box.Text = order.Value.ToString();
+            Client_box.Text = order.GetClientName();
+            Cart_list.Items.Clear();
+            foreach(Products Product in order.GetCart())
+            {
+                ListViewItem item =new ListViewItem(Product.getName());
+                item.Tag = Product.Value;
+                if (!Product.IsTreatment())
+                    item.SubItems.Add("נרכש");
+                else
+                {
+
+                    if (order.IsTreatmentSchedule(int.Parse(Product.Value.ToString())))
+                        item.SubItems.Add("טיפול נקבע");
+                    else
+                        item.SubItems.Add("טיפול טרם נקבע במערכת");
+                }
+                Cart_list.Items.Add(item);
+            }
+        }
+
+        private void Cart_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Cart_list.SelectedItems.Count !=1) return;
+            int id = (int)Cart_list.SelectedItems[0].Tag;
+            if (order.IsTreatmentSchedule(id))
+                Apooitment = order.GetAppoitment(id);
+            else
+            {
+                Apooitment = new Calender_Table();
+                Apooitment.SetProduct(id);
+            }
+            worker_list.ResetText();
+            Load_Product_Information();
+
+
+        }
+        public void Load_Product_Information()
+        {
+            Product = Apooitment.GetProduct();
+            if (!Product.IsTreatment())
+            {
+                Treatment_layout_info.Visible = false;
+                label4.Text = "מוצר זה נרכש";
+            }
+            else
+            {
+                Treatment_layout_info.Visible = true;
+                label4.Text = "פרטים על הטיפול";
+                treatment_name.Text = Product.getName();
+                treatment_duration.Text = Product.GetDuration() + " דקות";
+                if (order.IsTreatmentSchedule((int)Product.Value))
+                {
+                    worker_list.SelectedItem = Apooitment.getWorkerName();
+                    
+                }
+                scheduale_box.Text = Apooitment.getSchedualeTime();
+                
+
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int appoitmentId = order.GetAppoitmentId((int)Product.Value);
+            using (SelectApoitmentTime Select = new SelectApoitmentTime((int)Product.Value, order.GetClientName(),appoitmentId))
+            {
+                Select.ShowDialog();
+                if (Select.Result)
+                { 
+                    Apooitment.SetSchedualeTime(Select.SelectTime);
+                    Load_Product_Information();
+                }
+            }
+        }
+
+        private void worker_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Apooitment.setWorker(workers[worker_list.SelectedIndex].Value.ToString());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool result = Apooitment.IsShedualeTimeExisit();
+            if(result && worker_list.SelectedItem == "")
+            {
+                MessageBox.Show("עלייך לקבוע זמן טיפול ולבחור עובד-");
+                return;
+            }
+            if (!result)
+            {
+                MessageBox.Show("עלייך לקבוע זמן לטיפול");
+                return;
+            }
+            if(worker_list.SelectedItem == "")
+            {
+                MessageBox.Show(" עלייך לבחור עובד ");
+                return;
+            }
+            Apooitment.setOrder(order.Value);
+            Apooitment.setClient(order.GetClient());
+            if (Apooitment.Update())
+            {
+                MessageBox.Show("כל הכבוד");
+                Reload();
+            }
+            else
+                MessageBox.Show("error");
+        }
+    }
+}

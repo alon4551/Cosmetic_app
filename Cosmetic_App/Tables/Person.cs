@@ -21,6 +21,13 @@ namespace Cosmetic_App.Tables
         {
             return GetColValue("firstname") + " " + GetColValue("lastname");
         }
+        public static List<Person> GetAllClients()
+        {
+            List<Person> clients = new List<Person>();
+            foreach (Row row in Access.getObjects(SQL_Queries.Seperate(Database_Names.People, Database_Names.Workers, Database_Names.People_Columes[0])))
+                clients.Add(new Person(row));
+            return clients;
+        }
         public static List<Person> GetAllPeople()
         {
             Person person = new Person() ;
@@ -33,7 +40,7 @@ namespace Cosmetic_App.Tables
         {
             if(Value.ToString()=="0")
                 return false;
-            bool result = Access.Execute(SQL_Queries.Delete(Database_Names.Workers, new Condition(Id, Value)));
+            bool result = Access.Execute(SQL_Queries.Delete(Database_Names.Workers, new Condition(Field, Value)));
             return result & base.Delete();
         }
     }

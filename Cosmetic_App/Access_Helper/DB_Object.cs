@@ -7,7 +7,7 @@ public class DB_Object
 {
     public Row Row { get; set; } = new Row();
     public string Table { get; set; }
-    public string Id { get; set; } 
+    public string Field { get; set; } 
     public object Value { get; set; } = null;
     public static object GetColValue(string table, List<string> fields,string id,string field)
     {
@@ -21,7 +21,7 @@ public class DB_Object
     {
         Row = dB_Object.Row;
         Table = dB_Object.Table;
-        Id = dB_Object.Id;
+        Field = dB_Object.Field;
         Value = dB_Object.Value;
     }
     public DB_Object(string table, List<Col> Cols)
@@ -29,7 +29,7 @@ public class DB_Object
         Row = new Row(Cols);
         Table = table;
         Value = Cols[0].GetValue() ;
-        Id = Cols[0].GetField();
+        Field = Cols[0].GetField();
     }
 
     public DB_Object(string table,Row r)
@@ -37,12 +37,12 @@ public class DB_Object
         Row = r;
         Table = table;
         Value = r.GetColValue(0);
-        Id = r.Columes[0].GetField();
+        Field = r.Columes[0].GetField();
     }
     public DB_Object(string table, List<string> fields)
     {
         Table = table;
-        Id = fields[0];
+        Field = fields[0];
         Row.Columes=new List<Col>();
         foreach (string filed in fields)
             Row.AddColume(new Col(filed, null));
@@ -79,7 +79,7 @@ public class DB_Object
     }
     public List<DB_Object> Grab_Join(DB_Object otherObject)
     {
-        List<Row> list= Access.getObjects(SQL_Queries.SelfJoin(Table, otherObject.Table, Id));
+        List<Row> list= Access.getObjects(SQL_Queries.SelfJoin(Table, otherObject.Table, Field));
         List<DB_Object> objects= new List<DB_Object>();
         foreach (Row r in list)
             objects.Add(new DB_Object(Table,r));
@@ -94,7 +94,7 @@ public class DB_Object
     }
     public  bool Grab(object id)
     {
-        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, id)));
+        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Field, id)));
         foreach (Row r in rows)
         {
             if (r.GetColValue(0).ToString() == id.ToString())
@@ -140,7 +140,7 @@ public class DB_Object
     public bool IsExist()
     {
         if(Value == null) return false;
-        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, Value)));
+        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Field, Value)));
         foreach (Row r in rows)
             if (r.GetColValue(0).ToString() == Value.ToString())
                 return true;
@@ -148,7 +148,7 @@ public class DB_Object
     }
     public bool IsExist(object id)
     {
-        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Id, id)));
+        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Field, id)));
         foreach (Row r in rows)
             if (r.GetColValue(0).ToString() == id.ToString())
                 return true;
@@ -157,7 +157,12 @@ public class DB_Object
     public bool Update()
     {
         if (Value == null) Value = Row.Columes[0].GetValue();
-        string query = SQL_Queries.Update(Table, Row.Columes, new Condition(Id, Value));
+        if (Value == null)
+        {
+            Value = GetNewIndex();
+            SetColValue(0, Value);
+        }
+        string query = SQL_Queries.Update(Table, Row.Columes, new Condition(Field, Value));
         
         if (IsExist(Value))
             return Access.Execute(query);

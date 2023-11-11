@@ -17,7 +17,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SelectApoitmentTime(6,"אלון שרייבמן"));
+            Application.Run(new Calander_Dashbord(0));
         }
     }
 }

@@ -15,8 +15,10 @@ namespace Cosmetic_App.Forms
 {
     public partial class SelectApoitmentTime : Form
     {
+        public bool Result = false;
         public Products Product { get; set; } = new Products();
         public List<Calender_Table> Appooitments { get; set; }= new List<Calender_Table>();
+        public int SelectedAppoitment ;
         public static string SelectDay { get; set; } = DateTime.Now.ToShortDateString();
         public DateTime SelectTime {get;set; }
         public SelectApoitmentTime()
@@ -24,12 +26,13 @@ namespace Cosmetic_App.Forms
             InitializeComponent();
             Reload();
         }
-        public SelectApoitmentTime(int product,string client)
+        public SelectApoitmentTime(int product,string client,int Appoitment)
         {
             InitializeComponent();
             Product.Grab(product);
             month_label.Text = $"קביעת תור ל{client} עבור {Product.getName()}";
             starting_time.Value = DateTime.Now;
+            SelectedAppoitment = Appoitment;
             ReloadEndTime();
             Reload();
         }
@@ -75,8 +78,9 @@ namespace Cosmetic_App.Forms
             DateTime Ending = starting_time.Value.AddMinutes(double.Parse(Product.GetDuration()));
             if(starting_time.Value.Subtract(DateTime.Now).Ticks<0)
             {
-                MessageBox.Show("לא ניתן לבחור שעת טיפול מימים קודמים יותר");
-                return;
+                DialogResult result = MessageBox.Show("זמן זה הוא בעבר, האם אתה בטוח שאתה רוצה לקבוע את הזמן הזה","",MessageBoxButtons.YesNo);
+                if(result != DialogResult.Yes) 
+                    return;
             }    
             foreach (Calender_Table apooitment in Appooitments)
             {
@@ -89,6 +93,7 @@ namespace Cosmetic_App.Forms
             }
             SelectTime = starting_time.Value;
             MessageBox.Show("זמן טיפול נבחר, חלון זה יסגר");
+            Result = true;
             this.Close();
         }
     }

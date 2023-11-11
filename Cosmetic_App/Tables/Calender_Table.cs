@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Tables;
 using Cosmetic_App.Utiltes;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace Cosmetic_App
             Products product;
             Row r;
             Calender_Table table = new Calender_Table();
-            List<DB_Object> list = table.Grab("day",date,Database_Names.Calendrer);
+            List<DB_Object> list = table.Grab(Database_Names.Calender_Columes[5],date,Database_Names.Calendrer);
             foreach (DB_Object obj in list)
             {
                 r = new Row(obj.Row.Columes);
@@ -71,14 +72,14 @@ namespace Cosmetic_App
         }
         public DateTime GetApooitmentStartingTime()
         {
-            DateTime day = DateTime.Parse(GetColValue("day").ToString());
-            DateTime time = DateTime.Parse(GetColValue("time").ToString());
+            DateTime day = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
+            DateTime time = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[6]).ToString());
             return new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
         }
         public DateTime GetApooitmentEndingTime()
         {
-            DateTime day = DateTime.Parse(GetColValue("day").ToString());
-            DateTime time = DateTime.Parse(GetColValue("time").ToString());
+            DateTime day = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
+            DateTime time = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[6]).ToString());
             DateTime selected = new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
             return selected.AddMinutes(double.Parse(Product.GetDuration())) ;
         }
@@ -96,6 +97,19 @@ namespace Cosmetic_App
         {
             return Client.GetFullName();
         }
+        internal string getWorkerName() {
+        return Worker.GetFullName();
+        }
+        internal string getSchedualeTime()
+        {
+            return $"בתאריך:{GetColValue(Database_Names.Calender_Columes[5])}\nבשעה:{GetColValue(Database_Names.Calender_Columes[6])}";
+        }
+        internal bool IsShedualeTimeExisit()
+        {
+            if (GetColValue(Database_Names.Calender_Columes[6]).ToString() == "" && GetColValue(Database_Names.Calender_Columes[5]).ToString() == "")
+                return false;
+            return true;
+        }
         public bool IsDateTimeWithInRange(DateTime date)
         {
             TimeSpan start = GetApooitmentStartingTime().Subtract(date);
@@ -112,6 +126,40 @@ namespace Cosmetic_App
             else
                 span = GetApooitmentEndingTime().Subtract(date);
             return span.Minutes + span.Hours * 60 == 0;
+        }
+
+        internal void SetSchedualeTime(DateTime selectTime)
+        {
+            SetColValue(Database_Names.Calender_Columes[5],selectTime.ToShortDateString());
+            SetColValue(Database_Names.Calender_Columes[6],selectTime.ToShortTimeString());
+        }
+        internal Products GetProduct()
+        {
+            return Product;
+        }
+
+        internal void SetProduct(int product_id)
+        {
+            Product = new Products(product_id);
+            SetColValue(Database_Names.Calender_Columes[3], product_id);
+        }
+
+        internal void setWorker(string worker_id)
+        {
+            Worker = new Workers(worker_id);
+            SetColValue(Database_Names.Calender_Columes[2], worker_id);
+        }
+
+        internal void setClient(Person person)
+        {
+            Client = person;
+            SetColValue(Database_Names.Calender_Columes[1], person.Value);
+        }
+
+
+        internal void setOrder(object value)
+        {
+            SetColValue(Database_Names.Calender_Columes[4], value);
         }
     }
 }

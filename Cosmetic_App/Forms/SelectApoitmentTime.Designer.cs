@@ -288,7 +288,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.53402F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.30159F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.01587F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel7.Controls.Add(this.starting_time, 3, 1);
             this.tableLayoutPanel7.Controls.Add(this.ending_time, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.label2, 3, 0);
@@ -307,12 +307,12 @@
             this.starting_time.CustomFormat = "HH:mm";
             this.starting_time.Dock = System.Windows.Forms.DockStyle.Fill;
             this.starting_time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.starting_time.Location = new System.Drawing.Point(153, 19);
+            this.starting_time.Location = new System.Drawing.Point(148, 19);
             this.starting_time.Name = "starting_time";
             this.starting_time.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.starting_time.RightToLeftLayout = true;
             this.starting_time.ShowUpDown = true;
-            this.starting_time.Size = new System.Drawing.Size(115, 22);
+            this.starting_time.Size = new System.Drawing.Size(110, 22);
             this.starting_time.TabIndex = 0;
             this.starting_time.Value = new System.DateTime(2023, 11, 2, 8, 0, 0, 0);
             this.starting_time.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
@@ -329,10 +329,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(153, 0);
+            this.label2.Location = new System.Drawing.Point(148, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(115, 16);
+            this.label2.Size = new System.Drawing.Size(110, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "תחילת טיפול";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -344,7 +344,7 @@
             this.label10.Location = new System.Drawing.Point(23, 0);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label10.Size = new System.Drawing.Size(93, 16);
+            this.label10.Size = new System.Drawing.Size(90, 16);
             this.label10.TabIndex = 3;
             this.label10.Text = "סיום טיפול";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

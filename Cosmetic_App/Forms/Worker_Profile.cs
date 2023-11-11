@@ -172,7 +172,7 @@ namespace Cosmetic_App
                 }
                 else
                     MessageBox.Show("סיסמא אינה נכונה");
-                Reload(Worker.Id);
+                Reload(Worker.Field);
             }
         }
 

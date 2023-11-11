@@ -121,11 +121,23 @@
     <Compile Include="Custom_View\ProductView.Designer.cs">
       <DependentUpon>ProductView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom_View\StoreProductView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\StoreProductView.Designer.cs">
+      <DependentUpon>StoreProductView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom_View\week_Calender_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Custom_View\week_Calender_view.Designer.cs">
       <DependentUpon>week_Calender_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Calander_Dashbord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Calander_Dashbord.Designer.cs">
+      <DependentUpon>Calander_Dashbord.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomMessageBox.cs">
       <SubType>Form</SubType>
@@ -193,7 +205,14 @@
     <Compile Include="Forms\SetAppoitment.Designer.cs">
       <DependentUpon>SetAppoitment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Store.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Store.Designer.cs">
+      <DependentUpon>Store.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tables\Calender_Table.cs" />
+    <Compile Include="Tables\Income.cs" />
     <Compile Include="Tables\Person.cs" />
     <Compile Include="Tables\Shifts.cs" />
     <Compile Include="Tables\Products.cs" />
@@ -245,8 +264,14 @@
     <EmbeddedResource Include="Custom_View\ProductView.resx">
       <DependentUpon>ProductView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\StoreProductView.resx">
+      <DependentUpon>StoreProductView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\week_Calender_view.resx">
       <DependentUpon>week_Calender_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Calander_Dashbord.resx">
+      <DependentUpon>Calander_Dashbord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
@@ -283,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SetAppoitment.resx">
       <DependentUpon>SetAppoitment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Store.resx">
+      <DependentUpon>Store.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

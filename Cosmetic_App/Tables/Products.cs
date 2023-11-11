@@ -20,6 +20,21 @@ namespace Cosmetic_App.Tables
         {
             Grab(id);
         }
+        public Products(Row row) : base(Database_Names.Products, Database_Names.Product_Columes)
+        {
+            foreach(Col c in row.Columes)
+            {
+                if (c.GetField() == Database_Names.Product_Columes[0])
+                {
+                    Treatment.SetColValue(0, c.GetValue());
+                    SetColValue(0,c.GetValue());
+                }
+                if (c.GetField() == Database_Names.Treatment_Columes[1])
+                    Treatment.SetColValue(1, c.GetValue());
+                else
+                    SetColValue(c.GetField(), c.GetValue());
+            }
+        }
         internal bool Grab(object id)
         {
             bool result = base.Grab(id);
@@ -70,6 +85,20 @@ namespace Cosmetic_App.Tables
         internal void SetInvetory(int v)
         {
             SetColValue("inventory", v);
+        }
+        public static List<Products> GetAllProducts()
+        {
+            List<Products> products = new List<Products>();
+            foreach(Row r in Access.getObjects(SQL_Queries.SelfJoin(Database_Names.Products, Database_Names.Treatments, Database_Names.Product_Columes[0])))
+            {
+                products.Add(new Products(r));
+            }
+            return products;
+        }
+
+        internal object GetPrice()
+        {
+            return GetColValue(Database_Names.Product_Columes[2]);
         }
     }
 }

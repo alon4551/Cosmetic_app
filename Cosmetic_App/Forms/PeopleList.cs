@@ -35,7 +35,7 @@ namespace Cosmetic_App
             foreach(Person person in All)
             {
                 foreach (Person worker in workers)
-                    if(worker.Id == person.Id) { 
+                    if(worker.Field == person.Field) { 
                         state = false;
                         break;
                     }
