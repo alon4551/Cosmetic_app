@@ -17,7 +17,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Calander_Dashbord(0));
+            Application.Run(new Store("206517336"));
         }
     }
 }

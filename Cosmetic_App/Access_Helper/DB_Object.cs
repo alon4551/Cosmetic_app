@@ -17,6 +17,13 @@ public class DB_Object
         else
             return db.GetColValue(field);
     }
+    public DB_Object(Row row)
+    {
+        Table = row.Table;
+        Row = row;
+        Value = row.GetColValue(0);
+        Field = row.Columes[0].GetField();
+    }
     public DB_Object(DB_Object dB_Object)
     {
         Row = dB_Object.Row;

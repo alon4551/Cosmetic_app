@@ -34,5 +34,18 @@ namespace Cosmetic_App.Utiltes
             }
             return "";
         }
+        public static string Reverse(string message)
+        {
+            string[] lines = message.Split('\n');
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                char[] characters = lines[i].ToCharArray();
+                Array.Reverse(characters);
+                lines[i] = new string(characters);
+            }
+
+            return string.Join("\n", lines);
+        }
     }
 }

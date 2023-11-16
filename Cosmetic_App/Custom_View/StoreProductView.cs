@@ -19,18 +19,20 @@ namespace Cosmetic_App.Custom_View
         }
         public void SetInformation(Products product)
         {
-           name_box.Text= product.getName();
-            if (product.IsTreatment())
-            {
-                name_box.Text += $"\nאורך טיפול: {product.GetDuration()} דקות";
-            }
+            name_box.Text = product.getName();
             price_box.Text = $"{product.GetPrice()} ש''ח";
             button1.Tag = product;
+            this.Tag = product.Value;
+        }
+        public int GetAmount()
+        {
+            return int.Parse(count_box.Text);
         }
         public void SetAction(EventHandler handler)
         {
             button1.Click += handler;
         }
 
+      
     }
 }

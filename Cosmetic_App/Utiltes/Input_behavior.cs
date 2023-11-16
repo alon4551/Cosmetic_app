@@ -49,6 +49,7 @@ namespace Cosmetic_App
                 return false;
             }
             else
+                if (hint != null)
                 Reset(hint);
             return true;
         }

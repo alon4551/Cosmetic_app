@@ -89,9 +89,12 @@ namespace Cosmetic_App.Tables
         public static List<Products> GetAllProducts()
         {
             List<Products> products = new List<Products>();
-            foreach(Row r in Access.getObjects(SQL_Queries.SelfJoin(Database_Names.Products, Database_Names.Treatments, Database_Names.Product_Columes[0])))
+            foreach(Row r in Access.getObjects(SQL_Queries.LeftOuterJoin(Database_Names.Products, Database_Names.Treatments, Database_Names.Product_Columes[0])))
             {
-                products.Add(new Products(r));
+                Products product = new Products(r);
+                product.Value = r.GetColValue(0);
+                product.SetColValue(0, r.GetColValue(0));
+                products.Add(product);
             }
             return products;
         }

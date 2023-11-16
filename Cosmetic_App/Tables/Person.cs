@@ -11,7 +11,8 @@ namespace Cosmetic_App.Tables
     public class Person:DB_Object
     {
         public Person() : base(Database_Names.People, Database_Names.People_Columes) { }
-        public Person(object id) : base(Database_Names.People, Database_Names.People_Columes) { Grab(id); }
+        public Person(string id) : base(Database_Names.People, Database_Names.People_Columes) { Grab(id); }
+        public Person(Row row) : base(row) { }
         public Person(DB_Object dB_) : base(dB_) { }
         public static object GetColValue(string id, string field)
         {
