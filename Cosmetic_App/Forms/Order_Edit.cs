@@ -13,17 +13,17 @@ using System.Windows.Forms;
 
 namespace Cosmetic_App.Forms
 {
-    public partial class Calander_Dashbord : Form
+    public partial class Order_Edit : Form
     {
         public Income order = new Income();
         public Products Product = new Products();
         public List<Workers> workers = Workers.GrabAll();
         public Calender_Table Apooitment = new Calender_Table();
-        public Calander_Dashbord(string id)
+        public Order_Edit(string id)
         {
             InitializeComponent();
         }
-        public Calander_Dashbord(int id)
+        public Order_Edit(int id)
         {
             order = new Income(id);
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Cosmetic_App.Forms
             order.Relaod();
             Load_Information();
         }
-        private void Calander_Dashbord_Load(object sender, EventArgs e)
+        private void Order_Dashbord_Load(object sender, EventArgs e)
         {
             Load_Worker_List();
             Load_Information();
@@ -118,6 +118,12 @@ namespace Cosmetic_App.Forms
                 { 
                     Apooitment.SetSchedualeTime(Select.SelectTime);
                     Load_Product_Information();
+                    if(MessageBox.Show("האם הפרטים של הטיפול נכונים ומתאימים, כאשר תלחץ על כן, המערכת תקבע את הטיפול ותשמור את ה]רטים","",MessageBoxButtons.YesNo)
+                        ==
+                        DialogResult.Yes)
+                    {
+                        button1_Click(null, null);
+                    }
                 }
             }
         }
@@ -149,7 +155,7 @@ namespace Cosmetic_App.Forms
             Apooitment.setClient(order.GetClient());
             if (Apooitment.Update())
             {
-                MessageBox.Show("כל הכבוד");
+                MessageBox.Show("טיפול נקבע");
                 Reload();
             }
             else

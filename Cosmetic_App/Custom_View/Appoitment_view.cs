@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cosmetic_App.Utiltes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,7 @@ namespace Cosmetic_App.Custom_View
         public void SetDate(Row r)
         {
             string text;
-            time.Text = $"{r.GetColValue("time").ToString()} - {r.GetColValue("ending").ToString()}" ;
+            time.Text = $"{r.GetColValue(Database_Names.Calender_Columes[5]).ToString()} - {r.GetColValue("ending").ToString()}" ;
             worker_name.Text = "עובד:"+r.GetColValue("worker_name").ToString();
             text = $"לקוח {r.GetColValue("client_name")} " +
                 $"עושה {r.GetColValue("treatment_name")}";

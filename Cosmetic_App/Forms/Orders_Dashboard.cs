@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Cosmetic_App.Forms
 {
-    public partial class SetAppoitment : Form
+    public partial class Orders_Dashboard : Form
     {
-        public SetAppoitment()
+        public Orders_Dashboard()
         {
             InitializeComponent();
         }

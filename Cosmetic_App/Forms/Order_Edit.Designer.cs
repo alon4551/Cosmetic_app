@@ -1,6 +1,6 @@
 ﻿namespace Cosmetic_App.Forms
 {
-    partial class Calander_Dashbord
+    partial class Order_Edit
     {
         /// <summary>
         /// Required designer variable.
@@ -384,16 +384,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Calander_Dashbord
+            // Order_Dashbord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 427);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Calander_Dashbord";
-            this.Text = "Calander_Dashbord";
-            this.Load += new System.EventHandler(this.Calander_Dashbord_Load);
+            this.Name = "Order_Dashbord";
+            this.Text = "Order_Dashbord";
+            this.Load += new System.EventHandler(this.Order_Dashbord_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

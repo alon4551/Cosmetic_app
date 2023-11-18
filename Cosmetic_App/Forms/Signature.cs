@@ -14,6 +14,7 @@ namespace Cosmetic_App.Forms
     public partial class Signature : Form
     {
         private bool isMouseDrawing = false;
+        public bool Sign=false;
         private List<Point> points = new List<Point>();
         public Bitmap signture = null;
         public Signature()
@@ -79,12 +80,14 @@ namespace Cosmetic_App.Forms
             {
                 signture = new Bitmap(panel1.Width, panel1.Height);
                 panel1.DrawToBitmap(signture, new Rectangle(0, 0, panel1.Width, panel1.Height));
+                Sign = true;
                 this.Close();
             }
 
         }
         public Bitmap GetSignatureBitmap()
         {
+            signture.MakeTransparent(Color.White);
             return signture;
         }
     }

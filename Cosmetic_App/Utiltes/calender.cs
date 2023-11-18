@@ -13,7 +13,7 @@ namespace Cosmetic_App.Utiltes
 {
     public static class calender
     {
-        public static Size CalenderSize = new Size(137, 81);
+        public static Size CalenderSize = new Size(125, 72);
         public static Size ApooitmentSize = new Size(66, 45);
         private static DateTime DisplayTime = DateTime.Now;
         private static List<Row> Apooitments = new List<Row>();

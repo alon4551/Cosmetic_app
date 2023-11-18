@@ -14,10 +14,12 @@ namespace Cosmetic_App
         public Cart() : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
             Value = GetNewIndex();
+            SetColValue(0, Value);
         }
         public Cart(int order,int product ) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
             Value = GetNewIndex();
+            SetColValue(0, Value);
             SetProduct(product);
             SetOrder_Id(order);
             Product.Grab(product);
@@ -25,6 +27,7 @@ namespace Cosmetic_App
         public Cart(int order, Products product) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
             Value = GetNewIndex();
+            SetColValue(0, Value);
             SetProduct((int)product.Value);
             SetOrder_Id(order);
             Product = product;

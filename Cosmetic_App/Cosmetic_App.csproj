@@ -205,11 +205,17 @@
     <Compile Include="Custom_View\week_Calender_view.Designer.cs">
       <DependentUpon>week_Calender_view.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Calander_Dashbord.cs">
+    <Compile Include="Forms\Orders_Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Calander_Dashbord.Designer.cs">
-      <DependentUpon>Calander_Dashbord.cs</DependentUpon>
+    <Compile Include="Forms\Orders_Dashboard.Designer.cs">
+      <DependentUpon>Orders_Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Order_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Order_Edit.Designer.cs">
+      <DependentUpon>Order_Edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CustomMessageBox.cs">
       <SubType>Form</SubType>
@@ -270,12 +276,6 @@
     </Compile>
     <Compile Include="Forms\SelectApoitmentTime.Designer.cs">
       <DependentUpon>SelectApoitmentTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SetAppoitment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SetAppoitment.Designer.cs">
-      <DependentUpon>SetAppoitment.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Signature.cs">
       <SubType>Form</SubType>
@@ -352,8 +352,11 @@
     <EmbeddedResource Include="Custom_View\week_Calender_view.resx">
       <DependentUpon>week_Calender_view.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Calander_Dashbord.resx">
-      <DependentUpon>Calander_Dashbord.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Orders_Dashboard.resx">
+      <DependentUpon>Orders_Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Order_Edit.resx">
+      <DependentUpon>Order_Edit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
@@ -387,9 +390,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectApoitmentTime.resx">
       <DependentUpon>SelectApoitmentTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SetAppoitment.resx">
-      <DependentUpon>SetAppoitment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Signature.resx">
       <DependentUpon>Signature.cs</DependentUpon>

@@ -24,11 +24,13 @@ namespace Cosmetic_App.Tables
         public Income() : base(Database_Names.Income,Database_Names.Income_Columes)
         {
             Value =GetNewIndex();
+            SetColValue(0, Value);
             SetColValue(4, DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString());
         }
         public Income(DB_Object obj) : base(obj)
         {
-
+            Value =GetNewIndex();
+            SetColValue(0, Value);
         }
         public Income (int id):base(Database_Names.Income, Database_Names.Income_Columes)
         {
@@ -69,11 +71,23 @@ namespace Cosmetic_App.Tables
         {
             return Cart;
         }
-        public void SetClient(string id){Client.Grab(id);}
-        public void SetClient(Person person){ Client = person; }
-        public void SetWorker(string id) { Worker.Grab(id); }
+        public void SetClient(string id){
+            Client.Grab(id);
+            SetColValue(2, id);
+        }
+        public void SetClient(Person person){
+            Client = person;
+            SetColValue(2, person.Value);
+        }
+        public void SetWorker(string id) { Worker.Grab(id);SetColValue(3, id); }
         public void SetCart(int id) { Cart = GrabOrderCart(id); }
-        public void SetCart(List<Cart> cart) { shopingCart = cart; }
+        public void SetCart(List<Cart> cart) {
+            shopingCart = cart;
+            int total = 0;
+            foreach (Cart cartItem in shopingCart)
+                total += cartItem.GetTotal();
+            SetColValue(1,total);
+        }
         public int GetOrderId() { return (int)GetColValue(0); }
         public string GetClientName() { return Client.GetFullName(); }
         public string GetWorkerName() { return Worker.GetFullName(); }
@@ -119,7 +133,7 @@ namespace Cosmetic_App.Tables
         }
         public void CreateInvoce(string path,object signture)
         {
-            Document doc = new Document(PageSize.A4);
+            Document doc = new Document(PageSize.A5);
             try
             {
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
@@ -128,7 +142,9 @@ namespace Cosmetic_App.Tables
                 doc.Add(GetElements("title"));
                 doc.Add(GetElements("client"));
                 doc.Add(GetList());
-                doc.Add(ConvertBitmapToIElement(signture));
+                doc.Add(new Paragraph("\n\n\n\n"));
+                doc.Add(getSignature((Bitmap)signture));
+                doc.Add(new Paragraph(Messages.Reverse("הוספה פרטי עסק")));
             }
             catch (Exception ex)
             {
@@ -141,36 +157,32 @@ namespace Cosmetic_App.Tables
             }
 
         }
-
-        public IElement ConvertBitmapToIElement(object bitmap)
+        public Paragraph getSignature(Bitmap signatureBitmap)
         {
-            using (MemoryStream stream = new MemoryStream())
+            Paragraph p =new Paragraph();
+            int size = 128;
+            Bitmap resize = new Bitmap(size,size);
+            using(Graphics g = Graphics.FromImage(resize))
             {
-                try
-                {
-                    // Save the Bitmap to the MemoryStream in the desired format (e.g., PNG)
-                    ((Bitmap)bitmap).Save(stream, ImageFormat.Png);
-                }
-                catch (Exception e){
-                    MessageBox.Show(e.Message);
-                }
-                // Create an Image object using iTextSharp
-                iText.Layout.Element.Image image = new iText.Layout.Element.Image(ImageDataFactory.Create(stream.ToArray()));
-
-                // Optionally, set image dimensions or other properties
-                image.SetWidth(200);
-                image.SetHeight(200);
-                return (IElement)image;
+                g.DrawImage(signatureBitmap, 0, 0, size, size);
             }
-        }
+            resize.MakeTransparent(Color.White);
+            iTextSharp.text.Image signature = iTextSharp.text.Image.GetInstance(resize, ImageFormat.Png);
+            signature.Alignment = Element.ALIGN_RIGHT;
+            BaseFont baseFont = BaseFont.CreateFont("c:/windows/fonts/david.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            p.Font = new iTextSharp.text.Font(baseFont, 18);
+            p.Alignment = Element.ALIGN_RIGHT;
+            p.Add(Messages.Reverse("חתימה:"));
+            p.Add(signature);
 
+            return p;
+        }
         public PdfPTable GetList()
         {
-
             PdfPTable table = new PdfPTable(4);
             table.AddCell(getCell(GetElements( Messages.Reverse("מחיר")),"header"));
             table.AddCell(getCell(GetElements(Messages.Reverse("כמות")),"header")) ;
-            table.AddCell(getCell(GetElements(Messages.Reverse("מחיר ליחידה")), "header"));
+            table.AddCell(getCell(GetElements(Messages.Reverse("ליחידה מחיר")), "header"));
             table.AddCell(getCell(GetElements(Messages.Reverse("שם מוצר")), "header"));
             int total = 0;
             
@@ -249,6 +261,19 @@ namespace Cosmetic_App.Tables
                     return p;
             }
             return null;
+        }
+
+        internal bool Save()
+        {
+            bool result =Update();
+            if (result)
+            {
+                foreach (Cart c in shopingCart)
+                {
+                    result &= c.Insert();
+                }
+            }
+            return result;
         }
     }
 }

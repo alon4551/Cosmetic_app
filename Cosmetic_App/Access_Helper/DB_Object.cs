@@ -9,14 +9,6 @@ public class DB_Object
     public string Table { get; set; }
     public string Field { get; set; } 
     public object Value { get; set; } = null;
-    public static object GetColValue(string table, List<string> fields,string id,string field)
-    {
-        DB_Object db = new DB_Object(table,fields);
-        if(!db.Grab(id))
-            return null;
-        else
-            return db.GetColValue(field);
-    }
     public DB_Object(Row row)
     {
         Table = row.Table;
@@ -38,7 +30,6 @@ public class DB_Object
         Value = Cols[0].GetValue() ;
         Field = Cols[0].GetField();
     }
-
     public DB_Object(string table,Row r)
     {
         Row = r;
@@ -53,6 +44,14 @@ public class DB_Object
         Row.Columes=new List<Col>();
         foreach (string filed in fields)
             Row.AddColume(new Col(filed, null));
+    }
+    public static object GetColValue(string table, List<string> fields,string id,string field)
+    {
+        DB_Object db = new DB_Object(table,fields);
+        if(!db.Grab(id))
+            return null;
+        else
+            return db.GetColValue(field);
     }
     public void SetColValue(int index,object value) 
     {
@@ -179,6 +178,8 @@ public class DB_Object
     }
     public bool Insert()
     {
+        Value = GetNewIndex();
+        SetColValue(0, Value);
         string query = SQL_Queries.Insert(Table, Row.Columes);
         if(Access.Execute(query))
         {

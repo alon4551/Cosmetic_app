@@ -2,6 +2,7 @@
 using Cosmetic_App.Tables;
 using Org.BouncyCastle.Asn1.BC;
 using System;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +12,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Cosmetic_App.Forms
 {
@@ -18,31 +20,36 @@ namespace Cosmetic_App.Forms
     {
         public Income Order = new Income();
         public List<Person> People = Person.GetAllClients(), people_filter = new List<Person>();
+        List<string> allNames = new List<string>();
         public List<Products> products = Products.GetAllProducts(),Filter=new List<Products>();
         public List<Cart> ShopingCart = new List<Cart>();
         public object signture = null;
         public Store()
         {
             InitializeComponent();
+            foreach (Person person in People)
+                allNames.Add(person.GetFullName());
+            Client_List.AutoCompleteCustomSource.AddRange(allNames.ToArray());
         }
         public Store(string worker)
         {
             InitializeComponent();
+            foreach(Person person in People)
+                allNames.Add(person.GetFullName());
+            Client_List.AutoCompleteCustomSource.AddRange(allNames.ToArray());
             Order.SetWorker(worker);
         }
         private void Store_Load(object sender, EventArgs e)
         {
             Income_label.Text = $"קבלה מספר {Order.Value} תאריך {DateTime.Now.ToString()}";
             Load_Products_List(products);
+            Load_Client_list(People);
             RelaodView();
             
         }
         public void RelaodView()
         {
-            Load_Client_list();
-           
             LoadShopingCart();
-
         }
         public void Load_Products_List(List<Products> list)
         {
@@ -72,7 +79,7 @@ namespace Cosmetic_App.Forms
         }
         public void RemoveClick(object sender, EventArgs e)
         {
-            CartView view = (CartView)((Button)sender).Tag;
+            CartView view = (CartView)((System.Windows.Forms.Button)sender).Tag;
             foreach(Cart item in ShopingCart)
             {
                 if(item.Value == view.Tag)
@@ -89,7 +96,7 @@ namespace Cosmetic_App.Forms
         }
         public void AddButtonClick(object sender, EventArgs e)
         {
-            Button button = sender as Button;
+            System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
             Products product = button.Tag as Products;
             Cart item;
             int count=0;
@@ -134,21 +141,38 @@ namespace Cosmetic_App.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog browse = new SaveFileDialog() { Filter = "PDF file|*.pdf",ValidateNames = true})
+            DialogResult result= MessageBox.Show("האם אתה בטוח בהצעת המחיר הזאת?","",MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                if (browse.ShowDialog() == DialogResult.OK)
+                using (Signature window = new Signature())
                 {
-                    Order.SetCart(ShopingCart);
-                    Order.CreateInvoce(browse.FileName,signture);
-
-
-                }    
+                    window.ShowDialog();
+                    if (window.Sign)
+                        using (SaveFileDialog browse = new SaveFileDialog() { Filter = "PDF file|*.pdf", ValidateNames = true })
+                        {
+                            if (browse.ShowDialog() == DialogResult.OK)
+                            {
+                                Order.SetCart(ShopingCart);
+                                if (Order.Save())
+                                {
+                                    Order.CreateInvoce(browse.FileName, window.signture);
+                                }
+                                else
+                                    MessageBox.Show("error in database");
+                            }
+                        }
+                    else
+                        MessageBox.Show("על מנת להמשיך בתהליך עלייך לחתום ולאשר חתימה");
+                }
             }
         }
 
         private void Client_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Order.SetClient(People[Client_List.SelectedIndex]);
+            if(people_filter.Count==0)
+                Order.SetClient(People[Client_List.SelectedIndex]);
+            else
+                Order.SetClient(people_filter[Client_List.SelectedIndex]);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -160,21 +184,33 @@ namespace Cosmetic_App.Forms
             }
         }
 
+        private void Client_List_Leave(object sender, EventArgs e)
+        {
+        }
+
+        private void Client_List_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             using(PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
                 People = Person.GetAllClients();
+                Load_Client_list(People);
                 RelaodView();
             }
         }
 
-        public void Load_Client_list()
+        public void Load_Client_list(List<Person> list)
         {
             Client_List.Items.Clear();
-            foreach(Person person in People)
+            foreach (Person person in list)
+            {
                 Client_List.Items.Add(person.GetFullName());
+            }
         }
 
     }

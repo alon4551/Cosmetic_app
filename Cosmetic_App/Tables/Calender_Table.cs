@@ -44,13 +44,13 @@ namespace Cosmetic_App
             foreach (DB_Object obj in list)
             {
                 r = new Row(obj.Row.Columes);
-                worker = new Workers(obj.GetColValue("worker_id").ToString());
-                client = new Person(obj.GetColValue("client_id").ToString());
-                treatment = new Treatments(int.Parse(obj.GetColValue("treatment_id").ToString()));
-                product = new Products(int.Parse(obj.GetColValue("treatment_id").ToString()));
+                worker = new Workers(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
+                client = new Person(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
+                treatment = new Treatments(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
+                product = new Products(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
                 r.AddColume(new Col("client_name", client.GetFullName()));
                 r.AddColume(new Col("worker_name", worker.Person.GetFullName()));
-                DateTime time = DateTime.Parse(r.GetColValue("time").ToString());
+                DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[5]).ToString());
                 time = time.AddMinutes(double.Parse(treatment.GetColValue("duration").ToString()));
                 r.AddColume("ending", time.ToShortTimeString());
                 r.AddColume("treatment_name",product.GetColValue("product_name"));
