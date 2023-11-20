@@ -384,14 +384,14 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Order_Dashbord
+            // Order_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 427);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Order_Dashbord";
+            this.Name = "Order_Edit";
             this.Text = "Order_Dashbord";
             this.Load += new System.EventHandler(this.Order_Dashbord_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

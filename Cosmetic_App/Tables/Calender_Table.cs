@@ -11,7 +11,7 @@ namespace Cosmetic_App
 {
     public class Calender_Table:DB_Object
     {
-        Products Product {  get; set; } = new Products();
+        Cart Item {  get; set; }
         Person Client { get; set; } = new Person();
         Workers Worker { get; set; } = new Workers();
         public Calender_Table():base(Database_Names.Calendrer,Database_Names.Calender_Columes) { }
@@ -27,7 +27,7 @@ namespace Cosmetic_App
         public void Reload()
         {
             Grab(Value);
-            Product.Grab(GetColValue("treatment_id"));
+            Item.Grab(GetColValue("treatment_id"));
             Client.Grab(GetColValue("client_id"));
             Worker.Grab(GetColValue("worker_id").ToString());
         }
@@ -37,7 +37,7 @@ namespace Cosmetic_App
             Person client;
             Workers worker;
             Treatments treatment;
-            Products product;
+            Cart product;
             Row r;
             Calender_Table table = new Calender_Table();
             List<DB_Object> list = table.Grab(Database_Names.Calender_Columes[5],date,Database_Names.Calendrer);
@@ -47,7 +47,7 @@ namespace Cosmetic_App
                 worker = new Workers(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
                 client = new Person(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
                 treatment = new Treatments(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
-                product = new Products(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
+                product = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
                 r.AddColume(new Col("client_name", client.GetFullName()));
                 r.AddColume(new Col("worker_name", worker.Person.GetFullName()));
                 DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[5]).ToString());
@@ -81,16 +81,16 @@ namespace Cosmetic_App
             DateTime day = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
             DateTime time = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[6]).ToString());
             DateTime selected = new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
-            return selected.AddMinutes(double.Parse(Product.GetDuration())) ;
+            return selected.AddMinutes(double.Parse(Item.Product.GetDuration())) ;
         }
         internal int GetDuration()
         {
-            return int.Parse(Product.GetDuration());
+            return int.Parse(Item.Product.GetDuration());
         }
 
         internal string getTreatmentInformation()
         {
-            return $"{Product.getName()}";
+            return $"{Item.Product.getName()}";
         }
 
         internal string GetCustomerFullName()
@@ -135,12 +135,12 @@ namespace Cosmetic_App
         }
         internal Products GetProduct()
         {
-            return Product;
+            return Item.Product;
         }
 
         internal void SetProduct(int product_id)
         {
-            Product = new Products(product_id);
+            Item.Product = new Products(product_id);
             SetColValue(Database_Names.Calender_Columes[3], product_id);
         }
 

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace Cosmetic_App.Tables
 {
@@ -27,10 +28,23 @@ namespace Cosmetic_App.Tables
             SetColValue(0, Value);
             SetColValue(4, DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString());
         }
+        public static List<Income> GrabAll()
+        {
+            List<DB_Object> list = DB_Object.GrabAll(Database_Names.Income);
+            List<Income> all = new List<Income>();
+            foreach(DB_Object obj in list)
+                all.Add(new Income(obj));
+            return all;
+        }
         public Income(DB_Object obj) : base(obj)
         {
-            Value =GetNewIndex();
+            Value =obj.Value;
             SetColValue(0, Value);
+            Worker.Grab(GetColValue("worker").ToString());
+            Client.Grab(GetColValue("client"));
+            shopingCart = GetOrderCart((int)Value);
+            Cart = GrabOrderCart((int)Value);
+            Apooitments = GrabApooitments((int)Value);
         }
         public Income (int id):base(Database_Names.Income, Database_Names.Income_Columes)
         {
@@ -38,10 +52,12 @@ namespace Cosmetic_App.Tables
         }
         public bool Grab(int id)
         {
+            Value = id;
             bool result =base.Grab(id);
             result &= Client.Grab(GetColValue(Database_Names.Income_Columes[2]));
             result &= Worker.Grab(GetColValue(Database_Names.Income_Columes[3]));            
             Cart = GrabOrderCart(id);
+            shopingCart = GetOrderCart((int)Value);
             Apooitments = GrabApooitments(id);
             return result;
         }
@@ -67,9 +83,46 @@ namespace Cosmetic_App.Tables
             }
             return products;
         }
-        public List<Products> GetCart()
+        public List<Cart> GetOrderCart(int id)
         {
-            return Cart;
+            List<Cart> cart = new List<Cart>();
+            foreach (DB_Object obj in Grab(Database_Names.Cart_Columes[1], id, Database_Names.Cart))
+                cart.Add(new Cart(obj));
+            return cart;
+        }
+        public bool IsShopingCartScheduale()
+        {
+            int count;
+            bool state = true;
+            foreach(Cart item in shopingCart)
+            {
+                if (item.Product.IsTreatment())
+                {
+                    if (item.GetAmount() != 1)
+                    {
+                        count = 0;
+                        foreach (Calender_Table appoitment in Apooitments)
+                            if (appoitment.GetColValue(3).ToString() == item.Product.Value.ToString())
+                                count++;
+                        if (count != item.GetAmount())
+                            state = false;
+                    }
+                    else
+                    {
+                        bool search = false;
+                        foreach (Calender_Table appoitment in Apooitments)
+                            if (appoitment.GetColValue(3).ToString() == item.Product.Value.ToString())
+                                search = true;
+                        if (!search)
+                            state = false;
+                    }
+                }
+            }
+            return state;
+        }
+        public List<Cart> GetCart()
+        {
+            return shopingCart;
         }
         public void SetClient(string id){
             Client.Grab(id);

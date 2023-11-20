@@ -10,11 +10,20 @@ namespace Cosmetic_App
 {
     public class Cart:DB_Object
     {
-        public Products Product {  get; set; }
-        public Cart() : base(Database_Names.Cart, Database_Names.Cart_Columes)
+        public Products Product { get; set; }
+
+        public Cart(int id) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
-            Value = GetNewIndex();
+            Grab(id);
+            Product = new Products((int)GetColValue(2));
+        }
+            public Cart(DB_Object obj) : base(Database_Names.Cart, Database_Names.Cart_Columes)
+        {
+            Table = Database_Names.Cart;
+            Value = obj.Value;
             SetColValue(0, Value);
+            Row = obj.Row;
+            Product = new Products((int)GetColValue(2));
         }
         public Cart(int order,int product ) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {

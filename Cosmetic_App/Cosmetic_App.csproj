@@ -149,6 +149,7 @@
     <Compile Include="Access_Helper\DB_Object.cs" />
     <Compile Include="Access_Helper\SQL_Col.cs" />
     <Compile Include="Access_Helper\SQL_Condition.cs" />
+    <Compile Include="Access_Helper\SQL_PrefferdTableName.cs" />
     <Compile Include="Access_Helper\SQL_Queries.cs" />
     <Compile Include="Access_Helper\SQL_Row.cs" />
     <Compile Include="Custom_View\Appoitment_view.cs">

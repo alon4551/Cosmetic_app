@@ -10,6 +10,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Cosmetic_App.Forms
 {
@@ -50,24 +51,29 @@ namespace Cosmetic_App.Forms
             order_id_box.Text = order.Value.ToString();
             Client_box.Text = order.GetClientName();
             Cart_list.Items.Clear();
-            foreach(Products Product in order.GetCart())
+            foreach(Cart cart in order.GetCart())
             {
-                ListViewItem item =new ListViewItem(Product.getName());
-                item.Tag = Product.Value;
-                if (!Product.IsTreatment())
-                    item.SubItems.Add("נרכש");
+                if (cart.GetAmount() == 1)
+                {
+                    ListViewItem item = new ListViewItem(cart.Product.getName());
+                    item.Tag = cart.Product.Value;
+                    if (!cart.Product.IsTreatment())
+                        item.SubItems.Add("נרכש");
+                    else
+                    {
+
+                        if (order.IsTreatmentSchedule(int.Parse(cart.Product.Value.ToString())))
+                            item.SubItems.Add("טיפול נקבע");
+                        else
+                            item.SubItems.Add("טיפול טרם נקבע במערכת");
+                    }
+                    Cart_list.Items.Add(item);
+                }
                 else
                 {
-
-                    if (order.IsTreatmentSchedule(int.Parse(Product.Value.ToString())))
-                        item.SubItems.Add("טיפול נקבע");
-                    else
-                        item.SubItems.Add("טיפול טרם נקבע במערכת");
                 }
-                Cart_list.Items.Add(item);
             }
         }
-
         private void Cart_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Cart_list.SelectedItems.Count !=1) return;

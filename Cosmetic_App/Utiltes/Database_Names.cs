@@ -22,12 +22,21 @@ namespace Cosmetic_App.Utiltes
         public static List<string> People_Columes = new List<string>() { "id","firstname","lastname","birthday","phone","email" };
         public static List<string> Workers_Columes = new List<string>() { "id","password","admin" };
         public static List<string> Clients_Columes = new List<string>() { "id","balance" };
-        public static List<string> Calender_Columes = new List<string>() { "id", "client_id" ,"worker_id","treatment_id","order_id", "day","start" };    
+        public static List<string> Calender_Columes = new List<string>() { "id", "client_id" ,"worker_id","cart_id","order_id", "day","start" };    
         public static List<string> Cart_Columes = new List<string>() { "id", "order_id","product_id", "quantity" };
         public static List<string> Income_Columes = new List<string>() { "id", "total","client","worker","date_of_purchase" };
         public static List<string> Outcome_Columes = new List<string>() { "id","total","date_of_purchase","recipt","supplier" };
         public static List<string> Product_Columes = new List<string>() { "id","product_name","price","inventory","istreatment" };
         public static List<string> Shifts_Columes = new List<string>() { "id","worker","day","start_time","end_time" };
         public static List<string> Treatment_Columes = new List<string>() { "id","duration" };
+        public static bool IsFieldInList(string value, List<string> fields)
+        {
+            foreach(string field in fields)
+            {
+                if(field == value)
+                    return true;
+            }
+            return false;
+        }
     }
 }

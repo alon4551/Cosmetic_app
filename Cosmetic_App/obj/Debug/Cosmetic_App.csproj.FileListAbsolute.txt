@@ -142,4 +142,5 @@ C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\bin\Debug\i
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\bin\Debug\itext.sign.xml
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\bin\Debug\itext.styledxmlparser.xml
 C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\bin\Debug\itext.svg.xml
-C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Order_Dashbord.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Orders_Dashboard.resources
+C:\Users\alon4\source\repos\Cosmetic_app-worker_Profile\Cosmetic_App\obj\Debug\Cosmetic_App.Forms.Order_Edit.resources

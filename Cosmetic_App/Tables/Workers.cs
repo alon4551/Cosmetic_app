@@ -18,10 +18,9 @@ namespace Cosmetic_App
         public Workers (string id): base(Database_Names.Workers,Database_Names.Workers_Columes) {
             Grab(id);
         }
-        public void Grab(string id)
+        public bool Grab(string id)
         {
-            base.Grab(id);
-            Person.Grab(id);
+            return base.Grab(id) & Person.Grab(id);
         }
         public static bool Verify_Account(string id,string password)
         {
