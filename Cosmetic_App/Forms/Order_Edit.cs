@@ -17,7 +17,7 @@ namespace Cosmetic_App.Forms
     public partial class Order_Edit : Form
     {
         public Income order = new Income();
-        public Products Product = new Products();
+        public Cart Item = new Cart();
         public List<Workers> workers = Workers.GrabAll();
         public Calender_Table Apooitment = new Calender_Table();
         public Order_Edit(string id)
@@ -51,27 +51,22 @@ namespace Cosmetic_App.Forms
             order_id_box.Text = order.Value.ToString();
             Client_box.Text = order.GetClientName();
             Cart_list.Items.Clear();
-            foreach(Cart cart in order.GetCart())
+            foreach (Cart cart in order.GetCart())
             {
-                if (cart.GetAmount() == 1)
+                ListViewItem item = new ListViewItem(cart.Product.getName());
+                item.Tag = cart.Value;
+                if (cart.Product.IsTreatment())
                 {
-                    ListViewItem item = new ListViewItem(cart.Product.getName());
-                    item.Tag = cart.Product.Value;
-                    if (!cart.Product.IsTreatment())
-                        item.SubItems.Add("נרכש");
+                    if (order.IsTreatmentSchedule(cart))
+                        item.SubItems.Add("טיפול נקבע");
                     else
-                    {
-
-                        if (order.IsTreatmentSchedule(int.Parse(cart.Product.Value.ToString())))
-                            item.SubItems.Add("טיפול נקבע");
-                        else
-                            item.SubItems.Add("טיפול טרם נקבע במערכת");
-                    }
-                    Cart_list.Items.Add(item);
+                        item.SubItems.Add("טיפול טרם נקבע במערכת");
                 }
                 else
                 {
+                    item.SubItems.Add("נרכש");
                 }
+                 Cart_list.Items.Add(item);
             }
         }
         private void Cart_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,11 +74,13 @@ namespace Cosmetic_App.Forms
             if (Cart_list.SelectedItems.Count !=1) return;
             int id = (int)Cart_list.SelectedItems[0].Tag;
             if (order.IsTreatmentSchedule(id))
+            {
                 Apooitment = order.GetAppoitment(id);
+            }
             else
             {
                 Apooitment = new Calender_Table();
-                Apooitment.SetProduct(id);
+                Apooitment.SetCartItem(id);
             }
             worker_list.ResetText();
             Load_Product_Information();
@@ -92,19 +89,21 @@ namespace Cosmetic_App.Forms
         }
         public void Load_Product_Information()
         {
-            Product = Apooitment.GetProduct();
-            if (!Product.IsTreatment())
+            Item = Apooitment.GetItem();
+            if (!Item.Product.IsTreatment())
             {
                 Treatment_layout_info.Visible = false;
                 label4.Text = "מוצר זה נרכש";
+                
             }
             else
             {
+                worker_list.Text = Apooitment.getWorkerName();
                 Treatment_layout_info.Visible = true;
                 label4.Text = "פרטים על הטיפול";
-                treatment_name.Text = Product.getName();
-                treatment_duration.Text = Product.GetDuration() + " דקות";
-                if (order.IsTreatmentSchedule((int)Product.Value))
+                treatment_name.Text = Item.GetProductName();
+                treatment_duration.Text = Item.Product.GetDuration() + " דקות";
+                if (order.IsTreatmentSchedule((int)Item.Value))
                 {
                     worker_list.SelectedItem = Apooitment.getWorkerName();
                     
@@ -116,15 +115,15 @@ namespace Cosmetic_App.Forms
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            int appoitmentId = order.GetAppoitmentId((int)Product.Value);
-            using (SelectApoitmentTime Select = new SelectApoitmentTime((int)Product.Value, order.GetClientName(),appoitmentId))
+            int appoitmentId = order.GetAppoitmentId((int)Item.Value);
+            using (SelectApoitmentTime Select = new SelectApoitmentTime((int)Item.Product.Value, order.GetClientName(),appoitmentId))
             {
                 Select.ShowDialog();
                 if (Select.Result)
                 { 
                     Apooitment.SetSchedualeTime(Select.SelectTime);
                     Load_Product_Information();
-                    if(MessageBox.Show("האם הפרטים של הטיפול נכונים ומתאימים, כאשר תלחץ על כן, המערכת תקבע את הטיפול ותשמור את ה]רטים","",MessageBoxButtons.YesNo)
+                    if(MessageBox.Show("האם הפרטים של הטיפול נכונים ומתאימים, כאשר תלחץ על כן, המערכת תקבע את הטיפול ותשמור את הפרטים","",MessageBoxButtons.YesNo)
                         ==
                         DialogResult.Yes)
                     {

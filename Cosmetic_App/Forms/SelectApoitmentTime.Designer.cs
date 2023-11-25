@@ -288,7 +288,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.53402F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.30159F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.01587F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel7.Controls.Add(this.starting_time, 3, 1);
             this.tableLayoutPanel7.Controls.Add(this.ending_time, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.label2, 3, 0);
@@ -307,7 +307,7 @@
             this.starting_time.CustomFormat = "HH:mm";
             this.starting_time.Dock = System.Windows.Forms.DockStyle.Fill;
             this.starting_time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.starting_time.Location = new System.Drawing.Point(145, 19);
+            this.starting_time.Location = new System.Drawing.Point(144, 19);
             this.starting_time.Name = "starting_time";
             this.starting_time.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.starting_time.RightToLeftLayout = true;
@@ -329,7 +329,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(145, 0);
+            this.label2.Location = new System.Drawing.Point(144, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(107, 16);

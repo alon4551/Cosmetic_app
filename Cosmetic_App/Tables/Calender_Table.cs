@@ -11,7 +11,7 @@ namespace Cosmetic_App
 {
     public class Calender_Table:DB_Object
     {
-        Cart Item {  get; set; }
+        Cart Item { get; set; } = new Cart();
         Person Client { get; set; } = new Person();
         Workers Worker { get; set; } = new Workers();
         public Calender_Table():base(Database_Names.Calendrer,Database_Names.Calender_Columes) { }
@@ -27,9 +27,9 @@ namespace Cosmetic_App
         public void Reload()
         {
             Grab(Value);
-            Item.Grab(GetColValue("treatment_id"));
-            Client.Grab(GetColValue("client_id"));
-            Worker.Grab(GetColValue("worker_id").ToString());
+            Item.Grab((int)GetColValue(3));
+            Client.Grab(GetColValue(Database_Names.Calender_Columes[1]));
+            Worker.Grab(GetColValue(Database_Names.Calender_Columes[2]).ToString());
         }
         public static List<Row> GetApoitmentsInfomation(string date)
         {
@@ -58,6 +58,7 @@ namespace Cosmetic_App
             }
             return rows;
         }
+        
         public static int TreatmentsInDay(DateTime time)
         {
            return GetApoitmentsInfomation(time.ToShortDateString()).Count;
@@ -92,7 +93,10 @@ namespace Cosmetic_App
         {
             return $"{Item.Product.getName()}";
         }
-
+        public Cart GetCart()
+        {
+            return Item;
+        }
         internal string GetCustomerFullName()
         {
             return Client.GetFullName();
@@ -137,11 +141,11 @@ namespace Cosmetic_App
         {
             return Item.Product;
         }
-
-        internal void SetProduct(int product_id)
+        public Cart GetItem() { return Item; }
+        internal void SetCartItem(int cart_id)
         {
-            Item.Product = new Products(product_id);
-            SetColValue(Database_Names.Calender_Columes[3], product_id);
+            Item = new Cart(cart_id);
+            SetColValue(Database_Names.Calender_Columes[3], cart_id);
         }
 
         internal void setWorker(string worker_id)
@@ -160,6 +164,16 @@ namespace Cosmetic_App
         internal void setOrder(object value)
         {
             SetColValue(Database_Names.Calender_Columes[4], value);
+        }
+
+        internal string GetTime()
+        {
+            return GetColValue(6).ToString();
+        }
+
+        internal string GetDate()
+        {
+            return GetColValue(5).ToString();
         }
     }
 }

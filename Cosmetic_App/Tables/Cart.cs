@@ -8,14 +8,24 @@ using System.Threading.Tasks;
 
 namespace Cosmetic_App
 {
-    public class Cart:DB_Object
+    public class Cart : DB_Object
     {
         public Products Product { get; set; }
+        public Cart() : base(Database_Names.Cart, Database_Names.Cart_Columes) 
+        {
+            Value = GetNewIndex();
+            SetColValue(0, Value);
+        }
 
         public Cart(int id) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
             Grab(id);
             Product = new Products((int)GetColValue(2));
+        }
+        public void Grab(object id)
+        {
+            base.Grab(id);
+            Product = new Products((int)(GetColValue(2)));
         }
             public Cart(DB_Object obj) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
@@ -42,6 +52,7 @@ namespace Cosmetic_App
             Product = product;
         }
         public int GetProductId() { return (int)Product.Value; }
+        public string GetProductName() { return Product.getName(); }
         public void SetProduct(int product_id){ SetColValue(Database_Names.Cart_Columes[2], product_id); }
         public void SetOrder_Id(int order_id){ SetColValue(Database_Names.Cart_Columes[1], order_id); }
         public void SetAmount(int amount_id){ SetColValue(Database_Names.Cart_Columes[3], amount_id); }
@@ -71,5 +82,7 @@ namespace Cosmetic_App
         {
             return (int)Product.GetPrice();
         }
+
+  
     }
 }

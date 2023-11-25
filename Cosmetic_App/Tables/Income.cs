@@ -102,7 +102,7 @@ namespace Cosmetic_App.Tables
                     {
                         count = 0;
                         foreach (Calender_Table appoitment in Apooitments)
-                            if (appoitment.GetColValue(3).ToString() == item.Product.Value.ToString())
+                            if (appoitment.GetColValue(3).ToString() == item.Value.ToString())
                                 count++;
                         if (count != item.GetAmount())
                             state = false;
@@ -111,7 +111,7 @@ namespace Cosmetic_App.Tables
                     {
                         bool search = false;
                         foreach (Calender_Table appoitment in Apooitments)
-                            if (appoitment.GetColValue(3).ToString() == item.Product.Value.ToString())
+                            if ((int)appoitment.GetColValue(3) == (int)item.Value)
                                 search = true;
                         if (!search)
                             state = false;
@@ -144,6 +144,7 @@ namespace Cosmetic_App.Tables
         public int GetOrderId() { return (int)GetColValue(0); }
         public string GetClientName() { return Client.GetFullName(); }
         public string GetWorkerName() { return Worker.GetFullName(); }
+ 
         public Products GetProduct(int id)
         {
             foreach (Products Product in Cart)
@@ -158,18 +159,27 @@ namespace Cosmetic_App.Tables
                     return appoitment;
             return null;
         }
-        public int GetAppoitmentId(int product_id)
+        public int GetAppoitmentId(int Cart_id)
         {
             foreach (Calender_Table appoitment in Apooitments)
-                if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3]) == product_id)
+                if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3]) == Cart_id)    
                     return (int)appoitment.Value;
             return -1;
         }
-        public bool IsTreatmentSchedule(int id)
+        public bool IsTreatmentSchedule(int cart_id)
+        {
+            foreach (Calender_Table appoitment in Apooitments)
+            {
+                if ((int)appoitment.GetColValue(3) == cart_id)
+                    return true;
+            }
+            return false;
+        }
+        public bool IsTreatmentSchedule(Cart cart)
         {
             foreach(Calender_Table appoitment in Apooitments)
             {
-                if((int)appoitment.GetProduct().Value == id)
+                if((int)appoitment.GetColValue(3) == (int)cart.Value)
                     return true;
             }
             return false;
@@ -316,8 +326,30 @@ namespace Cosmetic_App.Tables
             return null;
         }
 
+        private void SortCart()
+        {
+            List<Cart> SortedCart = new List<Cart>();
+            foreach(Cart item in shopingCart)
+            {
+                if(!item.Product.IsTreatment())
+                    SortedCart.Add(item);
+                else
+                {
+                    for(int i = 0; i < item.GetAmount(); i++)
+                    {
+                        Cart c = new Cart();
+                        c.SetAmount(1);
+                        c.SetOrder_Id((int)Value);
+                        c.SetProduct(item.GetProductId());
+                        SortedCart.Add(c);
+                    }
+                }
+            }
+            shopingCart = SortedCart;
+        }
         internal bool Save()
         {
+            SortCart();
             bool result =Update();
             if (result)
             {
@@ -327,6 +359,21 @@ namespace Cosmetic_App.Tables
                 }
             }
             return result;
+        }
+
+        internal string GetPurchaceDate()
+        {
+            return GetColValue(4).ToString();
+        }
+
+        internal string GetCartDate(Cart item)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal string GetCartTime(Cart item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

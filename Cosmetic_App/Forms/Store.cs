@@ -24,6 +24,7 @@ namespace Cosmetic_App.Forms
         public List<Products> products = Products.GetAllProducts(),Filter=new List<Products>();
         public List<Cart> ShopingCart = new List<Cart>();
         public object signture = null;
+        public bool finish = false;
         public Store()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace Cosmetic_App.Forms
         {
             Cart_layout.Controls.Clear();
             int total = 0;
+            int i = 0;
             foreach(Cart item in ShopingCart)
             {
                 CartView view = new CartView();
@@ -80,9 +82,10 @@ namespace Cosmetic_App.Forms
         public void RemoveClick(object sender, EventArgs e)
         {
             CartView view = (CartView)((System.Windows.Forms.Button)sender).Tag;
-            foreach(Cart item in ShopingCart)
+            foreach (Cart item in ShopingCart)
             {
-                if(item.Value == view.Tag)
+
+                if (item.Value == view.Tag)
                 {
                     item.Reduce();
                     if (item.GetAmount() <= 0)
@@ -91,6 +94,7 @@ namespace Cosmetic_App.Forms
                         break;
                     }
                 }
+
             }
             RelaodView();
         }
@@ -99,8 +103,8 @@ namespace Cosmetic_App.Forms
             System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
             Products product = button.Tag as Products;
             Cart item;
-            int count=0;
-            foreach(StoreProductView view in Products_Store_Layout.Controls)
+            int count = 0;
+            foreach (StoreProductView view in Products_Store_Layout.Controls)
             {
                 if (view.Tag == product.Value)
                 {
@@ -122,7 +126,6 @@ namespace Cosmetic_App.Forms
             }
             RelaodView();
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             Filter = new List<Products>();
@@ -156,6 +159,7 @@ namespace Cosmetic_App.Forms
                                 if (Order.Save())
                                 {
                                     Order.CreateInvoce(browse.FileName, window.signture);
+                                    finish = true;
                                 }
                                 else
                                     MessageBox.Show("error in database");
