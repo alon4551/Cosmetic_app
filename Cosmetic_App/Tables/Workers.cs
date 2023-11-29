@@ -11,6 +11,7 @@ namespace Cosmetic_App
 {
     public class Workers:DB_Object
     {
+        public static Workers LogedWorker = new Workers();
         public Person Person { get; set; } = new Person();
         public Workers():base(Database_Names.Workers,Database_Names.Workers_Columes)
         {

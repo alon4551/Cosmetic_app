@@ -18,11 +18,11 @@ namespace Cosmetic_App.Utiltes
         private static DateTime DisplayTime = DateTime.Now;
         private static List<Row> Apooitments = new List<Row>();
         public static int AppoitmentHight = 100;
-        public static void DisplayDays_OnCalender(FlowLayoutPanel panel, Label mouth, Size SelectedSize)
+        public static void DisplayDays_OnCalender(TableLayoutPanel panel, Label mouth, Size SelectedSize)
         {
             panel.Controls.Clear();
             mouth.Text = $@"תאריך: { DisplayTime.Month}/{DisplayTime.Year}";
-            int i;
+            int i,index=0;
             DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
             DateTime endOfTheMouth;
             int days = DateTime.DaysInMonth(DisplayTime.Year, DisplayTime.Month);
@@ -30,13 +30,13 @@ namespace Cosmetic_App.Utiltes
             for (i = 0; i < dayofweek; i++)
             {
                 MonthCalender_Blank blank = new MonthCalender_Blank();
-                blank.Size = SelectedSize;
+                blank.Dock = DockStyle.Fill;
                 panel.Controls.Add(blank);
             }
             for ( i = 1; i <= days; i++)
             {
                 MonthCalender_Day day = new MonthCalender_Day();
-                day.Size = SelectedSize;
+                day.Dock = DockStyle.Fill;
                 day.Day(i);
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
                 day.SetTreatments(Calender_Table.TreatmentsInDay(time));
@@ -48,7 +48,7 @@ namespace Cosmetic_App.Utiltes
             for (; i < 6; i++)
             {
                 MonthCalender_Blank blank = new MonthCalender_Blank();
-                blank.Size= SelectedSize;
+                blank.Dock = DockStyle.Fill;
                 panel.Controls.Add(blank);
             }
         }

@@ -311,7 +311,6 @@
     <Compile Include="Utiltes\gmail_helper.cs" />
     <Compile Include="Utiltes\Input_behavior.cs" />
     <Compile Include="Utiltes\Messages.cs" />
-    <Compile Include="Utiltes\PersonFilter.cs" />
     <Compile Include="Utiltes\Verification.cs" />
     <Compile Include="Forms\LoginPage.cs">
       <SubType>Form</SubType>

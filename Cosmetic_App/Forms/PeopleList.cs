@@ -14,37 +14,49 @@ namespace Cosmetic_App
 {
     public partial class PeopleList : Form
     {
-        List<Person> All = new List<Person>(), workers = new List<Person>(), filter = new List<Person>();
+        List<Person> All = new List<Person>(), workers = new List<Person>(), filter = new List<Person>(),selecedFilter= new List<Person>();
         string selected_id = "";
         public PeopleList()
         {
             InitializeComponent();
+            selecedFilter = All;
         }
-
+        public PeopleList(bool Clients)
+        {
+            InitializeComponent();
+            Fetch();
+            if (Clients)
+                selecedFilter = Person.GetAllClients();
+            else
+                selecedFilter = workers;
+            LoadList(selecedFilter);
+        }
+        private void Fetch()
+        {
+            All = Person.GetAllPeople();
+            workers = Workers.GetAllWorkers();
+            bool state = true;
+            foreach (Person person in All)
+            {
+                foreach (Person worker in workers)
+                    if (worker.Field == person.Field)
+                    {
+                        state = false;
+                        break;
+                    }
+                if (state)
+                    filter.Add(person);
+            }
+        }
         private void PeopleList_Load(object sender, EventArgs e)
         {
             Reload();
         }
         public void Reload()
         {
-            
-            All = Person.GetAllPeople();
-            workers = Workers.GetAllWorkers();
-            Person p =  new Person(selected_id);
-            bool state = true;
-            foreach(Person person in All)
-            {
-                foreach (Person worker in workers)
-                    if(worker.Field == person.Field) { 
-                        state = false;
-                        break;
-                    }
-                if(state)
-                    filter.Add(person);
-            }
-            LoadList(All);
+            LoadList(selecedFilter);
             if (selected_id != "")
-                Load_Information(p);
+                Load_Information(new Person(selected_id));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,6 +72,7 @@ namespace Cosmetic_App
             using (PersonFile profile = new PersonFile(selected_id))
             {
                 profile.ShowDialog();
+                Fetch();
                 Reload();
             }
         }
@@ -69,6 +82,7 @@ namespace Cosmetic_App
             using (PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
+                Fetch();
                 Reload();
             }
         }
@@ -78,6 +92,7 @@ namespace Cosmetic_App
             using (Worker_Profile profile = new Worker_Profile())
             {
                 profile.ShowDialog();
+                Fetch();
                 Reload();
             }
         }
@@ -100,6 +115,7 @@ namespace Cosmetic_App
                     using (Worker_Profile profie = new Worker_Profile(selected_id))
                     {
                         profie.ShowDialog();
+                        Fetch();
                         Reload();
                     }
                 }
@@ -119,6 +135,7 @@ namespace Cosmetic_App
                     if (workers.Delete())
                     {
                         MessageBox.Show("עובד הוסר מהמערכת");
+                        Fetch();
                         Reload();
                     }
                     else
@@ -135,7 +152,7 @@ namespace Cosmetic_App
            foreach(Person person in list)
             {
                 Person_Profile_View view = new Person_Profile_View();
-                view.SetData(person.GetColValue("id").ToString(), person.GetFullName());
+                view.SetData(person.GetColValue(0).ToString(), person.GetFullName());
                 view.Click += new EventHandler(ClickPersonProfile);
                 view.SetCLickEvent(new EventHandler(ClickPersonProfile));
                 list_layout.Controls.Add(view);
@@ -145,7 +162,7 @@ namespace Cosmetic_App
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (filter_textbox.Text == "")
-                LoadList(All);
+                LoadList(selecedFilter);
             else
             {
                 filter.Clear();

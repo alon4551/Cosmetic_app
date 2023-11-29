@@ -15,7 +15,7 @@ namespace Cosmetic_App
     public partial class Worker_Profile : Form
     {
         public bool Status_Save;
-        Workers Worker = new Workers();
+        public Workers Worker = new Workers();
         public Worker_Profile()
         {
             InitializeComponent();

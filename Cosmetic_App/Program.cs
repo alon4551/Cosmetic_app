@@ -18,7 +18,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Orders_Dashboard("206517336"));
+            Application.Run(new HomePage());
         }
     }
 }

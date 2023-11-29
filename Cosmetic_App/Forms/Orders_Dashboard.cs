@@ -132,7 +132,7 @@ namespace Cosmetic_App.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = App_Process.NewOrder(Worker.Value.ToString());
+            int id = App_Process.NewOrder(Worker.Value.ToString(),this);
             Reload();
             Load_List(AllOrders);
             SelectOrder(id);

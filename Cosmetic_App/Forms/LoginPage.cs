@@ -26,16 +26,21 @@ namespace Cosmetic_App
             if(result){
                 if (Workers.Verify_Account(id.Text, password.Text))
                 {
+                    Workers.LogedWorker = new Workers(id.Text);
+                    Workers.LogedWorker.ClockIn(DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
+                    MessageBox.Show($"משמרת עבור עובד {Workers.LogedWorker.GetFullName()} התחילה בשעה {DateTime.Now}");
                     using (HomePage homepage = new HomePage())
                     {
                         this.Hide();
                         homepage.ShowDialog();
                         this.Show();
                     }
-                    MessageBox.Show("Good");
+
                 }
                 else
-                    MessageBox.Show("Bad");
+                {
+                    MessageBox.Show("פרטי התחברות אינם תקינים");
+                }
             }
             
         }

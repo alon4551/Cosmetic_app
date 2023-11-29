@@ -36,7 +36,7 @@ namespace Cosmetic_App
             List<Row> rows = new List<Row>();
             Person client;
             Workers worker;
-            Treatments treatment;
+            Cart cart;
             Cart product;
             Row r;
             Calender_Table table = new Calender_Table();
@@ -46,12 +46,12 @@ namespace Cosmetic_App
                 r = new Row(obj.Row.Columes);
                 worker = new Workers(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
                 client = new Person(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
-                treatment = new Treatments(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
+                cart = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
                 product = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
                 r.AddColume(new Col("client_name", client.GetFullName()));
                 r.AddColume(new Col("worker_name", worker.Person.GetFullName()));
                 DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[5]).ToString());
-                time = time.AddMinutes(double.Parse(treatment.GetColValue("duration").ToString()));
+                time = time.AddMinutes(double.Parse(cart.Product.GetDuration()));
                 r.AddColume("ending", time.ToShortTimeString());
                 r.AddColume("treatment_name",product.GetColValue("product_name"));
                 rows.Add(r);

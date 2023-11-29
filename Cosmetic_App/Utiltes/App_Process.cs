@@ -3,15 +3,18 @@ using iText.Layout.Borders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cosmetic_App.Utiltes
 {
     public static class App_Process
     {
-        public static int NewOrder(string worker_id)
+        public static int NewOrder(string worker_id, Control control)
         {
+            control.Hide();
             using (Store store = new Store(worker_id))
             {
                 store.ShowDialog();
@@ -24,7 +27,96 @@ namespace Cosmetic_App.Utiltes
                     return (int)store.Order.Value;
                 }
             }
+            control.Show();
             return -1;
+        }
+        public static string NewPerson(Control control)
+        {
+            control.Hide();
+            using (PersonFile profile = new PersonFile())
+            {
+                profile.ShowDialog();
+                control.Show();
+                if (profile.Status_Save)
+                    return profile.GetId();
+                else
+                    return "";
+            }
+        }
+
+        internal static void Clients(Control control)
+        {
+            control.Hide();
+            using(PeopleList Dashborad = new PeopleList(true))
+            {
+                Dashborad.ShowDialog();
+            }
+            control.Show();
+        }
+
+        internal static void ClockInOrOut(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Expance_Dashboard(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void NewExpance(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void NewProduct(Control control,bool isTreatment)
+        {
+            if (control != null)
+                control.Hide();
+            using (Product_Profile profile = new Product_Profile(isTreatment))
+            {
+                profile.ShowDialog();
+            }
+            if (control != null)
+                control.Show();
+        }
+
+        internal static void NewWorker(Control control)
+        {
+            control.Hide();
+            string id = NewPerson(null);
+            if (id != "")
+                using (Worker_Profile profile = new Worker_Profile(id))
+                {
+                    profile.ShowDialog();
+                }
+       
+            control.Show();
+        }
+
+        internal static void Order_Dashborad(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Products(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Shifts(HomePage homePage)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Workers(Control control)
+        {
+            control.Hide();
+            using (PeopleList Dashborad = new PeopleList(false))
+            {
+                Dashborad.ShowDialog();
+            }
+            control.Show();
         }
     }
 }

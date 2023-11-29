@@ -58,5 +58,11 @@ namespace Cosmetic_App
         {
             MonthCalender_Day_Click(null, null);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            MonthCalender_Day_Click(null, null);
+        }
+
     }
 }
