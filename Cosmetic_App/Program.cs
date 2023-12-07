@@ -1,4 +1,5 @@
 ﻿using Cosmetic_App.Forms;
+using Cosmetic_App.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Workers.LogedWorker = new Workers("0");
             Application.Run(new HomePage());
         }
     }

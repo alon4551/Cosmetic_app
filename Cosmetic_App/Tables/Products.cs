@@ -22,6 +22,7 @@ namespace Cosmetic_App.Tables
         }
         public Products(Row row) : base(Database_Names.Products, Database_Names.Product_Columes)
         {
+            Value = row.GetColValue(0);
             foreach(Col c in row.Columes)
             {
                 if (c.GetField() == Database_Names.Product_Columes[0])
@@ -92,16 +93,31 @@ namespace Cosmetic_App.Tables
             foreach(Row r in Access.getObjects(SQL_Queries.LeftOuterJoin(Database_Names.Products, Database_Names.Treatments, Database_Names.Product_Columes[0])))
             {
                 Products product = new Products(r);
-                product.Value = r.GetColValue(0);
-                product.SetColValue(0, r.GetColValue(0));
                 products.Add(product);
             }
             return products;
         }
-
+        public static List<Products> GetAllMerchandise()
+        {
+            List<Products> list =new List<Products>();
+            foreach(Row r in Access.getObjects($"SELECT {Database_Names.Products}.* FROM {Database_Names.Products} LEFT JOIN {Database_Names.Treatments} ON {Database_Names.Products}.id = {Database_Names.Treatments}.{Database_Names.Treatment_Columes[0]} WHERE {Database_Names.Treatments}.{Database_Names.Treatment_Columes[0]} IS NULL;\r\n"))
+                list.Add(new Products(r));
+            return list;
+        }
         internal object GetPrice()
         {
             return GetColValue(Database_Names.Product_Columes[2]);
+        }
+
+        internal static List<Products> GetAllTreatments()
+        {
+            List<Products> treatments = new List<Products>();
+            List<Row> result = Access.getObjects(SQL_Queries.SelfJoin(Database_Names.Products,Database_Names.Treatments,"id"));
+            foreach (Row r in result)
+            {
+                treatments.Add( new Products(r));
+            }
+            return treatments;
         }
     }
 }

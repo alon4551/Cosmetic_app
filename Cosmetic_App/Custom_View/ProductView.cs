@@ -24,21 +24,26 @@ namespace Cosmetic_App.Custom_View
         }
         public void SetData(Products product)
         {
-            textBox1.Text = product.GetColValue("product_name").ToString();
-            textBox2.Text = product.GetColValue("price").ToString() + " ש''ח ";
-            textBox1.Tag = product.Value;
-            textBox2.Tag = product.Value;
-            tableLayoutPanel1.Tag= product.Value;
-            product_name.Tag = product.Value;
-            product_price.Tag = product.Value;
-            this.Tag = product.Value;
+            label1.Text = product.GetColValue("product_name").ToString();
+            label2.Text = product.GetColValue("price").ToString() + " ש''ח ";
+            label1.Tag = product;
+            label2.Tag = product;
+            table_product_layout.Tag= product;
+            product_name.Tag = product;
+            product_price.Tag = product;
+            this.Tag = product;   
         }
-        public void SetAction(EventHandler action)
+        public void SetAction(EventHandler action,KeyEventHandler keyEvent)
         {
+            this.KeyDown += keyEvent;
+            label1.KeyDown += keyEvent;
+            label2.KeyDown += keyEvent;
+            table_product_layout.KeyDown += keyEvent;
+            table_product_layout.Click += action;
             product_name.Click+= action;
             product_price.Click+= action;
-            textBox1.Click+= action;
-            textBox2.Click+= action;
+            label1.Click+= action;
+            label2.Click+= action;
             this.Click += action;
         }
 

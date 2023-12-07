@@ -1,4 +1,5 @@
-﻿using Cosmetic_App.Utiltes;
+﻿using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

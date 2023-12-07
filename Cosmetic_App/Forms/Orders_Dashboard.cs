@@ -25,7 +25,10 @@ namespace Cosmetic_App.Forms
             InitializeComponent();
             SortOrders();
             Load_List(UrjentOrders);
+            if (worker_id == "")
+                worker_id = "0";
             Worker = new Workers(worker_id);
+                
         }
         public void Reload()
         {

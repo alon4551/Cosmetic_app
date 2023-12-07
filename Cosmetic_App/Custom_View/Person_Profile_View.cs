@@ -14,6 +14,7 @@ namespace Cosmetic_App.Custom_View
     public partial class Person_Profile_View : UserControl
     {
         string Id_Person;
+
         public Person_Profile_View()
         {
             InitializeComponent();

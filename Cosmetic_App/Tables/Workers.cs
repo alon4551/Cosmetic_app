@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cosmetic_App
+namespace Cosmetic_App.Tables
 {
     public class Workers:DB_Object
     {
@@ -18,6 +18,31 @@ namespace Cosmetic_App
         }
         public Workers (string id): base(Database_Names.Workers,Database_Names.Workers_Columes) {
             Grab(id);
+        }
+        public Workers (Row r): base(Database_Names.Workers, Database_Names.Workers_Columes)
+        {
+            Value=r.GetColValue(0);
+            SetColValue(0, Value);
+            Person.SetColValue(0, Value);
+            Person.Value= Value;
+            bool people_colume;
+            foreach(Col c in r.Columes)
+            {
+                people_colume = false;
+                foreach(string colume in Database_Names.People_Columes)
+                {
+                    if (colume == c.GetField())
+                    {
+                        Person.SetColValue(colume, c.GetValue());
+                        people_colume = true;
+                        break;
+                    }
+                }
+                if (people_colume)
+                    continue;
+                else
+                    SetColValue(c.GetField(), c.GetValue());
+            }
         }
         public bool Grab(string id)
         {
@@ -68,6 +93,15 @@ namespace Cosmetic_App
         internal bool GetAdmin()
         {
             return bool.Parse(GetColValue(2).ToString());
+        }
+        public static List<Workers> GetWorkers()
+        {
+            List<Workers> list = new List<Workers>();
+            foreach (Row r in Access.getObjects(SQL_Queries.LeftOuterJoin(Database_Names.Workers, Database_Names.People, Database_Names.People_Columes[0])))
+            {
+                list.Add(new Workers(r));
+            }
+            return list;  
         }
         public static List<Person> GetAllWorkers()
         {

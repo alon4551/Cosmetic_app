@@ -14,13 +14,24 @@ namespace Cosmetic_App.Forms
 {
     public partial class Product_Dashbord : Form
     {
-        List<Products> products = new List<Products>(),filter=new List<Products>();
-        int selected_id;
+        List<Products> Selected_List ,filter_list=new List<Products>();
+        bool filter = false;
+        int select_catagory = -1;
+        Products Selected_Object;
         public Product_Dashbord()
         {
             InitializeComponent();
+            Selected_List = Products.GrabAll();
         }
-
+        public Product_Dashbord(bool treatment_list)
+        {
+            InitializeComponent();
+            if (treatment_list)
+                Selected_List = Products.GetAllTreatments();
+            else
+                Selected_List = Products.GetAllMerchandise();
+            select_catagory = treatment_list ? 1 : 0;
+        }
         private void Product_Dashbord_Load(object sender, EventArgs e)
         {
             Reload();
@@ -32,36 +43,70 @@ namespace Cosmetic_App.Forms
             {
                 ProductView view = new ProductView();
                 view.SetData(p);
-                view.SetAction(Click_Product_View);
+
+                view.SetAction(Click_Product_View,keybored_click);
                 s.Controls.Add(view);
             }
         }
-        private void Load_Information(int id)
+        private void Load_Information()
         {
-            foreach (Products p in products)
-                if ((int)p.Value == id)
-                {
-                    selected_id = id;
-                    Input.Load_TextBox_Information(product_table_layout, p);
-                    if (p.IsTreatment())
-                    {
-                        label1.Text = "פרטים על הטיפול";
-                        p_info_label.Text = "אורך הטיפול";
-                        p_info.Text = p.Treatment.GetColValue("duration").ToString() + " דקות"; 
-                    }
-                    else
-                    {
-                        label1.Text = "פרטים על המוצר";
-                        p_info_label.Text = "כמות";
-                        p_info.Text = p.getInventory().ToString();
-                    }
-                }
+            Input.Load_TextBox_Information(product_table_layout, Selected_Object); ;
+            if (Selected_Object.IsTreatment())
+            {
+                label1.Text = "פרטים על הטיפול";
+                p_info_label.Text = "אורך הטיפול";
+                p_info.Text = Selected_Object.GetDuration() + " דקות";
+            }
+            else
+            {
+                label1.Text = "פרטים על המוצר";
+                p_info_label.Text = "כמות";
+                p_info.Text = Selected_Object.getInventory().ToString();
+            }
+
         }
         private void Click_Product_View(object sender, EventArgs e)
         {
-           Load_Information((int) Input.GetTag(sender));
+            if (Input.GetTag(sender) == null) return;
+            Selected_Object =(Products)Input.GetTag(sender);
+           Load_Information();
         }
+        private void keybored_click(object sender, KeyEventArgs key)
+        {
+            
+            if(key.KeyData == Keys.Down)
+            {
+                ChangeIndex(true);
+            }
+            else if(key.KeyData == Keys.Up)
+            {
+                ChangeIndex(false);
+            }
+        }
+        private void ChangeIndex(bool forward)
+        {
+            int index = Selected_List.IndexOf(Selected_Object);
+          
+            if(forward)
+            {
+                if (filter)
+                {
+                    if (filter_list.Count-1 == index) return;
+                }
+                else
+                {
+                    if (Selected_List.Count-1 == index) return;
+                }
+                Selected_Object = Selected_List[index+1];
+            }
+            else
+            {
 
+                    if (index == 0 ) return;
+                Selected_Object = Selected_List[index - 1];
+            }
+            Load_Information();
+        }
         private void NewProduct_Click(object sender, EventArgs e)
         {
             string result = CustomMessageBox.Show();
@@ -76,16 +121,22 @@ namespace Cosmetic_App.Forms
         }
         public void Reload()
         {
-            products = Products.GrabAll();
-            Load_List(products);
+            if (select_catagory == -1)
+                Selected_List = Products.GetAllProducts();
+            else if (select_catagory == -0)
+                Selected_List = Products.GetAllMerchandise();
+            else if (select_catagory == 1)
+                Selected_List = Products.GetAllTreatments();
+            filter = false;
+            Load_List(Selected_List);
             Input.Clear_Textbox_Information(product_table_layout);
-            selected_id = -1;
+            Selected_Object = null;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (selected_id == -1) return;
-            using (Product_Profile profile = new Product_Profile(selected_id))
+            if (Selected_Object == null) return;
+            using (Product_Profile profile = new Product_Profile((int)Selected_Object.Value))
             {
                 profile.ShowDialog();
                 Reload();
@@ -95,16 +146,20 @@ namespace Cosmetic_App.Forms
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
-                Load_List(products);
+            {
+                filter = false;
+                Load_List(Selected_List);
+            }
             else
             {
-                filter.Clear();
-                foreach(Products p in products)
+                filter = true;
+                filter_list.Clear();
+                foreach (Products p in Selected_List)
                 {
-                    if(p.getName().Contains(textBox1.Text))
-                    { filter.Add(p); }
+                    if (p.getName().Contains(textBox1.Text))
+                    { filter_list.Add(p); }
                 }
-                Load_List(filter);
+                Load_List(filter_list);
             }
                
         }

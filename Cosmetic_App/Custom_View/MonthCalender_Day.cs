@@ -25,10 +25,13 @@ namespace Cosmetic_App
         public void Day(int day)
         {
             label1.Text = day.ToString();
+            label1.Tag = day;
+            treatments_label.Tag = day;
+            tablelayout.Tag = day;
         }
-        public void SetTreatments(int treatments)
+        public void SetTreatments(string message)
         {
-            treatments_label.Text = $"{treatments} טיפולים";
+            treatments_label.Text = message;
         }
         public void DateColor(int state)//-1 passed 0 today 1 mean future
         {
@@ -45,24 +48,13 @@ namespace Cosmetic_App
                     break;
             }
         }
-
-        private void MonthCalender_Day_Click(object sender, EventArgs e)
+        public void SetAction(EventHandler handler)
         {
-            using (DayCalender day = new DayCalender()) {
-                calender.SetDay(label1.Text);
-                day.ShowDialog();
-            }
+            treatments_label.Click += handler;
+            label1.Click += handler;
+            tablelayout.Click += handler;
         }
 
-        private void treatments_label_Click(object sender, EventArgs e)
-        {
-            MonthCalender_Day_Click(null, null);
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            MonthCalender_Day_Click(null, null);
-        }
 
     }
 }

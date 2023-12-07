@@ -1,9 +1,11 @@
-﻿using Cosmetic_App.Utiltes;
+﻿using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,26 +23,26 @@ namespace Cosmetic_App
         private void HomePage_Load(object sender, EventArgs e)
         {
             int i = 0;
-            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             calender.ChangeMouth(true);
-            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8,calender.CalenderSize);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8,calender.CalenderSize,calender.Click);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             calender.ChangeMouth(false);
-            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             calender.Reset();
-            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
         }
 
         private void הזמנהחדשהToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,12 +82,12 @@ namespace Cosmetic_App
 
         private void Product_tool_item_Click(object sender, EventArgs e)
         {
-            App_Process.Products(this);
+            App_Process.Products(this,false);
         }
 
         private void treatment_tool_item_Click(object sender, EventArgs e)
         {
-            App_Process.Products(this);
+            App_Process.Products(this,true);
         }
 
         private void משמרותToolStripMenuItem_Click(object sender, EventArgs e)

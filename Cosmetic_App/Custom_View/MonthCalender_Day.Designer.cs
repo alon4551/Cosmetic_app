@@ -45,7 +45,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "00";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // treatments_label
             // 
@@ -56,7 +55,6 @@
             this.treatments_label.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.treatments_label.Size = new System.Drawing.Size(131, 22);
             this.treatments_label.TabIndex = 1;
-            this.treatments_label.Click += new System.EventHandler(this.treatments_label_Click);
             // 
             // tablelayout
             // 
@@ -72,7 +70,6 @@
             this.tablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tablelayout.Size = new System.Drawing.Size(137, 81);
             this.tablelayout.TabIndex = 2;
-            this.tablelayout.Click += new System.EventHandler(this.MonthCalender_Day_Click);
             // 
             // MonthCalender_Day
             // 
@@ -84,7 +81,6 @@
             this.Name = "MonthCalender_Day";
             this.Size = new System.Drawing.Size(137, 81);
             this.Load += new System.EventHandler(this.UserControl_Day_Load);
-            this.Click += new System.EventHandler(this.MonthCalender_Day_Click);
             this.tablelayout.ResumeLayout(false);
             this.tablelayout.PerformLayout();
             this.ResumeLayout(false);

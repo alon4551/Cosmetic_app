@@ -57,16 +57,16 @@ namespace Cosmetic_App
         {
             switch (obg.GetType().Name)
             {
-                case "Label":
-                    return (obg as Label).Tag;
-                case "TextBox":
-                    return (obg as TextBox).Tag;
-                case "Person_Profile_View":
-                    return (obg as Person_Profile_View).Tag;
-                case "ProductView":
-                    return (obg as ProductView).Tag;
+                case "Label":return (obg as Label).Tag;
+                case "TextBox":return (obg as TextBox).Tag;
+                case "table_product_layout":return (obg as TableLayoutPanel).Tag;
+                case "Person_Profile_View":return (obg as Person_Profile_View).Tag;
+                case "ProductView":return (obg as ProductView).Tag;
+                default:
+                    {
+                        return null;
+                    }
             }
-            return null;
         }
         public static void Clear_Textbox_Information(TableLayoutPanel layout)
         {
@@ -89,6 +89,7 @@ namespace Cosmetic_App
                     default:
                         try
                         {
+                            
                             box.Text = obj.GetColValue(box.Name).ToString();
                         }
                         catch { }

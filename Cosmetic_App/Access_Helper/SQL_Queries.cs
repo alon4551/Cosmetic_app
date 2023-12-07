@@ -86,7 +86,6 @@ public class SQL_Queries
     {
         return $"select * from {MainTable} LEFT OUTER JOIN {InharetTable} on {MainTable}.{commonField} = {InharetTable}.{commonField};";
     }
-   
     public static string SelfJoin(string MainTable, string InharetTable, string commonField)
     {
         return $"select * from {MainTable},{InharetTable} where {MainTable}.{commonField} = {InharetTable}.{commonField};";

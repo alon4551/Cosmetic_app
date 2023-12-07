@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Cosmetic_App.Tables;
 
 namespace Cosmetic_App.Utiltes
 {
@@ -54,9 +55,14 @@ namespace Cosmetic_App.Utiltes
             control.Show();
         }
 
-        internal static void ClockInOrOut(HomePage homePage)
+        internal static void ClockInOrOut(HomePage control)
         {
-            throw new NotImplementedException();
+            control.Hide();
+            using(ClockShifts checkin = new ClockShifts())
+            {
+                checkin.ShowDialog();
+            }
+            control.Show();
         }
 
         internal static void Expance_Dashboard(HomePage homePage)
@@ -94,19 +100,38 @@ namespace Cosmetic_App.Utiltes
             control.Show();
         }
 
-        internal static void Order_Dashborad(HomePage homePage)
+        internal static void Order_Dashborad(Control control)
         {
-            throw new NotImplementedException();
+            control.Hide();
+            using(Orders_Dashboard dashboard = new Orders_Dashboard(Tables.Workers.LogedWorker.Value.ToString()))
+            {
+                dashboard.ShowDialog();
+            }
+            control.Show();
         }
 
-        internal static void Products(HomePage homePage)
+        internal static void Products(Control control,bool state)
         {
-            throw new NotImplementedException();
-        }
+            control.Hide();
+            using(Product_Dashbord dashbord =new Product_Dashbord(state))
+            {
+                dashbord.ShowDialog();
 
-        internal static void Shifts(HomePage homePage)
+            }
+            control.Show();
+        }
+        internal static void Product(Control control,int id)
         {
-            throw new NotImplementedException();
+            control.Hide();
+            using (Product_Profile profile = new Product_Profile(id))
+            {
+                profile.ShowDialog();
+            }
+            control.Show();
+        }
+        internal static void Shifts(Control control)
+        {
+     
         }
 
         internal static void Workers(Control control)
