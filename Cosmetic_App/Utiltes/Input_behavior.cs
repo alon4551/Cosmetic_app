@@ -61,6 +61,7 @@ namespace Cosmetic_App
                 case "TextBox":return (obg as TextBox).Tag;
                 case "table_product_layout":return (obg as TableLayoutPanel).Tag;
                 case "Person_Profile_View":return (obg as Person_Profile_View).Tag;
+                case "DayApooitment_view": return (obg as DayApooitment_view).Tag;
                 case "ProductView":return (obg as ProductView).Tag;
                 default:
                     {

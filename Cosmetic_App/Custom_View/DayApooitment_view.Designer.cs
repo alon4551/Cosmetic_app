@@ -41,6 +41,7 @@
             this.Day.Size = new System.Drawing.Size(36, 25);
             this.Day.TabIndex = 0;
             this.Day.Text = "00";
+            this.Day.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DayApooitment_view
             // 

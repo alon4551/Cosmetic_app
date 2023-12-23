@@ -227,6 +227,7 @@
             this.search_id_box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.search_id_box.Size = new System.Drawing.Size(132, 22);
             this.search_id_box.TabIndex = 0;
+            this.search_id_box.Click += new System.EventHandler(this.search_id_box_Click);
             this.search_id_box.TextChanged += new System.EventHandler(this.search_id_box_TextChanged);
             // 
             // button4

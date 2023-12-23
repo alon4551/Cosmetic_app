@@ -200,11 +200,11 @@
     <Compile Include="Custom_View\StoreProductView.Designer.cs">
       <DependentUpon>StoreProductView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom_View\week_Calender_view.cs">
+    <Compile Include="Custom_View\DayApooitment_view.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom_View\week_Calender_view.Designer.cs">
-      <DependentUpon>week_Calender_view.cs</DependentUpon>
+    <Compile Include="Custom_View\DayApooitment_view.Designer.cs">
+      <DependentUpon>DayApooitment_view.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Orders_Dashboard.cs">
       <SubType>Form</SubType>
@@ -356,8 +356,8 @@
     <EmbeddedResource Include="Custom_View\StoreProductView.resx">
       <DependentUpon>StoreProductView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom_View\week_Calender_view.resx">
-      <DependentUpon>week_Calender_view.cs</DependentUpon>
+    <EmbeddedResource Include="Custom_View\DayApooitment_view.resx">
+      <DependentUpon>DayApooitment_view.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders_Dashboard.resx">
       <DependentUpon>Orders_Dashboard.cs</DependentUpon>

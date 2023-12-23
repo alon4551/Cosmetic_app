@@ -52,22 +52,22 @@
             this.לקוחחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.עובדחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.מוצרטיפולחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.טיפולחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clients_tool_item = new System.Windows.Forms.ToolStripMenuItem();
             this.Workers_tool_item = new System.Windows.Forms.ToolStripMenuItem();
             this.Product_tool_item = new System.Windows.Forms.ToolStripMenuItem();
             this.treatment_tool_item = new System.Windows.Forms.ToolStripMenuItem();
             this.משמרותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.שעוןנוכחותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.כלהמשמרותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.הזמנותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.הוצאותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.הוצאהחדשהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.כלההוצאותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.דוחותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.דוחהכנסותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.דוחהוצאותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label10 = new System.Windows.Forms.Label();
-            this.טיפולחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.שעוןנוכחותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.כלהמשמרותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.הוצאהחדשהToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.כלההוצאותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -265,6 +265,7 @@
             // 
             // tableLayoutPanel6
             // 
+            this.tableLayoutPanel6.AutoScroll = true;
             this.tableLayoutPanel6.ColumnCount = 7;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -276,14 +277,13 @@
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 128);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 5;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.RowCount = 6;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(781, 418);
             this.tableLayoutPanel6.TabIndex = 13;
             // 
@@ -362,7 +362,7 @@
             // 
             this.הזמנהחדשהToolStripMenuItem.Name = "הזמנהחדשהToolStripMenuItem";
             this.הזמנהחדשהToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.הזמנהחדשהToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.הזמנהחדשהToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
             this.הזמנהחדשהToolStripMenuItem.Text = "הזמנה חדשה";
             this.הזמנהחדשהToolStripMenuItem.Click += new System.EventHandler(this.הזמנהחדשהToolStripMenuItem_Click);
             // 
@@ -370,7 +370,7 @@
             // 
             this.לקוחחדשToolStripMenuItem.Name = "לקוחחדשToolStripMenuItem";
             this.לקוחחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.לקוחחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.לקוחחדשToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
             this.לקוחחדשToolStripMenuItem.Text = "לקוח חדש";
             this.לקוחחדשToolStripMenuItem.Click += new System.EventHandler(this.לקוחחדשToolStripMenuItem_Click);
             // 
@@ -378,7 +378,7 @@
             // 
             this.עובדחדשToolStripMenuItem.Name = "עובדחדשToolStripMenuItem";
             this.עובדחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
             this.עובדחדשToolStripMenuItem.Text = "עובד חדש";
             this.עובדחדשToolStripMenuItem.Click += new System.EventHandler(this.עובדחדשToolStripMenuItem_Click);
             // 
@@ -386,9 +386,17 @@
             // 
             this.מוצרטיפולחדשToolStripMenuItem.Name = "מוצרטיפולחדשToolStripMenuItem";
             this.מוצרטיפולחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.מוצרטיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.מוצרטיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
             this.מוצרטיפולחדשToolStripMenuItem.Text = "מוצר חדש";
             this.מוצרטיפולחדשToolStripMenuItem.Click += new System.EventHandler(this.מוצרטיפולחדשToolStripMenuItem_Click);
+            // 
+            // טיפולחדשToolStripMenuItem
+            // 
+            this.טיפולחדשToolStripMenuItem.Name = "טיפולחדשToolStripMenuItem";
+            this.טיפולחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.טיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
+            this.טיפולחדשToolStripMenuItem.Text = "טיפול חדש";
+            this.טיפולחדשToolStripMenuItem.Click += new System.EventHandler(this.טיפולחדשToolStripMenuItem_Click);
             // 
             // clients_tool_item
             // 
@@ -456,6 +464,22 @@
             this.משמרותToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.משמרותToolStripMenuItem.Click += new System.EventHandler(this.משמרותToolStripMenuItem_Click);
             // 
+            // שעוןנוכחותToolStripMenuItem
+            // 
+            this.שעוןנוכחותToolStripMenuItem.Name = "שעוןנוכחותToolStripMenuItem";
+            this.שעוןנוכחותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.שעוןנוכחותToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
+            this.שעוןנוכחותToolStripMenuItem.Text = "שעון נוכחות";
+            this.שעוןנוכחותToolStripMenuItem.Click += new System.EventHandler(this.שעוןנוכחותToolStripMenuItem_Click);
+            // 
+            // כלהמשמרותToolStripMenuItem
+            // 
+            this.כלהמשמרותToolStripMenuItem.Name = "כלהמשמרותToolStripMenuItem";
+            this.כלהמשמרותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.כלהמשמרותToolStripMenuItem.Size = new System.Drawing.Size(204, 28);
+            this.כלהמשמרותToolStripMenuItem.Text = "כל המשמרות";
+            this.כלהמשמרותToolStripMenuItem.Click += new System.EventHandler(this.כלהמשמרותToolStripMenuItem_Click);
+            // 
             // הזמנותToolStripMenuItem
             // 
             this.הזמנותToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -482,6 +506,22 @@
             this.הוצאותToolStripMenuItem.Text = "הוצאות";
             this.הוצאותToolStripMenuItem.Click += new System.EventHandler(this.הוצאותToolStripMenuItem_Click);
             // 
+            // הוצאהחדשהToolStripMenuItem
+            // 
+            this.הוצאהחדשהToolStripMenuItem.Name = "הוצאהחדשהToolStripMenuItem";
+            this.הוצאהחדשהToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.הוצאהחדשהToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.הוצאהחדשהToolStripMenuItem.Text = "הוצאה חדשה";
+            this.הוצאהחדשהToolStripMenuItem.Click += new System.EventHandler(this.הוצאהחדשהToolStripMenuItem_Click);
+            // 
+            // כלההוצאותToolStripMenuItem
+            // 
+            this.כלההוצאותToolStripMenuItem.Name = "כלההוצאותToolStripMenuItem";
+            this.כלההוצאותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.כלההוצאותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.כלההוצאותToolStripMenuItem.Text = "כל ההוצאות";
+            this.כלההוצאותToolStripMenuItem.Click += new System.EventHandler(this.כלההוצאותToolStripMenuItem_Click);
+            // 
             // דוחותToolStripMenuItem
             // 
             this.דוחותToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -499,14 +539,14 @@
             // 
             this.דוחהכנסותToolStripMenuItem.Name = "דוחהכנסותToolStripMenuItem";
             this.דוחהכנסותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.דוחהכנסותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.דוחהכנסותToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
             this.דוחהכנסותToolStripMenuItem.Text = "דוח הכנסות";
             // 
             // דוחהוצאותToolStripMenuItem
             // 
             this.דוחהוצאותToolStripMenuItem.Name = "דוחהוצאותToolStripMenuItem";
             this.דוחהוצאותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.דוחהוצאותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.דוחהוצאותToolStripMenuItem.Size = new System.Drawing.Size(194, 28);
             this.דוחהוצאותToolStripMenuItem.Text = "דוח הוצאות";
             // 
             // label10
@@ -520,46 +560,6 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "תפריט";
             this.label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // טיפולחדשToolStripMenuItem
-            // 
-            this.טיפולחדשToolStripMenuItem.Name = "טיפולחדשToolStripMenuItem";
-            this.טיפולחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.טיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.טיפולחדשToolStripMenuItem.Text = "טיפול חדש";
-            this.טיפולחדשToolStripMenuItem.Click += new System.EventHandler(this.טיפולחדשToolStripMenuItem_Click);
-            // 
-            // שעוןנוכחותToolStripMenuItem
-            // 
-            this.שעוןנוכחותToolStripMenuItem.Name = "שעוןנוכחותToolStripMenuItem";
-            this.שעוןנוכחותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.שעוןנוכחותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.שעוןנוכחותToolStripMenuItem.Text = "שעון נוכחות";
-            this.שעוןנוכחותToolStripMenuItem.Click += new System.EventHandler(this.שעוןנוכחותToolStripMenuItem_Click);
-            // 
-            // כלהמשמרותToolStripMenuItem
-            // 
-            this.כלהמשמרותToolStripMenuItem.Name = "כלהמשמרותToolStripMenuItem";
-            this.כלהמשמרותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.כלהמשמרותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.כלהמשמרותToolStripMenuItem.Text = "כל המשמרות";
-            this.כלהמשמרותToolStripMenuItem.Click += new System.EventHandler(this.כלהמשמרותToolStripMenuItem_Click);
-            // 
-            // הוצאהחדשהToolStripMenuItem
-            // 
-            this.הוצאהחדשהToolStripMenuItem.Name = "הוצאהחדשהToolStripMenuItem";
-            this.הוצאהחדשהToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.הוצאהחדשהToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.הוצאהחדשהToolStripMenuItem.Text = "הוצאה חדשה";
-            this.הוצאהחדשהToolStripMenuItem.Click += new System.EventHandler(this.הוצאהחדשהToolStripMenuItem_Click);
-            // 
-            // כלההוצאותToolStripMenuItem
-            // 
-            this.כלההוצאותToolStripMenuItem.Name = "כלההוצאותToolStripMenuItem";
-            this.כלההוצאותToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.כלההוצאותToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
-            this.כלההוצאותToolStripMenuItem.Text = "כל ההוצאות";
-            this.כלההוצאותToolStripMenuItem.Click += new System.EventHandler(this.כלההוצאותToolStripMenuItem_Click);
             // 
             // HomePage
             // 

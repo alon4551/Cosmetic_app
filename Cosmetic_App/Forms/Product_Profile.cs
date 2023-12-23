@@ -57,7 +57,8 @@ namespace Cosmetic_App.Forms
         }
         public void StateLayout(bool state)
         {
-           
+           info_label.TextAlign = ContentAlignment.BottomRight;
+           info_label.Dock = DockStyle.Fill;
             if (state)
             {
                 label3.Text = "עריכת פרטי טיפול";

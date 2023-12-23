@@ -33,11 +33,13 @@ namespace Cosmetic_App.Utiltes
         }
         public static string NewPerson(Control control)
         {
-            control.Hide();
+            if (control != null)
+                control.Hide();
             using (PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
-                control.Show();
+                if (control != null)
+                    control.Show();
                 if (profile.Status_Save)
                     return profile.GetId();
                 else

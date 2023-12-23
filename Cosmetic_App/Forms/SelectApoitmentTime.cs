@@ -1,4 +1,5 @@
-﻿using Cosmetic_App.Tables;
+﻿using Cosmetic_App.Custom_View;
+using Cosmetic_App.Tables;
 using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
@@ -43,8 +44,15 @@ namespace Cosmetic_App.Forms
 
         public void Display()
         {
-            calender.DisplayCalender(calender_layout, null);
+            calender.DisplayCalender(calender_layout, null,calender.ApooitmentSize,ClickOnDay);
             calender.DisplayWorkerAppoitments(dailycalender,Appooitments,DateTime.Parse(SelectDay));
+
+        }
+        private void ClickOnDay(object sender, EventArgs arg)
+        {
+            DateTime time = (DateTime)Input.GetTag(sender);
+            Apooitment_Picker.Value = time;
+            Reload();
         }
         private void Reload()
         {

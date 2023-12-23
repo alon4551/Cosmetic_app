@@ -123,12 +123,6 @@ namespace Cosmetic_App.Forms
                 { 
                     Apooitment.SetSchedualeTime(Select.SelectTime);
                     Load_Product_Information();
-                    if(MessageBox.Show("האם הפרטים של הטיפול נכונים ומתאימים, כאשר תלחץ על כן, המערכת תקבע את הטיפול ותשמור את הפרטים","",MessageBoxButtons.YesNo)
-                        ==
-                        DialogResult.Yes)
-                    {
-                        button1_Click(null, null);
-                    }
                 }
             }
         }

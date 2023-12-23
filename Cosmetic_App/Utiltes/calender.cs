@@ -24,7 +24,7 @@ namespace Cosmetic_App.Utiltes
         {
             panel.Controls.Clear();
             mouth.Text = $@"תאריך: {DisplayTime.Month}/{DisplayTime.Year}";
-            int i, index = 0;
+            int i;
             DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
             DateTime endOfTheMouth;
             int days = DateTime.DaysInMonth(DisplayTime.Year, DisplayTime.Month);
@@ -59,7 +59,7 @@ namespace Cosmetic_App.Utiltes
         {
             panel.Controls.Clear();
             mouth.Text = $@"תאריך: { DisplayTime.Month}/{DisplayTime.Year}";
-            int i,index=0;
+            int i;
             DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
             DateTime endOfTheMouth;
             int days = DateTime.DaysInMonth(DisplayTime.Year, DisplayTime.Month);
@@ -77,6 +77,7 @@ namespace Cosmetic_App.Utiltes
                 day.Day(i);
                 day.SetAction(action);
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
+                day.Tag = time;
                 day.SetTreatments(Calender_Table.TreatmentsInDay(time).ToString()+" טיפולים");
                 day.DateColor(DateTime.Today.CompareTo(time));
                 panel.Controls.Add(day);
@@ -129,7 +130,7 @@ namespace Cosmetic_App.Utiltes
         {
            Apooitments = Calender_Table.GetApoitmentsInfomation(new DateTime(DisplayTime.Year, DisplayTime.Month, int.Parse(day)).ToShortDateString());
         }
-        public static void DisplayCalender(FlowLayoutPanel panel,System.Windows.Forms.Label mouth)
+        public static void DisplayCalender(FlowLayoutPanel panel,System.Windows.Forms.Label mouth,Size size,EventHandler action)
         {
             DayApooitment_view Day;
             panel.Controls.Clear();
@@ -146,6 +147,8 @@ namespace Cosmetic_App.Utiltes
             {
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
                 Day = new DayApooitment_view(time, DateTime.Today.CompareTo(time));
+                Day.SetAction(action);
+                Day.Tag = time;
                 panel.Controls.Add(Day);
             }
             endOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, i - 1);

@@ -109,10 +109,7 @@ namespace Cosmetic_App.Forms
         }
         private void NewProduct_Click(object sender, EventArgs e)
         {
-            string result = CustomMessageBox.Show();
-            bool state = result == "טיפול";
-            if (result == "")
-                return;
+            bool state = select_catagory == 1 ? true : false;
             using (Product_Profile profile = new Product_Profile(state))
             {
                 profile.ShowDialog();

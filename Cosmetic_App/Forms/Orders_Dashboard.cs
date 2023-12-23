@@ -67,6 +67,7 @@ namespace Cosmetic_App.Forms
         }
         private void ClearOrderInformation()
         {
+            
             Cart_View_Box.Items.Clear();
             Input.Clear_Textbox_Information(tableLayoutPanel7);
             Input.Clear_Textbox_Information(tableLayoutPanel8);
@@ -173,12 +174,22 @@ namespace Cosmetic_App.Forms
         private void search_id_box_TextChanged(object sender, EventArgs e)
         {
             ClearOrderInformation();
-          
+            AllOrder_Radio.Checked = false;
+            UrjentOrder_Radio.Checked = false;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             ClearOrderInformation();
+            AllOrder_Radio.Checked = false;
+            UrjentOrder_Radio.Checked = false;
+        }
+
+        private void search_id_box_Click(object sender, EventArgs e)
+        {
+            ClearOrderInformation();
+            AllOrder_Radio.Checked = false;
+            UrjentOrder_Radio.Checked = false;
         }
 
         private void Search_Oreder_By_Id_Click(object sender, EventArgs e)
