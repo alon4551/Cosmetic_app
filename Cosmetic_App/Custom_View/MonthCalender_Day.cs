@@ -29,7 +29,14 @@ namespace Cosmetic_App
             treatments_label.Tag = day;
             tablelayout.Tag = day;
         }
-        public void SetTreatments(string message)
+        public void SetTag(object  tag)
+        {
+            label1.Tag = tag;
+            treatments_label.Tag=tag;
+            this.Tag= tag;
+
+        }
+        public void SetMessage(string message)
         {
             treatments_label.Text = message;
         }

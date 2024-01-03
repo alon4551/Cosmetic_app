@@ -1,6 +1,7 @@
 ﻿using Cosmetic_App.Access_Helper;
 using Microsoft.SqlServer.Server;
 using System.Collections.Generic;
+using System.IO;
 
 public class SQL_Queries
 {
@@ -61,6 +62,10 @@ public class SQL_Queries
     public static string Delete(string table,Condition Condition)
     {
         return $"delete from {table} where {Condition.SQL_Syntax()};";
+    }
+    public static string Select_And_Sort(string table,string field,string value)
+    {
+        return $"select * from {table} where {new Condition(field,value).SQL_Syntax()} order by {field};";
     }
     public static string Select(string table,List<string>Columns,List<Condition> Conditions,string ConditionType)
     {

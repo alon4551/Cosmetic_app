@@ -20,7 +20,7 @@ namespace Cosmetic_App
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Workers.LogedWorker = new Workers("0");
-            Application.Run(new HomePage());
+            Application.Run(new Shifts_Dashbored("206517336"));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Custom_View;
 using Cosmetic_App.Forms;
+using Cosmetic_App.Tables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -20,29 +21,45 @@ namespace Cosmetic_App.Utiltes
         private static DateTime DisplayTime = DateTime.Now;
         private static List<Row> Apooitments = new List<Row>();
         public static int AppoitmentHight = 100;
-        public static void DisplayShifts_OnCalender(TableLayoutPanel panel, System.Windows.Forms.Label mouth, Size SelectedSize, EventHandler action)
+        public static DateTime GetSelectedDate()
+        {
+            return DisplayTime;
+        }
+        public static void DisplayShifts_OnCalender(TableLayoutPanel panel, System.Windows.Forms.Label mouth, Size SelectedSize, EventHandler action,Workers worker)
         {
             panel.Controls.Clear();
-            mouth.Text = $@"תאריך: {DisplayTime.Month}/{DisplayTime.Year}";
-            int i;
+            mouth.Text = $@"חודש: {DisplayTime.Month}/{DisplayTime.Year} עובד {worker.GetFullName()} תעודת זהות {worker.GetColValue(0)}";
+            int i,j;
             DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
             DateTime endOfTheMouth;
             int days = DateTime.DaysInMonth(DisplayTime.Year, DisplayTime.Month);
             int dayofweek = int.Parse(startOfTheMouth.DayOfWeek.ToString("d"));
+            List<Shifts> shifts = worker.GetShifts(DisplayTime);
             for (i = 0; i < dayofweek; i++)
             {
                 MonthCalender_Blank blank = new MonthCalender_Blank();
                 blank.Dock = DockStyle.Fill;
                 panel.Controls.Add(blank);
             }
-            for (i = 1; i <= days; i++)
+            for (i = 1,j=0; i <= days; i++)
             {
                 MonthCalender_Day day = new MonthCalender_Day();
                 day.Dock = DockStyle.Fill;
                 day.Day(i);
                 day.SetAction(action);
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
-                day.SetTreatments("");
+                if (j < shifts.Count && i == shifts[j].GetDate().Day)
+                {
+                    day.SetMessage(shifts[j].getTimeSpan());
+                    day.SetTag(shifts[j]);
+                    j++;
+                }
+                else
+                {
+                    day.SetMessage("");
+                    DateTime date = new DateTime(DisplayTime.Year,DisplayTime.Month, i);
+                    day.SetTag(new Shifts(date.ToShortDateString(),worker.GetColValue(0).ToString()));
+                }
                 day.DateColor(DateTime.Today.CompareTo(time));
                 panel.Controls.Add(day);
             }
@@ -58,7 +75,7 @@ namespace Cosmetic_App.Utiltes
         public static void DisplayDays_OnCalender(TableLayoutPanel panel, System.Windows.Forms.Label mouth, Size SelectedSize,EventHandler action)
         {
             panel.Controls.Clear();
-            mouth.Text = $@"תאריך: { DisplayTime.Month}/{DisplayTime.Year}";
+            mouth.Text = $@"חודש: { DisplayTime.Month}/{DisplayTime.Year}";
             int i;
             DateTime startOfTheMouth = new DateTime(DisplayTime.Year, DisplayTime.Month, 1);
             DateTime endOfTheMouth;
@@ -78,7 +95,7 @@ namespace Cosmetic_App.Utiltes
                 day.SetAction(action);
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
                 day.Tag = time;
-                day.SetTreatments(Calender_Table.TreatmentsInDay(time).ToString()+" טיפולים");
+                day.SetMessage(Calender_Table.TreatmentsInDay(time).ToString()+" טיפולים");
                 day.DateColor(DateTime.Today.CompareTo(time));
                 panel.Controls.Add(day);
             }

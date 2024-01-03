@@ -1,17 +1,27 @@
 ﻿using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cosmetic_App.Tables
 {
     public class Shifts:DB_Object
     {
         public Shifts(): base(Database_Names.Shifts, Database_Names.Shifts_Columes) { }
-        public Shifts(DB_Object obj):base(obj) { }
+        public Shifts(DB_Object obj):base(obj){ Table = Database_Names.Shifts; }
+        public Shifts(Row obj):base(obj) { Table = Database_Names.Shifts; }
+        public Shifts(string date,string worker) : base(Database_Names.Shifts, Database_Names.Shifts_Columes)
+        {
+            SetColValue(3, "00:00");
+            SetColValue(4, "00:00");
+            SetColValue(1, worker);
+            SetColValue(2, date);
+        }
         public Shifts(List<object> values): base(Database_Names.Shifts, Database_Names.Shifts_Columes) 
         {
             for(int i = 0; i < this.Row.Columes.Count(); i++)
@@ -46,10 +56,11 @@ namespace Cosmetic_App.Tables
         {
             Shifts shift=new Shifts();
             List<Shifts> shifts=new List<Shifts>();
-            foreach (DB_Object obj in shift.Grab(Database_Names.Shifts_Columes[1], worker_id, Database_Names.Shifts)) 
+            foreach (Row obj in Access.getObjects(SQL_Queries.Select(Database_Names.Shifts,new Condition(Database_Names.Shifts_Columes[1],worker_id)))) 
                 shifts.Add(new Shifts(obj));
             return shifts;
         }
+        
         public static List<Shifts> GetShifts(string worker_id,int mouth,int year)
         {
             Shifts shift=new Shifts();  
@@ -90,6 +101,54 @@ namespace Cosmetic_App.Tables
             Shifts shift = Shifts.GetShift(date, worker_id);
             shift.SetColValue(4, time);
             return shift.Update();
+        }
+        internal DateTime getStartTime()
+        {
+            try
+            {
+                return DateTime.Parse(GetColValue(Database_Names.Shifts_Columes[3]).ToString());
+            }
+            catch
+            {
+                return new DateTime();
+            }
+        }
+        internal DateTime getEndTime()
+        {
+            try
+            {
+                return DateTime.Parse(GetColValue(Database_Names.Shifts_Columes[4]).ToString());
+            }
+            catch
+            {
+                return new DateTime();
+            }
+        }
+        internal DateTime GetDate()
+        {
+            try
+            {
+                return DateTime.Parse(GetColValue(Database_Names.Shifts_Columes[2]).ToString());
+            }
+            catch
+            {
+                return new DateTime();
+            }
+        }
+        public void Set_Date(string date) { SetColValue(2, date); }
+        public void Set_Start_Time(string start) { SetColValue(3, start); }
+        public void Set_End_Time(string end) { SetColValue(4, end); }
+        public void Set_Worker(string worker) { SetColValue(1, worker); }
+        internal string getTimeSpan()
+        {
+            TimeSpan Span;
+            if (GetColValue(Database_Names.Shifts_Columes[4]).ToString() == "none")
+                return "none";
+            else
+                Span = getEndTime().Subtract(getStartTime());
+            return Span.ToString();
+            return $"{(int)Span.TotalMinutes/60}:{(int)Span.TotalMinutes%60}";
+                
         }
     }
 }

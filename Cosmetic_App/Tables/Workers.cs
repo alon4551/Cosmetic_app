@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Tables;
 using Cosmetic_App.Utiltes;
+using iText.Commons.Utils;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,14 @@ namespace Cosmetic_App.Tables
     public class Workers:DB_Object
     {
         public static Workers LogedWorker = new Workers();
+        public List<Shifts> all_shifts;
         public Person Person { get; set; } = new Person();
         public Workers():base(Database_Names.Workers,Database_Names.Workers_Columes)
         {
         }
         public Workers (string id): base(Database_Names.Workers,Database_Names.Workers_Columes) {
             Grab(id);
+            all_shifts = GrabAllShifts();   
         }
         public Workers (Row r): base(Database_Names.Workers, Database_Names.Workers_Columes)
         {
@@ -43,9 +46,12 @@ namespace Cosmetic_App.Tables
                 else
                     SetColValue(c.GetField(), c.GetValue());
             }
+            all_shifts = GrabAllShifts();
+
         }
         public bool Grab(string id)
         {
+
             return base.Grab(id) & Person.Grab(id);
         }
         public static bool Verify_Account(string id,string password)
@@ -132,6 +138,28 @@ namespace Cosmetic_App.Tables
             foreach (Row obj in all)
                 list.Add(new Workers(obj.GetColValue(0).ToString()));
             return list;
+        }
+        public List<Shifts> GrabAllShifts()
+        {
+            return Shifts.GetShifts(Value.ToString());
+        }
+
+        public List<Shifts> GetShifts(DateTime SelectedDate)
+        {
+            List<Shifts> filter = new List<Shifts>();
+            foreach(Shifts shift in all_shifts)
+            {
+                if(shift.GetDate().Month == SelectedDate.Month && shift.GetDate().Year == SelectedDate.Year)
+                    filter.Add(shift);
+            }
+
+            return filter.OrderBy(shifts => shifts.GetDate()).ToList<Shifts>();
+        }
+
+        internal void Relaod()
+        {
+            base.Reload();
+            all_shifts = GrabAllShifts();
         }
     }
 }

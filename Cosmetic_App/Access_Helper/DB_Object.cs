@@ -123,6 +123,7 @@ public class DB_Object
             objects.Add(new DB_Object(Table, r));
         return objects;
     }
+
     public List<DB_Object> Grab(string filed, object id, string Table)
     {
         List<Row> Rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(filed, id)));
@@ -166,9 +167,11 @@ public class DB_Object
         if (Value == null)
         {
             Value = GetNewIndex();
-            SetColValue(0, Value);
+            SetColValufe(0, Value);
         }
-        string query = SQL_Queries.Update(Table, Row.Columes, new Condition(Field, Value));
+        Row r = Row;
+        r.DeleteColume(0);
+        string query = SQL_Queries.Update(Table, r.Columes, new Condition(Field, Value));
         
         if (IsExist(Value))
             return Access.Execute(query);
@@ -210,5 +213,8 @@ public class DB_Object
                 return false;
         return true;
     }
-   
+    public void Reload()
+    {
+        Grab(Value);
+    }
 }
