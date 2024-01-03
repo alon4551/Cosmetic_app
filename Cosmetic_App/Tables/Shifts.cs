@@ -100,7 +100,7 @@ namespace Cosmetic_App.Tables
         {
             Shifts shift = Shifts.GetShift(date, worker_id);
             shift.SetColValue(4, time);
-            return shift.Update();
+            return  shift.Delete() && shift.Insert();
         }
         internal DateTime getStartTime()
         {
@@ -149,6 +149,11 @@ namespace Cosmetic_App.Tables
             return Span.ToString();
             return $"{(int)Span.TotalMinutes/60}:{(int)Span.TotalMinutes%60}";
                 
+        }
+        internal bool Update()
+        {
+            if (Value == null) { Value = GetNewIndex(); SetColValue(0, Value); }
+            return Delete() && Insert() ;
         }
     }
 }

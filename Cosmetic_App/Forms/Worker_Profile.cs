@@ -176,7 +176,15 @@ namespace Cosmetic_App
             }
         }
 
-       
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            using (Manager_Verification verification = new Manager_Verification())
+            {
+                verification.ShowDialog();
+                if (!verification.result)
+                    return;
+            }
+            MessageBox.Show(Worker.GetColValue("password").ToString(),"הסיסמא מופיעה על המסך");
+        }
     }
 }

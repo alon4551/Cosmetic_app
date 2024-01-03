@@ -39,10 +39,14 @@ namespace Cosmetic_App.Forms
         }
         private void Load_Shift(Shifts shift)
         {
-            tableLayoutPanel10.Enabled = true;
-            starting_time.Value = shift.getStartTime();
-            ending_time.Value= shift.getEndTime();
-            date_shift.Text = shift.GetDate().ToShortDateString();
+            try
+            {
+                tableLayoutPanel10.Enabled = true;
+                starting_time.Value = shift.getStartTime();
+                ending_time.Value = shift.getEndTime();
+                date_shift.Text = shift.GetDate().ToShortDateString();
+            }
+            catch (Exception ex) { }
         }
         private void Load_Shifts()
         {
@@ -55,6 +59,18 @@ namespace Cosmetic_App.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            if (ending_time.Value.Subtract(starting_time.Value).Ticks < 0)
+            {
+                MessageBox.Show("אין אפשרות לבצע פעולת שמירה עקב מידע לא תקין");
+                return;
+            }
+            using (Manager_Verification verification = new Manager_Verification())
+            {
+                verification.ShowDialog();
+                if (!verification.result)
+                    return;
+            }
             Selected_Shift.Set_Start_Time(starting_time.Value.ToShortTimeString());
             Selected_Shift.Set_End_Time(ending_time.Value.ToShortTimeString());
             if (Selected_Shift.Update())
@@ -62,13 +78,14 @@ namespace Cosmetic_App.Forms
             else
                 MessageBox.Show("bad");
 
-            Worker.Relaod();
+            Worker.Reload();
             Load_Shifts();
         }
 
         private void Reload()
         {
             tableLayoutPanel10.Enabled = false;
+            Worker.Reload();
             Load_Shifts();
         }
 
@@ -92,11 +109,15 @@ namespace Cosmetic_App.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            using(Manager_Verification verification = new Manager_Verification()) {
+                verification.ShowDialog();
+                if (!verification.result)
+                    return;
+            }
             if(MessageBox.Show("האם אתה בטוח שאתה רוצה למחוק את המשמרת?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 if (Selected_Shift.Delete())
                 {
                     MessageBox.Show("משמרת נמחקה");
-                    Worker.Reload();
                     Reload();
                 }
         }

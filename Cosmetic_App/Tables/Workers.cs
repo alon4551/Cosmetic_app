@@ -156,10 +156,10 @@ namespace Cosmetic_App.Tables
             return filter.OrderBy(shifts => shifts.GetDate()).ToList<Shifts>();
         }
 
-        internal void Relaod()
+        internal void Reload()
         {
-            base.Reload();
             all_shifts = GrabAllShifts();
+            base.Reload();
         }
     }
 }

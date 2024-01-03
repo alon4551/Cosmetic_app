@@ -192,6 +192,12 @@ namespace Cosmetic_App.Forms
             UrjentOrder_Radio.Checked = false;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("האם בטוח שאתה רוצה למחוק את ההזמנה?");
+            SelectedOrder.Delete();            
+        }
+
         private void Search_Oreder_By_Id_Click(object sender, EventArgs e)
         {
             filter_list.Clear();

@@ -1,4 +1,5 @@
-﻿using Cosmetic_App.Tables;
+﻿using Cosmetic_App.Forms;
+using Cosmetic_App.Tables;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,6 +113,15 @@ namespace Cosmetic_App
         {
             if(e.KeyCode == Keys.Enter)
                 button3_Click(null, null);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (Shifts_Dashbored dashbored = new Shifts_Dashbored(id.Text))
+            {
+
+                dashbored.ShowDialog();
+            }
         }
     }
 }

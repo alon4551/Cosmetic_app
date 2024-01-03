@@ -349,15 +349,21 @@ namespace Cosmetic_App.Tables
         }
         internal bool Save()
         {
-            SortCart();
-            bool result =Update();
+            bool result = Insert();
             if (result)
+                result &= SaveCart();
+            return result;
+        }
+        internal bool SaveCart()
+        {
+            SortCart();
+            bool result= true;
+
+            foreach (Cart c in shopingCart)
             {
-                foreach (Cart c in shopingCart)
-                {
-                    result &= c.Insert();
-                }
+                result &= c.Insert();
             }
+
             return result;
         }
 

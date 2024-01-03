@@ -151,7 +151,7 @@ namespace Cosmetic_App.Forms
                 {
                     window.ShowDialog();
                     if (window.Sign)
-                        using (SaveFileDialog browse = new SaveFileDialog() { Filter = "PDF file|*.pdf", ValidateNames = true })
+                        using (SaveFileDialog browse = new SaveFileDialog() { Filter = "PDF file|*.pdf", ValidateNames = true,FileName = $"קבלה{Order.Value}.pdf"})
                         {
                             if (browse.ShowDialog() == DialogResult.OK)
                             {

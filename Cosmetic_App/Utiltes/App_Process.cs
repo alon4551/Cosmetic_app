@@ -133,7 +133,7 @@ namespace Cosmetic_App.Utiltes
         }
         internal static void Shifts(Control control)
         {
-     
+
         }
 
         internal static void Workers(Control control)

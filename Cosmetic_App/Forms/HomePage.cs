@@ -92,7 +92,7 @@ namespace Cosmetic_App
 
         private void משמרותToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            App_Process.ClockInOrOut(this);
         }
 
         private void שעוןנוכחותToolStripMenuItem_Click(object sender, EventArgs e)

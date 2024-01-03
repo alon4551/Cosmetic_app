@@ -167,7 +167,7 @@ public class DB_Object
         if (Value == null)
         {
             Value = GetNewIndex();
-            SetColValufe(0, Value);
+            SetColValue(0, Value);
         }
         Row r = Row;
         r.DeleteColume(0);
@@ -216,5 +216,6 @@ public class DB_Object
     public void Reload()
     {
         Grab(Value);
+        
     }
 }
