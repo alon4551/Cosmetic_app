@@ -159,6 +159,13 @@ namespace Cosmetic_App.Tables
                     return appoitment;
             return null;
         }
+        public Calender_Table Get_Apooitment(int Cart_id)
+        {
+            foreach (Calender_Table appoitment in Apooitments)
+                if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3]) == Cart_id)
+                    return appoitment;
+            return null;
+        }
         public int GetAppoitmentId(int Cart_id)
         {
             foreach (Calender_Table appoitment in Apooitments)

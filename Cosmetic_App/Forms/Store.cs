@@ -160,6 +160,7 @@ namespace Cosmetic_App.Forms
                                 {
                                     Order.CreateInvoce(browse.FileName, window.signture);
                                     finish = true;
+                                    this.Close();
                                 }
                                 else
                                     MessageBox.Show("error in database");

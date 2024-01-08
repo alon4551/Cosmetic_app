@@ -34,6 +34,11 @@ namespace Cosmetic_App.Forms
         {
             AllOrders = Income.GrabAll();
             SortOrders();
+            Load_List(UrjentOrders);
+            if(Order_list.Items.Count > 0)
+                Order_list.SelectedIndex = 0;
+            else
+                ClearOrderInformation();
            
         }
         public void SortOrders()
@@ -127,7 +132,7 @@ namespace Cosmetic_App.Forms
                 this.Hide();
                 order.ShowDialog();
                 Reload();
-                Load_List(AllOrders);
+                AllOrder_Radio.Checked = true;
                 this.Show();
                 SelectOrder((int)SelectedOrder.Value);
 
@@ -195,7 +200,9 @@ namespace Cosmetic_App.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("האם בטוח שאתה רוצה למחוק את ההזמנה?");
-            SelectedOrder.Delete();            
+            if (SelectedOrder.Delete())
+                MessageBox.Show("הזמנה נמחקה");
+            Reload();
         }
 
         private void Search_Oreder_By_Id_Click(object sender, EventArgs e)
@@ -218,15 +225,18 @@ namespace Cosmetic_App.Forms
 
         private void SelectOrder(int id)
         {
-            foreach(Income order in AllOrders)
+            for(int i = 0;i<AllOrders.Count;i++)
             {
-                if((int)order.Value == id)
+                if ((int)AllOrders[i].Value == id)
                 {
-                    SelectedOrder = order;
-                    Load_Order_Information(SelectedOrder);
+                    if(Order_list.Items.Count>i)
+                    Order_list.SelectedIndex = i;
+                    /*SelectedOrder = AllOrders[i];
+                    Load_Order_Information(SelectedOrder);*/
                     break;
                 }
             }
+            
         }
         public void Load_List(List<Income> list)
         {

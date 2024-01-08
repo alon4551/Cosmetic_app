@@ -37,7 +37,7 @@ namespace Cosmetic_App
             Person client;
             Workers worker;
             Cart cart;
-            Cart product;
+            Products product;
             Row r;
             Calender_Table table = new Calender_Table();
             List<DB_Object> list = table.Grab(Database_Names.Calender_Columes[5],date,Database_Names.Calendrer);
@@ -47,10 +47,10 @@ namespace Cosmetic_App
                 worker = new Workers(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
                 client = new Person(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
                 cart = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
-                product = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
+                product = new Products(int.Parse(cart.GetColValue(Database_Names.Cart_Columes[2]).ToString()));
                 r.AddColume(new Col("client_name", client.GetFullName()));
                 r.AddColume(new Col("worker_name", worker.Person.GetFullName()));
-                DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[5]).ToString());
+                DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[6]).ToString());
                 time = time.AddMinutes(double.Parse(cart.Product.GetDuration()));
                 r.AddColume("ending", time.ToShortTimeString());
                 r.AddColume("treatment_name",product.GetColValue("product_name"));
@@ -103,6 +103,10 @@ namespace Cosmetic_App
         }
         internal string getWorkerName() {
         return Worker.GetFullName();
+        }
+        internal DateTime getSchedualeDate()
+        {
+            return DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
         }
         internal string getSchedualeTime()
         {

@@ -170,7 +170,7 @@ public class DB_Object
             SetColValue(0, Value);
         }
         Row r = Row;
-        r.DeleteColume(0);
+       // r.DeleteColume(0);
         string query = SQL_Queries.Update(Table, r.Columes, new Condition(Field, Value));
         
         if (IsExist(Value))

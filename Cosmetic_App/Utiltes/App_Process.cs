@@ -25,6 +25,7 @@ namespace Cosmetic_App.Utiltes
                     {
                         edit.ShowDialog();
                     }
+                    control.Show();
                     return (int)store.Order.Value;
                 }
             }

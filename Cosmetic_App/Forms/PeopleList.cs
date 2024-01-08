@@ -16,6 +16,7 @@ namespace Cosmetic_App
     {
         List<Person> All = new List<Person>(), workers = new List<Person>(), filter = new List<Person>(),selecedFilter= new List<Person>();
         string selected_id = "";
+        bool Status ;
         public PeopleList()
         {
             InitializeComponent();
@@ -23,13 +24,9 @@ namespace Cosmetic_App
         }
         public PeopleList(bool Clients)
         {
-            InitializeComponent();
-            Fetch();
-            if (Clients)
-                selecedFilter = Person.GetAllClients();
-            else
-                selecedFilter = workers;
-            LoadList(selecedFilter);
+           InitializeComponent();
+            Status = Clients;
+           Reload();
         }
         private void Fetch()
         {
@@ -54,6 +51,11 @@ namespace Cosmetic_App
         }
         public void Reload()
         {
+            Fetch();
+            if (Status)
+                selecedFilter = Person.GetAllClients();
+            else
+                selecedFilter = workers;
             LoadList(selecedFilter);
             if (selected_id != "")
                 Load_Information(new Person(selected_id));

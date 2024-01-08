@@ -115,7 +115,7 @@ namespace Cosmetic_App.Forms
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            int appoitmentId = order.GetAppoitmentId((int)Item.Value);
+            Calender_Table appoitmentId = order.GetAppoitment((int)Item.Value);
             using (SelectApoitmentTime Select = new SelectApoitmentTime((int)Item.Product.Value, order.GetClientName(),appoitmentId))
             {
                 Select.ShowDialog();

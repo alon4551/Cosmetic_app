@@ -20,6 +20,7 @@ namespace Cosmetic_App.Forms
         public Products Product { get; set; } = new Products();
         public List<Calender_Table> Appooitments { get; set; }= new List<Calender_Table>();
         public int SelectedAppoitment ;
+        Calender_Table Apooitment;
         public static string SelectDay { get; set; } = DateTime.Now.ToShortDateString();
         public DateTime SelectTime {get;set; }
         public SelectApoitmentTime()
@@ -27,13 +28,24 @@ namespace Cosmetic_App.Forms
             InitializeComponent();
             Reload();
         }
-        public SelectApoitmentTime(int product,string client,int Appoitment)
+        public SelectApoitmentTime(int product,string client,Calender_Table Appoitment)
         {
             InitializeComponent();
             Product.Grab(product);
             month_label.Text = $"קביעת תור ל{client} עבור {Product.getName()}";
-            starting_time.Value = DateTime.Now;
-            SelectedAppoitment = Appoitment;
+            if (Appoitment != null)
+            {
+                Apooitment_Picker.Value = Appoitment.getSchedualeDate();
+                starting_time.Value = Appoitment.GetApooitmentStartingTime();
+                SelectedAppoitment = (int)Appoitment.Value;
+                Apooitment = Appoitment;
+            }
+            else
+            {
+                Apooitment_Picker.Value = DateTime.Now;
+                Appoitment = new Calender_Table();
+            }
+           
             ReloadEndTime();
             Reload();
         }

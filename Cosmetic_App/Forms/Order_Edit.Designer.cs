@@ -71,7 +71,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.088993F));
@@ -92,7 +92,7 @@
             this.tableLayoutPanel2.Controls.Add(this.Cart_list, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(322, 23);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.685237F));
@@ -132,7 +132,7 @@
             // 
             this.order_id_box.Dock = System.Windows.Forms.DockStyle.Fill;
             this.order_id_box.Location = new System.Drawing.Point(2, 20);
-            this.order_id_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.order_id_box.Margin = new System.Windows.Forms.Padding(2);
             this.order_id_box.Name = "order_id_box";
             this.order_id_box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.order_id_box.Size = new System.Drawing.Size(192, 20);
@@ -142,7 +142,7 @@
             // 
             this.Client_box.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Client_box.Location = new System.Drawing.Point(2, 60);
-            this.Client_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Client_box.Margin = new System.Windows.Forms.Padding(2);
             this.Client_box.Name = "Client_box";
             this.Client_box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Client_box.Size = new System.Drawing.Size(192, 20);
@@ -170,7 +170,7 @@
             this.Cart_list.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.Cart_list.Location = new System.Drawing.Point(2, 102);
-            this.Cart_list.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cart_list.Margin = new System.Windows.Forms.Padding(2);
             this.Cart_list.Name = "Cart_list";
             this.Cart_list.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Cart_list.RightToLeftLayout = true;
@@ -201,7 +201,7 @@
             this.tableLayoutPanel3.Controls.Add(this.button1, 1, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(35, 23);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.81337F));
@@ -232,7 +232,7 @@
             this.Treatment_layout_info.Controls.Add(this.worker_list, 0, 2);
             this.Treatment_layout_info.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Treatment_layout_info.Location = new System.Drawing.Point(26, 39);
-            this.Treatment_layout_info.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Treatment_layout_info.Margin = new System.Windows.Forms.Padding(2);
             this.Treatment_layout_info.Name = "Treatment_layout_info";
             this.Treatment_layout_info.RowCount = 4;
             this.Treatment_layout_info.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.50365F));
@@ -302,7 +302,7 @@
             this.tableLayoutPanel5.Controls.Add(this.scheduale_box, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(2, 100);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.80734F));
@@ -314,7 +314,7 @@
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Location = new System.Drawing.Point(2, 83);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.button2.Size = new System.Drawing.Size(155, 34);
@@ -327,7 +327,7 @@
             // 
             this.scheduale_box.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scheduale_box.Location = new System.Drawing.Point(2, 2);
-            this.scheduale_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.scheduale_box.Margin = new System.Windows.Forms.Padding(2);
             this.scheduale_box.Name = "scheduale_box";
             this.scheduale_box.ReadOnly = true;
             this.scheduale_box.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -339,7 +339,7 @@
             // 
             this.treatment_name.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treatment_name.Location = new System.Drawing.Point(2, 2);
-            this.treatment_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.treatment_name.Margin = new System.Windows.Forms.Padding(2);
             this.treatment_name.Name = "treatment_name";
             this.treatment_name.ReadOnly = true;
             this.treatment_name.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -350,7 +350,7 @@
             // 
             this.treatment_duration.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treatment_duration.Location = new System.Drawing.Point(2, 31);
-            this.treatment_duration.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.treatment_duration.Margin = new System.Windows.Forms.Padding(2);
             this.treatment_duration.Name = "treatment_duration";
             this.treatment_duration.ReadOnly = true;
             this.treatment_duration.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -362,7 +362,7 @@
             this.worker_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.worker_list.FormattingEnabled = true;
             this.worker_list.Location = new System.Drawing.Point(2, 67);
-            this.worker_list.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.worker_list.Margin = new System.Windows.Forms.Padding(2);
             this.worker_list.Name = "worker_list";
             this.worker_list.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.worker_list.Size = new System.Drawing.Size(159, 21);
@@ -385,7 +385,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(26, 264);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 19);
             this.button1.TabIndex = 2;
@@ -399,7 +399,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 347);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Order_Edit";
             this.Text = "Order_Dashbord";
             this.Load += new System.EventHandler(this.Order_Dashbord_Load);

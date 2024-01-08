@@ -49,22 +49,12 @@
             this.birthday = new System.Windows.Forms.TextBox();
             this.status = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.אפשרויותToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.להפוךלקוחלעובדToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.להסירעובדממערכתToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.חדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.אדםחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.עובדחדשToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.list_layout.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.information_layout_table.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -77,8 +67,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.184068F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.menuStrip2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
@@ -354,92 +342,18 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // menuStrip2
-            // 
-            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.אפשרויותToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(15, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip2.Size = new System.Drawing.Size(267, 22);
-            this.menuStrip2.TabIndex = 3;
-            this.menuStrip2.Text = "אפשרויות";
-            // 
-            // אפשרויותToolStripMenuItem
-            // 
-            this.אפשרויותToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.להפוךלקוחלעובדToolStripMenuItem,
-            this.להסירעובדממערכתToolStripMenuItem});
-            this.אפשרויותToolStripMenuItem.Name = "אפשרויותToolStripMenuItem";
-            this.אפשרויותToolStripMenuItem.Size = new System.Drawing.Size(69, 18);
-            this.אפשרויותToolStripMenuItem.Text = "אפשרויות";
-            // 
-            // להפוךלקוחלעובדToolStripMenuItem
-            // 
-            this.להפוךלקוחלעובדToolStripMenuItem.Name = "להפוךלקוחלעובדToolStripMenuItem";
-            this.להפוךלקוחלעובדToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.להפוךלקוחלעובדToolStripMenuItem.Text = "להפוך לקוח לעובד";
-            this.להפוךלקוחלעובדToolStripMenuItem.Click += new System.EventHandler(this.להפוךלקוחלעובדToolStripMenuItem_Click);
-            // 
-            // להסירעובדממערכתToolStripMenuItem
-            // 
-            this.להסירעובדממערכתToolStripMenuItem.Name = "להסירעובדממערכתToolStripMenuItem";
-            this.להסירעובדממערכתToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.להסירעובדממערכתToolStripMenuItem.Text = "להסיר עובד ממערכת";
-            this.להסירעובדממערכתToolStripMenuItem.Click += new System.EventHandler(this.להסירעובדממערכתToolStripMenuItem_Click);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.חדשToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(310, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.menuStrip1.Size = new System.Drawing.Size(273, 22);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // חדשToolStripMenuItem
-            // 
-            this.חדשToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.אדםחדשToolStripMenuItem,
-            this.עובדחדשToolStripMenuItem});
-            this.חדשToolStripMenuItem.Name = "חדשToolStripMenuItem";
-            this.חדשToolStripMenuItem.Size = new System.Drawing.Size(42, 18);
-            this.חדשToolStripMenuItem.Text = "חדש";
-            // 
-            // אדםחדשToolStripMenuItem
-            // 
-            this.אדםחדשToolStripMenuItem.Name = "אדםחדשToolStripMenuItem";
-            this.אדםחדשToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.אדםחדשToolStripMenuItem.Text = "אדם חדש במערכת";
-            this.אדםחדשToolStripMenuItem.Click += new System.EventHandler(this.אדםחדשToolStripMenuItem_Click);
-            // 
-            // עובדחדשToolStripMenuItem
-            // 
-            this.עובדחדשToolStripMenuItem.Name = "עובדחדשToolStripMenuItem";
-            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.עובדחדשToolStripMenuItem.Text = "עובד חדש";
-            this.עובדחדשToolStripMenuItem.Click += new System.EventHandler(this.עובדחדשToolStripMenuItem_Click);
-            // 
             // PeopleList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(598, 443);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PeopleList";
             this.RightToLeftLayout = true;
             this.Text = "PeopleList";
             this.Load += new System.EventHandler(this.PeopleList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.list_layout.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -447,10 +361,6 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.information_layout_table.ResumeLayout(false);
             this.information_layout_table.PerformLayout();
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -478,13 +388,5 @@
         private System.Windows.Forms.TextBox birthday;
         private System.Windows.Forms.TextBox status;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.MenuStrip menuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem אפשרויותToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem חדשToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem אדםחדשToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem עובדחדשToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem להפוךלקוחלעובדToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem להסירעובדממערכתToolStripMenuItem;
     }
 }
