@@ -167,8 +167,7 @@ namespace Cosmetic_App
                     {
                         MessageBox.Show("העובד הפך למנהל מערכת");
                     }
-                    else
-                        MessageBox.Show("Error");
+                 
                 }
                 else
                     MessageBox.Show("סיסמא אינה נכונה");
@@ -185,6 +184,19 @@ namespace Cosmetic_App
                     return;
             }
             MessageBox.Show(Worker.GetColValue("password").ToString(),"הסיסמא מופיעה על המסך");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            using (Manager_Verification verification = new Manager_Verification())
+            {
+                verification.ShowDialog();
+                if (!verification.result)
+                    return;
+                Worker.Delete();
+                MessageBox.Show("עובד נמחק");
+                this.Close();
+            }
         }
     }
 }

@@ -44,5 +44,13 @@ namespace Cosmetic_App.Tables
             bool result = Access.Execute(SQL_Queries.Delete(Database_Names.Workers, new Condition(Field, Value)));
             return result & base.Delete();
         }
+
+        internal Person Search(string text)
+        {
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.People, new Condition(Database_Names.People_Columes[0], text)));
+            if (rows.Count == 0) return null;
+            rows[0].Table = Database_Names.People;
+            return new Person(rows[0]);
+        }
     }
 }

@@ -57,6 +57,7 @@
             this.manager_table_layout = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.worker_tab.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -416,6 +417,7 @@
             this.manager_table_layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.75F));
             this.manager_table_layout.Controls.Add(this.label8, 1, 1);
             this.manager_table_layout.Controls.Add(this.button1, 1, 2);
+            this.manager_table_layout.Controls.Add(this.button4, 1, 3);
             this.manager_table_layout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.manager_table_layout.Location = new System.Drawing.Point(2, 2);
             this.manager_table_layout.Margin = new System.Windows.Forms.Padding(2);
@@ -450,6 +452,17 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button4.Location = new System.Drawing.Point(71, 406);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(217, 35);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "לפטר עובד";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Worker_Profile
             // 
@@ -511,5 +524,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
     }
 }

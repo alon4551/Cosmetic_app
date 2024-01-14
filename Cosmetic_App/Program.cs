@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Forms;
 using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Cosmetic_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //gmail_helper.SendMail("alon4551@gmail.com", "hello world");
             Workers.LogedWorker = new Workers("0");
             Application.Run(new HomePage());
         }

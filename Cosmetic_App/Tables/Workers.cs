@@ -80,7 +80,7 @@ namespace Cosmetic_App.Tables
         }
         
 
-        internal bool Update()
+        public bool Update()
         {
             List<Col> list = new List<Col>();
             foreach(Col col in Row.Columes)
@@ -93,9 +93,13 @@ namespace Cosmetic_App.Tables
             if (IsExist(Value))
                 return Access.Execute(query);
             else
-                return base.Insert();
+                return Insert();
         }
-        
+        internal bool Insert()
+        {
+            Value = GetColValue(0);
+            return Access.Execute(SQL_Queries.Insert(Table, Row.Columes));
+        }
         internal bool GetAdmin()
         {
             return bool.Parse(GetColValue(2).ToString());

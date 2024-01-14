@@ -36,6 +36,7 @@ namespace Cosmetic_App.Utiltes
         {
             if (control != null)
                 control.Hide();
+           
             using (PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
@@ -93,12 +94,19 @@ namespace Cosmetic_App.Utiltes
         internal static void NewWorker(Control control)
         {
             control.Hide();
-            string id = NewPerson(null);
-            if (id != "")
-                using (Worker_Profile profile = new Worker_Profile(id))
+            string id;
+            using (SearchPerson search = new SearchPerson())
+            {
+                search.ShowDialog();
+                if (search.Selected != null)
                 {
-                    profile.ShowDialog();
+                    id = search.Selected.GetColValue(0).ToString();
+                    using (Worker_Profile profile = new Worker_Profile(id))
+                    {
+                        profile.ShowDialog();
+                    }
                 }
+            }
        
             control.Show();
         }
