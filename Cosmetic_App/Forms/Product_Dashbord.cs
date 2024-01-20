@@ -27,9 +27,13 @@ namespace Cosmetic_App.Forms
         {
             InitializeComponent();
             if (treatment_list)
+            {
                 Selected_List = Products.GetAllTreatments();
+            }
             else
+            {
                 Selected_List = Products.GetAllMerchandise();
+            }
             select_catagory = treatment_list ? 1 : 0;
         }
         private void Product_Dashbord_Load(object sender, EventArgs e)
@@ -56,12 +60,14 @@ namespace Cosmetic_App.Forms
                 label1.Text = "פרטים על הטיפול";
                 p_info_label.Text = "אורך הטיפול";
                 p_info.Text = Selected_Object.GetDuration() + " דקות";
+                this.Text = "רשימת טיפולים";
             }
             else
             {
                 label1.Text = "פרטים על המוצר";
                 p_info_label.Text = "כמות";
                 p_info.Text = Selected_Object.getInventory().ToString();
+                this.Text = "רשימת מוצרים";
             }
 
         }

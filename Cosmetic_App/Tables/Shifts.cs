@@ -147,8 +147,12 @@ namespace Cosmetic_App.Tables
             else
                 Span = getEndTime().Subtract(getStartTime());
             return Span.ToString();
-            return $"{(int)Span.TotalMinutes/60}:{(int)Span.TotalMinutes%60}";
                 
+        }
+        public double GetTimeWork()
+        {
+            TimeSpan span = getEndTime().Subtract(getStartTime());
+            return span.TotalMinutes/60;
         }
         internal bool Update()
         {

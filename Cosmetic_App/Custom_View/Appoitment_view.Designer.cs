@@ -43,7 +43,7 @@
             this.description.Dock = System.Windows.Forms.DockStyle.Fill;
             this.description.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.description.Location = new System.Drawing.Point(2, 34);
-            this.description.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.description.Margin = new System.Windows.Forms.Padding(2);
             this.description.Name = "description";
             this.description.ReadOnly = true;
             this.description.Size = new System.Drawing.Size(227, 48);
@@ -56,7 +56,7 @@
             this.worker_name.Dock = System.Windows.Forms.DockStyle.Fill;
             this.worker_name.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.worker_name.Location = new System.Drawing.Point(2, 2);
-            this.worker_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.worker_name.Margin = new System.Windows.Forms.Padding(2);
             this.worker_name.Name = "worker_name";
             this.worker_name.ReadOnly = true;
             this.worker_name.Size = new System.Drawing.Size(227, 26);
@@ -68,7 +68,7 @@
             this.time.Dock = System.Windows.Forms.DockStyle.Fill;
             this.time.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.time.Location = new System.Drawing.Point(239, 2);
-            this.time.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.time.Margin = new System.Windows.Forms.Padding(2);
             this.time.Name = "time";
             this.time.ReadOnly = true;
             this.time.Size = new System.Drawing.Size(100, 86);
@@ -111,7 +111,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Appoitment_view";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(341, 90);

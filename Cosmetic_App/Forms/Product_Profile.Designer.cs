@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product_Profile));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.product_profile_layout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,14 +67,14 @@
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.44444F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(262, 366);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(480, 535);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // product_profile_layout
@@ -93,8 +94,8 @@
             this.product_profile_layout.Controls.Add(this.add_layout_table, 0, 6);
             this.product_profile_layout.Controls.Add(this.label7, 1, 6);
             this.product_profile_layout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.product_profile_layout.Location = new System.Drawing.Point(25, 63);
-            this.product_profile_layout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.product_profile_layout.Location = new System.Drawing.Point(46, 92);
+            this.product_profile_layout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.product_profile_layout.Name = "product_profile_layout";
             this.product_profile_layout.RowCount = 7;
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.63239F));
@@ -104,18 +105,18 @@
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.79504F));
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.09091F));
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.18182F));
-            this.product_profile_layout.Size = new System.Drawing.Size(211, 225);
+            this.product_profile_layout.Size = new System.Drawing.Size(386, 328);
             this.product_profile_layout.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(155, 39);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(285, 57);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(97, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "שם";
             // 
@@ -123,11 +124,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Location = new System.Drawing.Point(155, 77);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(285, 112);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(97, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "מחיר";
             // 
@@ -135,51 +136,51 @@
             // 
             this.info_label.AutoSize = true;
             this.info_label.Dock = System.Windows.Forms.DockStyle.Top;
-            this.info_label.Location = new System.Drawing.Point(155, 104);
-            this.info_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.info_label.Location = new System.Drawing.Point(285, 152);
+            this.info_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.info_label.Name = "info_label";
-            this.info_label.Size = new System.Drawing.Size(54, 13);
+            this.info_label.Size = new System.Drawing.Size(97, 19);
             this.info_label.TabIndex = 2;
             // 
             // product_name
             // 
             this.product_name.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.product_name.Location = new System.Drawing.Point(2, 30);
-            this.product_name.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.product_name.Location = new System.Drawing.Point(4, 47);
+            this.product_name.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.product_name.Name = "product_name";
             this.product_name.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.product_name.Size = new System.Drawing.Size(149, 20);
+            this.product_name.Size = new System.Drawing.Size(273, 26);
             this.product_name.TabIndex = 3;
             // 
             // price
             // 
             this.price.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.price.Location = new System.Drawing.Point(2, 68);
-            this.price.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.price.Location = new System.Drawing.Point(4, 102);
+            this.price.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.price.Name = "price";
             this.price.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.price.Size = new System.Drawing.Size(149, 20);
+            this.price.Size = new System.Drawing.Size(273, 26);
             this.price.TabIndex = 4;
             // 
             // amount
             // 
             this.amount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.amount.Location = new System.Drawing.Point(2, 106);
-            this.amount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.amount.Location = new System.Drawing.Point(4, 155);
+            this.amount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.amount.Name = "amount";
             this.amount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.amount.Size = new System.Drawing.Size(149, 20);
+            this.amount.Size = new System.Drawing.Size(273, 26);
             this.amount.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label4.Location = new System.Drawing.Point(2, 52);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(4, 76);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(149, 13);
+            this.label4.Size = new System.Drawing.Size(273, 19);
             this.label4.TabIndex = 6;
             this.label4.Tag = "product_name";
             // 
@@ -187,11 +188,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label5.Location = new System.Drawing.Point(2, 90);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(4, 131);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label5.Size = new System.Drawing.Size(149, 13);
+            this.label5.Size = new System.Drawing.Size(273, 19);
             this.label5.TabIndex = 7;
             this.label5.Tag = "price";
             // 
@@ -199,11 +200,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label6.Location = new System.Drawing.Point(2, 127);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(4, 186);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(149, 13);
+            this.label6.Size = new System.Drawing.Size(273, 19);
             this.label6.TabIndex = 8;
             this.label6.Tag = "amount";
             // 
@@ -217,23 +218,23 @@
             this.add_layout_table.Controls.Add(this.button2, 0, 0);
             this.add_layout_table.Controls.Add(this.count, 1, 0);
             this.add_layout_table.Controls.Add(this.count_label, 1, 1);
-            this.add_layout_table.Location = new System.Drawing.Point(2, 157);
-            this.add_layout_table.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.add_layout_table.Location = new System.Drawing.Point(4, 231);
+            this.add_layout_table.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.add_layout_table.Name = "add_layout_table";
             this.add_layout_table.RowCount = 2;
-            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.58974F));
-            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.41026F));
-            this.add_layout_table.Size = new System.Drawing.Size(149, 63);
+            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.73913F));
+            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.26087F));
+            this.add_layout_table.Size = new System.Drawing.Size(273, 92);
             this.add_layout_table.TabIndex = 9;
             this.add_layout_table.Visible = false;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(122, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(225, 3);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.Size = new System.Drawing.Size(44, 59);
             this.button1.TabIndex = 0;
             this.button1.Text = "+";
             this.button1.UseVisualStyleBackColor = true;
@@ -242,10 +243,10 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(2, 2);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(4, 3);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(21, 23);
+            this.button2.Size = new System.Drawing.Size(38, 59);
             this.button2.TabIndex = 1;
             this.button2.Text = "-";
             this.button2.UseVisualStyleBackColor = true;
@@ -254,12 +255,12 @@
             // count
             // 
             this.count.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.count.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.count.Location = new System.Drawing.Point(27, 2);
-            this.count.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.count.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.count.Location = new System.Drawing.Point(50, 3);
+            this.count.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.count.Multiline = true;
             this.count.Name = "count";
-            this.count.Size = new System.Drawing.Size(91, 23);
+            this.count.Size = new System.Drawing.Size(167, 59);
             this.count.TabIndex = 2;
             this.count.Text = "0";
             this.count.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -268,10 +269,10 @@
             // 
             this.count_label.AutoSize = true;
             this.count_label.Dock = System.Windows.Forms.DockStyle.Top;
-            this.count_label.Location = new System.Drawing.Point(27, 27);
-            this.count_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.count_label.Location = new System.Drawing.Point(50, 65);
+            this.count_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.count_label.Name = "count_label";
-            this.count_label.Size = new System.Drawing.Size(91, 13);
+            this.count_label.Size = new System.Drawing.Size(167, 19);
             this.count_label.TabIndex = 3;
             this.count_label.Tag = "count";
             this.count_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -280,11 +281,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(155, 155);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(285, 228);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(54, 70);
+            this.label7.Size = new System.Drawing.Size(97, 100);
             this.label7.TabIndex = 10;
             this.label7.Text = "כמה להוסיף";
             this.label7.Visible = false;
@@ -297,21 +298,21 @@
             this.tableLayoutPanel3.Controls.Add(this.delete_button, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.save_button, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(25, 292);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(46, 426);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(211, 32);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(386, 47);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // delete_button
             // 
             this.delete_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.delete_button.Location = new System.Drawing.Point(2, 2);
-            this.delete_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.delete_button.Location = new System.Drawing.Point(4, 3);
+            this.delete_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.delete_button.Name = "delete_button";
-            this.delete_button.Size = new System.Drawing.Size(101, 28);
+            this.delete_button.Size = new System.Drawing.Size(185, 41);
             this.delete_button.TabIndex = 1;
             this.delete_button.Text = "מחיקה";
             this.delete_button.UseVisualStyleBackColor = true;
@@ -320,10 +321,10 @@
             // save_button
             // 
             this.save_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.save_button.Location = new System.Drawing.Point(107, 2);
-            this.save_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.save_button.Location = new System.Drawing.Point(197, 3);
+            this.save_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.save_button.Name = "save_button";
-            this.save_button.Size = new System.Drawing.Size(102, 28);
+            this.save_button.Size = new System.Drawing.Size(185, 41);
             this.save_button.TabIndex = 0;
             this.save_button.Text = "שמירה";
             this.save_button.UseVisualStyleBackColor = true;
@@ -334,21 +335,23 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.Font = new System.Drawing.Font("David", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(25, 34);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(46, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(211, 27);
+            this.label3.Size = new System.Drawing.Size(386, 27);
             this.label3.TabIndex = 2;
             this.label3.Text = "label3";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Product_Profile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 366);
+            this.ClientSize = new System.Drawing.Size(480, 535);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Product_Profile";
             this.RightToLeftLayout = true;
             this.Text = "Product_Profile";

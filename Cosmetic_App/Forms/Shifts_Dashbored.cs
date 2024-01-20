@@ -50,7 +50,30 @@ namespace Cosmetic_App.Forms
         }
         private void Load_Shifts()
         {
-            calender.DisplayShifts_OnCalender(tableLayoutPanel7,label1,calender.CalenderSize, click,Worker);   
+            calender.DisplayShifts_OnCalender(tableLayoutPanel7,label1,calender.CalenderSize, click,Worker);
+            double shift_count =0,regular=0,extra =0,extra_plus = 0,time;
+            foreach (Shifts shift in Worker.GetShifts(calender.GetSelectedDate())){
+                time = shift.GetTimeWork();
+                shift_count += time;
+                if (time <= 8)
+                    regular += time;
+                else if(time <=10 && time > 8)
+                {
+                    regular += 8;
+                    extra += time - 8 ;
+                }
+                else if( time > 10 )
+                {
+                    regular += 8;
+                    extra += 2;
+                    extra_plus += time - 10;
+                }
+            }
+            textBox1.Text = shift_count.ToString();
+            textBox2.Text = regular.ToString();
+            textBox3.Text = extra.ToString();
+            textBox4.Text = extra_plus.ToString();
+           
         }
         private void tableLayoutPanel10_Paint(object sender, PaintEventArgs e)
         {
@@ -120,6 +143,12 @@ namespace Cosmetic_App.Forms
                     MessageBox.Show("משמרת נמחקה");
                     Reload();
                 }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            calender.Reset();
+            Reload();
         }
     }
 }

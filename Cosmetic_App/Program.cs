@@ -22,7 +22,7 @@ namespace Cosmetic_App
             Application.SetCompatibleTextRenderingDefault(false);
             //gmail_helper.SendMail("alon4551@gmail.com", "hello world");
             Workers.LogedWorker = new Workers("0");
-            Application.Run(new HomePage());
+            Application.Run(new LoginPage());
         }
     }
 }
