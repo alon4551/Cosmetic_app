@@ -189,7 +189,7 @@
             this.Name = "LoginPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
-            this.Text = "Cosmetic Bueaty Center";
+            this.Text = "הקליניקה של פלורי";
             this.Load += new System.EventHandler(this.LoginPage_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
