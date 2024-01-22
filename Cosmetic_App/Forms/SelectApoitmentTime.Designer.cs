@@ -305,7 +305,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.53402F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.30159F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.01587F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel7.Controls.Add(this.starting_time, 3, 1);
             this.tableLayoutPanel7.Controls.Add(this.ending_time, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.label2, 3, 0);
@@ -331,7 +331,7 @@
             this.starting_time.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.starting_time.RightToLeftLayout = true;
             this.starting_time.ShowUpDown = true;
-            this.starting_time.Size = new System.Drawing.Size(141, 26);
+            this.starting_time.Size = new System.Drawing.Size(140, 26);
             this.starting_time.TabIndex = 0;
             this.starting_time.Value = new System.DateTime(2023, 11, 2, 8, 0, 0, 0);
             this.starting_time.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
@@ -353,7 +353,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(141, 19);
+            this.label2.Size = new System.Drawing.Size(140, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "תחילת טיפול";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

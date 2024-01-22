@@ -27,6 +27,7 @@ namespace Cosmetic_App.Tables
             Value =GetNewIndex();
             SetColValue(0, Value);
             SetColValue(4, DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString());
+            SetColValue(5, false);
         }
         public static List<Income> GrabAll()
         {
@@ -123,6 +124,18 @@ namespace Cosmetic_App.Tables
         public List<Cart> GetCart()
         {
             return shopingCart;
+        }
+        public void AddItem(Products item)
+        {
+            Cart cart =new Cart((int)Value, item);
+            cart.SetAmount(1);
+            cart.Insert();
+            shopingCart.Add(cart);
+        }
+        public void RemoveItem(int index)
+        {
+            shopingCart[index].Delete();
+            shopingCart.RemoveAt(index);
         }
         public void SetClient(string id){
             Client.Grab(id);

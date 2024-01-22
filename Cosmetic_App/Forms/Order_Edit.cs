@@ -1,4 +1,5 @@
-﻿using Cosmetic_App.Tables;
+﻿using Cosmetic_App.Custom_View;
+using Cosmetic_App.Tables;
 using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,19 @@ namespace Cosmetic_App.Forms
         public Cart Item = new Cart();
         public List<Workers> workers = Workers.GrabAll();
         public Calender_Table Apooitment = new Calender_Table();
+        List<Products> Treatments_list = Products.GetAllTreatments(), Filter = new List<Products>();
         public Order_Edit(string id)
         {
             InitializeComponent();
+
+        }
+        public Order_Edit()
+        {
+            InitializeComponent();
+            order.SetClient("");
+            order.SetColValue(1, 0);
+            order.SetWorker(Workers.LogedWorker.Value.ToString());
+            order.Insert();
         }
         public Order_Edit(int id)
         {
@@ -38,6 +49,8 @@ namespace Cosmetic_App.Forms
         {
             Load_Worker_List();
             Load_Information();
+            Load_Treatment_List(Treatments_list);
+            
         }
         public void Load_Worker_List()
         {
@@ -45,7 +58,24 @@ namespace Cosmetic_App.Forms
             foreach(Workers worker in workers)
                 worker_list.Items.Add(worker.GetFullName());
         }
-       
+
+       public void Load_Treatment_List(List<Products> list)
+        {
+            treatment_list_layout.Controls.Clear();
+            foreach(Products treatment in list)
+            {
+                StoreProductView view = new StoreProductView();
+                view.SetInformation(treatment);
+                view.SetAction(AddButton);
+                treatment_list_layout.Controls.Add(view);
+            }
+        }
+        public void AddButton(object sender, EventArgs e)
+        {
+            Products item =(Products)Input.GetTag(sender);
+            order.AddItem(item);
+            Load_Information();
+        }
         public void Load_Information()
         {
             order_id_box.Text = order.Value.ToString();
@@ -159,6 +189,28 @@ namespace Cosmetic_App.Forms
             }
             else
                 MessageBox.Show("error");
+        }
+
+        private void Cart_list_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                order.RemoveItem(Cart_list.SelectedIndices[0]);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                Load_Treatment_List(Treatments_list);
+            else
+            {
+                Filter.Clear();
+                foreach (Products treatment in Treatments_list)
+                    if (treatment.getName().Contains(textBox1.Text))
+                        Filter.Add(treatment);
+                Load_Treatment_List(Filter);
+            }
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Cosmetic_App
         public string GetProductName() { return Product.getName(); }
         public void SetProduct(int product_id){ SetColValue(Database_Names.Cart_Columes[2], product_id); }
         public void SetOrder_Id(int order_id){ SetColValue(Database_Names.Cart_Columes[1], order_id); }
-        public void SetAmount(int amount_id){ SetColValue(Database_Names.Cart_Columes[3], amount_id); }
+        public void SetAmount(int amount){ SetColValue(Database_Names.Cart_Columes[3], amount); }
         public int GetAmount() { return (int)GetColValue(Database_Names.Cart_Columes[3]); }
         public int GetTotal() 
         {

@@ -14,10 +14,20 @@ namespace Cosmetic_App.Tables
         public Treatments(int id):base(Database_Names.Treatments, Database_Names.Treatment_Columes) 
         {
             Grab(id);
+
         }
+        public Treatments(DB_Object obj) : base(obj) { Table = Database_Names.Treatments; }
         public string GetDuration()
         {
             return GetColValue("duration").ToString();
+        }
+        public static List<Treatments> GrabAll()
+        {
+            List<Treatments> treatments = new List<Treatments>();
+            List<DB_Object> list = GrabAll(Database_Names.Treatments);
+            foreach (DB_Object obj in list)
+                treatments.Add(new Treatments(obj));
+            return treatments;
         }
     }
 }
