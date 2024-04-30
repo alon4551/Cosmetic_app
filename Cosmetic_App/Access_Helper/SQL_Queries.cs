@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Access_Helper;
 using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -8,6 +9,7 @@ public class SQL_Queries
    
     private static string SQL_Syntax(object item)
     {
+        if(item == null) return "";
         switch (item.GetType().ToString())
         {
 
@@ -15,6 +17,11 @@ public class SQL_Queries
                 {
                     return $"'{item.ToString()}'";
 
+                }
+            case "System.DateTime":
+                {
+                    DateTime time = (DateTime)item;
+                    return $"#{time.Year}-{time.Month}-{time.Day}#";
                 }
             default:
                 {
@@ -67,6 +74,7 @@ public class SQL_Queries
     {
         return $"select * from {table} where {new Condition(field,value).SQL_Syntax()} order by {field};";
     }
+
     public static string Select(string table,List<string>Columns,List<Condition> Conditions,string ConditionType)
     {
         return $"select {Col.Values_SQL_Syntax(Columns, ",")} from {table} where {Condition.SQL_Syntax(Conditions, ConditionType)};";
@@ -79,9 +87,17 @@ public class SQL_Queries
     {
         return $"select * from {table} where {Condition.SQL_Syntax()};";
     }
+    public static string Select(string table,string keyfield, DateTime start,DateTime end)
+    {
+        return $"select * from {table} where {keyfield} between {SQL_Syntax(start)} and {SQL_Syntax(end)};";
+    }
     public static string Select(string table)
     {
         return $"select * from {table};";
+    }
+    public static string SelectAndOrderBy(string table,string keyfield)
+    {
+        return $"select * from {table} order by {keyfield};";
     }
     public static string Select(string table,List<string> Columes)
     {
@@ -124,6 +140,10 @@ public class SQL_Queries
     public static string Seperate(string MainTable, string Sparate, string commonfield)
     {
         return $"select * from {MainTable} where {commonfield} not in (select {commonfield} from {Sparate});";
+    }
+    public static string SeperateAndOrder(string MainTable, string Sparate, string commonfield,string keyfield)
+    {
+        return $"select * from {MainTable} where {commonfield} not in (select {commonfield} from {Sparate}) order by {keyfield};";
     }
 }
 

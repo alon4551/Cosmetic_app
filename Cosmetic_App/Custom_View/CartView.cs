@@ -27,5 +27,9 @@ namespace Cosmetic_App.Custom_View
         {
             button1.Click += action;
         }
+        public void disable_button()
+        {
+            button1.Enabled = false;
+        }
     }
 }

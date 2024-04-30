@@ -18,19 +18,53 @@ namespace Cosmetic_App.Forms
     {
         public bool Result = false;
         public Products Product { get; set; } = new Products();
+        public List<Calender_Table> Temporery_Apooitments = null;
         public List<Calender_Table> Appooitments { get; set; }= new List<Calender_Table>();
         public int SelectedAppoitment ;
+
         Calender_Table Apooitment;
         public static string SelectDay { get; set; } = DateTime.Now.ToShortDateString();
         public DateTime SelectTime {get;set; }
+        public string Selected_Worker { get; set; } = Workers.LogedWorker.Value.ToString();
+        public DateTime Selected_Date { get;set; }
         public SelectApoitmentTime()
         {
             InitializeComponent();
+            worker_comboBox.Items.Clear();
+            foreach(Workers worker in Workers.list)
+            {
+                worker_comboBox.Items.Add(worker.GetFullName() + " " + worker.Value);
+            }
+            bool find = false;
+            for (int i = 0; i < worker_comboBox.Items.Count; i++)
+                if (worker_comboBox.Items[i].ToString().Contains(Workers.LogedWorker.Value.ToString()))
+                {
+                    worker_comboBox.SelectedIndex = i;
+                    find = true;
+                    break;
+                }
+            if (find==false)
+                worker_comboBox.SelectedIndex = 0;
             Reload();
         }
         public SelectApoitmentTime(int product,string client,Calender_Table Appoitment)
         {
             InitializeComponent();
+            foreach (Workers worker in Workers.list)
+            {
+                worker_comboBox.Items.Add(worker.GetFullName() + " " + worker.Value);
+            }
+
+            bool find = false;
+            for (int i = 0; i < worker_comboBox.Items.Count; i++)
+                if (worker_comboBox.Items[i].ToString().Contains(Workers.LogedWorker.Value.ToString()))
+                {
+                    worker_comboBox.SelectedIndex = i;
+                    find=true;
+                    break;
+                }
+            if (find == false)
+                worker_comboBox.SelectedIndex = 0;
             Product.Grab(product);
             month_label.Text = $"קביעת תור ל{client} עבור {Product.getName()}";
             if (Appoitment != null)
@@ -46,6 +80,16 @@ namespace Cosmetic_App.Forms
                 Appoitment = new Calender_Table();
             }
            
+            ReloadEndTime();
+          
+            Reload();
+        }
+        public SelectApoitmentTime(int product, string client, List<Calender_Table> appoitments)
+        {
+            InitializeComponent();
+            Product.Grab(product);
+            month_label.Text = $"קביעת תור ל{client} עבור {Product.getName()}";
+            Temporery_Apooitments = appoitments;
             ReloadEndTime();
             Reload();
         }
@@ -68,9 +112,12 @@ namespace Cosmetic_App.Forms
         }
         private void Reload()
         {
-            Appooitments = Calender_Table.GetAppoitments(Apooitment_Picker.Value.ToShortDateString());
+            string worker_id = Workers.LogedWorker.Value.ToString() ;
+            if(worker_comboBox.SelectedIndex !=-1)
+                worker_id = Workers.list[worker_comboBox.SelectedIndex].Value.ToString();
+            Appooitments = Calender_Table.GetAppoitments(Apooitment_Picker.Value.ToShortDateString(),worker_id);
             SelectDay = Apooitment_Picker.Value.ToShortDateString();
-            calender.SetDisplayTime(Apooitment_Picker.Value);
+            calender.SetDisplayTime(new DateTime(Apooitment_Picker.Value.Year, Apooitment_Picker.Value.Month, Apooitment_Picker.Value.Day));
             label11.Text = Apooitment_Picker.Value.ToShortDateString();
             DateTime day = Apooitment_Picker.Value;
             DateTime time = starting_time.Value;
@@ -78,7 +125,7 @@ namespace Cosmetic_App.Forms
             Display();
         }
 
-       
+    
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             Reload();
@@ -111,10 +158,26 @@ namespace Cosmetic_App.Forms
                         return;
                     }
             }
+            if(Temporery_Apooitments!=null)
+                foreach(Calender_Table apooitment in Temporery_Apooitments)
+                {
+                    if (!apooitment.IsDateTimeInEdge(Ending, true) && !apooitment.IsDateTimeInEdge(starting_time.Value, false))
+                        if (apooitment.IsDateTimeWithInRange(Ending) || apooitment.IsDateTimeWithInRange(starting_time.Value))
+                        {
+                            MessageBox.Show("שעת הטיפול שנבחרה לא מתאימה, כבר קיים טיפול בטווח הזמנים הזה");
+                            return;
+                        }
+                }
             SelectTime = starting_time.Value;
+            Selected_Worker = Workers.list[worker_comboBox.SelectedIndex].Value.ToString() ;
             MessageBox.Show("זמן טיפול נבחר, חלון זה יסגר");
             Result = true;
             this.Close();
+        }
+
+        private void worker_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Cosmetic_App.Tables
 {
     public class Workers:DB_Object
     {
+        public static List<Workers> list = Workers.GrabAll();
         public static Workers LogedWorker = new Workers();
         public List<Shifts> all_shifts;
         public Person Person { get; set; } = new Person();
@@ -49,19 +50,26 @@ namespace Cosmetic_App.Tables
             all_shifts = GrabAllShifts();
 
         }
+        public static Workers GetWorker(string id)
+        {
+            foreach(Workers worker in list)
+                if(worker.Value.ToString() == id) 
+                    return worker;
+            return null;
+        }
         public bool Grab(string id)
         {
-
-            return base.Grab(id) & Person.Grab(id);
+            Person = Person.GetPerson(id);
+            return base.Grab(id);
         }
         public static bool Verify_Account(string id,string password)
         {
-            Workers worker =  new Workers(id);
+            Workers worker =  Workers.GetWorker(id);
             return worker.GetColValue("password").ToString() == password && worker.GetColValue("id").ToString() == id;
         }
         public static bool Verify_Account_Admin(string id, string password)
         {
-            Workers worker = new Workers(id);
+            Workers worker = GetWorker(id);
             return worker.GetColValue("password").ToString() == password && worker.GetColValue("id").ToString() == id && worker.GetAdmin();
         }
         public static object GetColValue(string id,string field) 
@@ -164,6 +172,10 @@ namespace Cosmetic_App.Tables
         {
             all_shifts = GrabAllShifts();
             base.Reload();
+        }
+        public static void ReloadList()
+        {
+            list = GrabAll();
         }
     }
 }

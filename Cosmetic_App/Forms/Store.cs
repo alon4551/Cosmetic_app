@@ -1,5 +1,6 @@
 ﻿using Cosmetic_App.Custom_View;
 using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
 using Org.BouncyCastle.Asn1.BC;
 using System;
 using System.Windows.Forms;
@@ -21,7 +22,7 @@ namespace Cosmetic_App.Forms
         public Income Order = new Income();
         public List<Person> People = Person.GetAllClients(), people_filter = new List<Person>();
         List<string> allNames = new List<string>();
-        public List<Products> products = Products.GetAllProducts(),Filter=new List<Products>();
+        public List<Products> products = Products.GetAllMerchandise(),Filter=new List<Products>();
         public List<Cart> ShopingCart = new List<Cart>();
         public object signture = null;
         public bool finish = false;
@@ -30,19 +31,18 @@ namespace Cosmetic_App.Forms
             InitializeComponent();
             foreach (Person person in People)
                 allNames.Add(person.GetFullName());
-            Client_List.AutoCompleteCustomSource.AddRange(allNames.ToArray());
         }
-        public Store(string worker)
+        public Store(int Order_id)
         {
             InitializeComponent();
-            foreach(Person person in People)
+            foreach (Person person in People)
                 allNames.Add(person.GetFullName());
-            Client_List.AutoCompleteCustomSource.AddRange(allNames.ToArray());
-            Order.SetWorker(worker);
+            Order.Grab(Order_id);
+            ShopingCart = Order.GetShopingCart();
         }
         private void Store_Load(object sender, EventArgs e)
         {
-            Income_label.Text = $"קבלה מספר {Order.Value} תאריך {DateTime.Now.ToString()}";
+            Income_label.Text = $"קבלה מספר {Order.Value} תאריך {Order.GetPurchaceDate()}";
             Load_Products_List(products);
             Load_Client_list(People);
             RelaodView();
@@ -60,6 +60,7 @@ namespace Cosmetic_App.Forms
                 StoreProductView view = new StoreProductView();
                 view.SetInformation(p);
                 view.SetAction(AddButtonClick);
+          
                 Products_Store_Layout.Controls.Add(view);
             }
         }
@@ -74,6 +75,10 @@ namespace Cosmetic_App.Forms
                 view.SetInformation(item.GetName(), item.GetAmount());
                 view.SetAction(RemoveClick);
                 view.Tag = item.Value;
+                if (item.IsTreatment())
+                {
+                    view.disable_button();
+                }
                 Cart_layout.Controls.Add(view);
                 total += item.GetTotal();
             }
@@ -156,10 +161,13 @@ namespace Cosmetic_App.Forms
                             if (browse.ShowDialog() == DialogResult.OK)
                             {
                                 Order.SetCart(ShopingCart);
+                                Order.SetColValue(Database_Names.Income_Columes[5], true);
                                 if (Order.Save())
                                 {
                                     Order.CreateInvoce(browse.FileName, window.signture);
+                                    Order.BackUp(browse.FileName);
                                     finish = true;
+                                    Products.CheckInventory();
                                     this.Close();
                                 }
                                 else
@@ -174,10 +182,6 @@ namespace Cosmetic_App.Forms
 
         private void Client_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(people_filter.Count==0)
-                Order.SetClient(People[Client_List.SelectedIndex]);
-            else
-                Order.SetClient(people_filter[Client_List.SelectedIndex]);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -211,10 +215,9 @@ namespace Cosmetic_App.Forms
 
         public void Load_Client_list(List<Person> list)
         {
-            Client_List.Items.Clear();
             foreach (Person person in list)
             {
-                Client_List.Items.Add(person.GetFullName());
+                textBox2.Text = (person.GetFullName());
             }
         }
 

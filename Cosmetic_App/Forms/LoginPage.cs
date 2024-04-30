@@ -56,7 +56,8 @@ namespace Cosmetic_App
 
         private void button2_Click(object sender, EventArgs e)
         {
-            gmail_helper.SendMail("alon4551@gmail.com", "this was a secsees");
+            if (id.Text != "")
+                App_Process.ForgetPassword(id.Text);
         }
 
         private void LoginPage_Load(object sender, EventArgs e)

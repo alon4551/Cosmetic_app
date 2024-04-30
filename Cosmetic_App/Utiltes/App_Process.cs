@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cosmetic_App.Tables;
-
 namespace Cosmetic_App.Utiltes
 {
     public static class App_Process
@@ -16,21 +15,23 @@ namespace Cosmetic_App.Utiltes
         public static int NewOrder(string worker_id, Control control)
         {
             control.Hide();
-            using (Store store = new Store(worker_id))
+            using (Schedule edit = new Schedule())
             {
-                store.ShowDialog();
-                if (store.finish)
-                {
-                    using (Order_Edit edit = new Order_Edit((int)store.Order.Value))
-                    {
-                        edit.ShowDialog();
-                    }
-                    control.Show();
-                    return (int)store.Order.Value;
-                }
+                edit.ShowDialog();
             }
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
             return -1;
+        }
+        public static void Statisteics( Control control)
+        {
+            control.Hide();
+            using (Statistic edit = new Statistic())
+            {
+                edit.ShowDialog();
+            }
+            Cosmetic_App.Tables.Products.CheckInventory();
+            control.Show();
         }
         public static string NewPerson(Control control)
         {
@@ -56,6 +57,7 @@ namespace Cosmetic_App.Utiltes
             {
                 Dashborad.ShowDialog();
             }
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
         }
 
@@ -66,6 +68,7 @@ namespace Cosmetic_App.Utiltes
             {
                 checkin.ShowDialog();
             }
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
         }
 
@@ -88,7 +91,10 @@ namespace Cosmetic_App.Utiltes
                 profile.ShowDialog();
             }
             if (control != null)
+            {
+                Cosmetic_App.Tables.Products.CheckInventory();
                 control.Show();
+            }
         }
 
         internal static void NewWorker(Control control)
@@ -101,13 +107,13 @@ namespace Cosmetic_App.Utiltes
                 if (search.Selected != null)
                 {
                     id = search.Selected.GetColValue(0).ToString();
-                    using (Worker_Profile profile = new Worker_Profile(id))
+                    using (CreatePassword profile = new CreatePassword(id))
                     {
                         profile.ShowDialog();
                     }
                 }
             }
-       
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
         }
 
@@ -129,6 +135,8 @@ namespace Cosmetic_App.Utiltes
                 dashbord.ShowDialog();
 
             }
+
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
         }
         internal static void Product(Control control,int id)
@@ -138,6 +146,7 @@ namespace Cosmetic_App.Utiltes
             {
                 profile.ShowDialog();
             }
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
         }
         internal static void Shifts(Control control)
@@ -152,7 +161,22 @@ namespace Cosmetic_App.Utiltes
             {
                 Dashborad.ShowDialog();
             }
+            Cosmetic_App.Tables.Products.CheckInventory();
             control.Show();
+        }
+        public static void ForgetPassword(string id)
+        {
+            using (Manager_Verification verification = new Manager_Verification())
+            {
+                verification.ShowDialog();
+                if (!verification.result)
+                    return;
+            }
+            foreach(Workers worker in Cosmetic_App.Tables.Workers.list)
+            {
+                if(worker.Value.ToString()==id)
+                    MessageBox.Show(worker.GetColValue("password").ToString(), "הסיסמא מופיעה על המסך");
+            }
         }
     }
 }

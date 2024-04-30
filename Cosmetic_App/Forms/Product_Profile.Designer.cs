@@ -58,6 +58,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.882522F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.23496F));
@@ -79,6 +80,7 @@
             // 
             // product_profile_layout
             // 
+            this.product_profile_layout.BackColor = System.Drawing.Color.Azure;
             this.product_profile_layout.ColumnCount = 2;
             this.product_profile_layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.95374F));
             this.product_profile_layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.04626F));
@@ -94,9 +96,10 @@
             this.product_profile_layout.Controls.Add(this.add_layout_table, 0, 6);
             this.product_profile_layout.Controls.Add(this.label7, 1, 6);
             this.product_profile_layout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.product_profile_layout.Location = new System.Drawing.Point(46, 92);
+            this.product_profile_layout.Location = new System.Drawing.Point(48, 92);
             this.product_profile_layout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.product_profile_layout.Name = "product_profile_layout";
+            this.product_profile_layout.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.product_profile_layout.RowCount = 7;
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.63239F));
             this.product_profile_layout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.126915F));
@@ -222,34 +225,38 @@
             this.add_layout_table.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.add_layout_table.Name = "add_layout_table";
             this.add_layout_table.RowCount = 2;
-            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.73913F));
-            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.26087F));
+            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.69565F));
+            this.add_layout_table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.30434F));
             this.add_layout_table.Size = new System.Drawing.Size(273, 92);
             this.add_layout_table.TabIndex = 9;
             this.add_layout_table.Visible = false;
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.Ivory;
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Location = new System.Drawing.Point(225, 3);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(44, 59);
+            this.button1.Size = new System.Drawing.Size(44, 25);
             this.button1.TabIndex = 0;
             this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Ivory;
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Location = new System.Drawing.Point(4, 3);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(38, 59);
+            this.button2.Size = new System.Drawing.Size(38, 25);
             this.button2.TabIndex = 1;
             this.button2.Text = "-";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // count
@@ -260,7 +267,7 @@
             this.count.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.count.Multiline = true;
             this.count.Name = "count";
-            this.count.Size = new System.Drawing.Size(167, 59);
+            this.count.Size = new System.Drawing.Size(167, 25);
             this.count.TabIndex = 2;
             this.count.Text = "0";
             this.count.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -269,7 +276,7 @@
             // 
             this.count_label.AutoSize = true;
             this.count_label.Dock = System.Windows.Forms.DockStyle.Top;
-            this.count_label.Location = new System.Drawing.Point(50, 65);
+            this.count_label.Location = new System.Drawing.Point(50, 31);
             this.count_label.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.count_label.Name = "count_label";
             this.count_label.Size = new System.Drawing.Size(167, 19);
@@ -298,7 +305,7 @@
             this.tableLayoutPanel3.Controls.Add(this.delete_button, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.save_button, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(46, 426);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(48, 426);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -308,26 +315,30 @@
             // 
             // delete_button
             // 
+            this.delete_button.BackColor = System.Drawing.Color.Ivory;
             this.delete_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.delete_button.Location = new System.Drawing.Point(4, 3);
+            this.delete_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.delete_button.Location = new System.Drawing.Point(197, 3);
             this.delete_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(185, 41);
             this.delete_button.TabIndex = 1;
             this.delete_button.Text = "מחיקה";
-            this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.UseVisualStyleBackColor = false;
             this.delete_button.Click += new System.EventHandler(this.button1_Click);
             // 
             // save_button
             // 
+            this.save_button.BackColor = System.Drawing.Color.Ivory;
             this.save_button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.save_button.Location = new System.Drawing.Point(197, 3);
+            this.save_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.save_button.Location = new System.Drawing.Point(4, 3);
             this.save_button.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.save_button.Name = "save_button";
             this.save_button.Size = new System.Drawing.Size(185, 41);
             this.save_button.TabIndex = 0;
             this.save_button.Text = "שמירה";
-            this.save_button.UseVisualStyleBackColor = true;
+            this.save_button.UseVisualStyleBackColor = false;
             this.save_button.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
@@ -335,7 +346,7 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.Font = new System.Drawing.Font("David", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label3.Location = new System.Drawing.Point(46, 62);
+            this.label3.Location = new System.Drawing.Point(48, 62);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(386, 27);
@@ -353,8 +364,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Product_Profile";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
-            this.Text = "Product_Profile";
+            this.Text = "פרופיל מוצר";
             this.Load += new System.EventHandler(this.Product_Profile_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

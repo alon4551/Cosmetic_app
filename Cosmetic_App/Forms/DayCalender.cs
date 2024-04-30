@@ -1,4 +1,5 @@
-﻿using Cosmetic_App.Utiltes;
+﻿using Cosmetic_App.Tables;
+using Cosmetic_App.Utiltes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,26 @@ namespace Cosmetic_App
 
         private void DayCalender_Load(object sender, EventArgs e)
         {
-            calender.Display_Apooitments(flowLayoutPanel1);
+            
+            comboBox1.Items.Clear();
+            foreach (Workers worker in Workers.list)
+                comboBox1.Items.Add(worker.GetFullName() + "," + worker.Value);
+            comboBox1.SelectedIndex = 0;
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+              //  calender.DisplayWorkerAppoitments(flowLayoutPanel1, Workers.list[comboBox1.SelectedIndex].GetAppoitments(calender.GetSelectedDate().ToShortDateString()), calender.GetSelectedDate());
+            calender.Display_Apooitments(flowLayoutPanel1, Workers.list[comboBox1.SelectedIndex].Value.ToString());
+            else
+               // calender.DisplayWorkerAppoitments(flowLayoutPanel1, Workers.LogedWorker.GetAppoitments(calender.GetSelectedDate().ToShortDateString()), calender.GetSelectedDate());
+            calender.Display_Apooitments(flowLayoutPanel1, Workers.LogedWorker.Value.ToString());
         }
     }
 }

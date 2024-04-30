@@ -14,7 +14,7 @@ namespace Cosmetic_App.Forms
     public partial class SearchPerson : Form
     {
         public Person Selected = null;
-        List<Person> People = Person.GetAllClients();
+        List<Person> People = Person.Clients;
         public SearchPerson()
         {
             InitializeComponent();

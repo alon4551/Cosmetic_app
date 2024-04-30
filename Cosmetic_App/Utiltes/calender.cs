@@ -8,6 +8,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -122,9 +123,41 @@ namespace Cosmetic_App.Utiltes
 
             foreach(Row r in Apooitments)
             {
-                Appoitment_view appoitment = new Appoitment_view();
+                Appoitment_view appoitment = new Appoitment_view((int)r.GetColValue("order_id"));
+                appoitment.SetAction(ClickAppoitmnet);
                 appoitment.SetDate(r);
                 panel.Controls.Add(appoitment);
+            }
+        }
+        public static void Display_Apooitments(FlowLayoutPanel panel,string id)
+        {
+            panel.Controls.Clear();
+
+            foreach (Row r in Apooitments)
+            {
+                if (r.GetColValue(Database_Names.Calender_Columes[2]).ToString() == id)
+                {
+                    Appoitment_view appoitment = new Appoitment_view((int)r.GetColValue("order_id"));
+                    appoitment.SetAction(ClickAppoitmnet);
+                    appoitment.SetDate(r);
+                    panel.Controls.Add(appoitment);
+                }
+            }
+        }
+        public static void ClickAppoitmnet(object sender, EventArgs args)
+        {
+            int id = (int)(sender as Button).Tag;
+            Income income = new Income(id);
+            if (!income.IsPaid())
+            {
+                using (Store store =new Store(id))
+                {
+                    store.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("הזמנה כבר שולמה");
             }
         }
         public static void Reset()
@@ -163,7 +196,17 @@ namespace Cosmetic_App.Utiltes
             for (i = 1; i <= days; i++)
             {
                 DateTime time = new DateTime(DisplayTime.Year, DisplayTime.Month, i);
-                Day = new DayApooitment_view(time, DateTime.Today.CompareTo(time));
+                if (DateTime.Today.CompareTo(DisplayTime) != 0)
+                {
+                    if (time.CompareTo(DisplayTime) == 0)
+                        Day = new DayApooitment_view(time, 0);
+                    else if (time.CompareTo(DateTime.Today) == 0)
+                        Day = new DayApooitment_view(time, -1);
+                    else
+                        Day = new DayApooitment_view(time, DateTime.Today.CompareTo(time));
+                }
+                else
+                    Day = new DayApooitment_view(time, DateTime.Today.CompareTo(time));
                 Day.SetAction(action);
                 Day.Tag = time;
                 panel.Controls.Add(Day);
@@ -186,7 +229,7 @@ namespace Cosmetic_App.Utiltes
         {
             panel.Controls.Clear();
             DateTime Time = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-            string displayDay = Time.ToShortDateString();
+            string displayDay = Time.ToShortDateString(), displayTime = "" ;
             for(int span = 60; displayDay==Time.ToShortDateString(); Time = Time.AddMinutes(span))
             {
                 DisplayHour hour = new DisplayHour();
@@ -208,8 +251,15 @@ namespace Cosmetic_App.Utiltes
                         span = 60;
 
                 }
-                
-                hour.SetTime(Time.ToShortTimeString(), span);
+                if(Time.Hour<10 && Time.Minute<10)
+                    displayTime = $"0{Time.Hour}:0{Time.Minute}";
+                else if(Time.Hour < 10 && Time.Minute > 10)
+                    displayTime = $"0{Time.Hour}:{Time.Minute}";
+                else if (Time.Minute < 10)
+                    displayTime = $"{Time.Hour}:0{Time.Minute}";
+                else 
+                    displayTime = $"{Time.Hour}:{Time.Minute}";
+                hour.SetTime(displayTime, span);
                 hour.ColorView(Time);  
                 panel.Controls.Add(hour);
                 

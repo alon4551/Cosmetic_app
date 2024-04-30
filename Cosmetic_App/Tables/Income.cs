@@ -24,10 +24,22 @@ namespace Cosmetic_App.Tables
         List<Calender_Table> Apooitments { get; set; } = new List<Calender_Table>();
         public Income() : base(Database_Names.Income,Database_Names.Income_Columes)
         {
+            Table = Database_Names.Income;
             Value =GetNewIndex();
             SetColValue(0, Value);
             SetColValue(4, DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString());
             SetColValue(5, false);
+            SetColValue(6, DateTime.Now);
+        }
+        public Income(Row r) : base(r)
+        {
+            Table = Database_Names.Income;
+            Value = r.GetColValue(0);
+            Worker = Workers.GetWorker(GetColValue("worker").ToString());
+            Client = Person.GetPerson(GetColValue("client").ToString());
+            shopingCart = GetOrderCart((int)Value);
+            Cart = GrabOrderCart((int)Value);
+            Apooitments = GrabApooitments((int)Value);
         }
         public static List<Income> GrabAll()
         {
@@ -41,8 +53,9 @@ namespace Cosmetic_App.Tables
         {
             Value =obj.Value;
             SetColValue(0, Value);
-            Worker.Grab(GetColValue("worker").ToString());
-            Client.Grab(GetColValue("client"));
+            Table = Database_Names.Income;
+            Worker = Workers.GetWorker(GetColValue("worker").ToString());
+            Client = Person.GetPerson(GetColValue("client").ToString());
             shopingCart = GetOrderCart((int)Value);
             Cart = GrabOrderCart((int)Value);
             Apooitments = GrabApooitments((int)Value);
@@ -55,8 +68,8 @@ namespace Cosmetic_App.Tables
         {
             Value = id;
             bool result =base.Grab(id);
-            result &= Client.Grab(GetColValue(Database_Names.Income_Columes[2]));
-            result &= Worker.Grab(GetColValue(Database_Names.Income_Columes[3]));            
+            Worker = Workers.GetWorker(GetColValue("worker").ToString());
+            Client = Person.GetPerson(GetColValue("client").ToString());
             Cart = GrabOrderCart(id);
             shopingCart = GetOrderCart((int)Value);
             Apooitments = GrabApooitments(id);
@@ -138,21 +151,24 @@ namespace Cosmetic_App.Tables
             shopingCart.RemoveAt(index);
         }
         public void SetClient(string id){
-            Client.Grab(id);
+            Client = Person.GetPerson(id);
             SetColValue(2, id);
         }
         public void SetClient(Person person){
             Client = person;
             SetColValue(2, person.Value);
         }
-        public void SetWorker(string id) { Worker.Grab(id);SetColValue(3, id); }
+        public void SetWorker(string id) {
+            Worker = Workers.GetWorker(id);
+            SetColValue(3, id); 
+        }
         public void SetCart(int id) { Cart = GrabOrderCart(id); }
         public void SetCart(List<Cart> cart) {
             shopingCart = cart;
             int total = 0;
             foreach (Cart cartItem in shopingCart)
                 total += cartItem.GetTotal();
-            SetColValue(1,total);
+            SetColValue(Database_Names.Income_Columes[1],total);
         }
         public int GetOrderId() { return (int)GetColValue(0); }
         public string GetClientName() { return Client.GetFullName(); }
@@ -214,6 +230,31 @@ namespace Cosmetic_App.Tables
         {
             Grab((int)Value);
         }
+        public void CreateRefund(string path)
+        {
+            Document doc = new Document(PageSize.A5);
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
+                doc.Open();
+                doc.Add(GetElements("date"));
+                doc.Add(GetElements("refund"));
+                doc.Add(GetElements("client"));
+                doc.Add(GetElements("price"));
+                doc.Add(new Paragraph("\n\n\n\n"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erorr Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+                doc.Close();
+
+                MessageBox.Show("OK");
+            }
+        }
         public void CreateInvoce(string path,object signture)
         {
             Document doc = new Document(PageSize.A5);
@@ -235,7 +276,9 @@ namespace Cosmetic_App.Tables
             }
             finally
             {
+                
                 doc.Close();
+                
                 MessageBox.Show("OK");
             }
 
@@ -268,7 +311,7 @@ namespace Cosmetic_App.Tables
             table.AddCell(getCell(GetElements(Messages.Reverse("ליחידה מחיר")), "header"));
             table.AddCell(getCell(GetElements(Messages.Reverse("שם מוצר")), "header"));
             int total = 0;
-            
+            shopingCart = GetShopingCart();
             foreach (Cart cart in shopingCart)
             {
                 
@@ -318,14 +361,30 @@ namespace Cosmetic_App.Tables
                 case "title":
                     p.Font = new iTextSharp.text.Font(baseFont, 40);
                     p.Alignment = Element.ALIGN_CENTER;
-                    p.Add(Messages.Reverse($"קבלה מספר\n\n{Value}\n\n"));
+                    p.Add(Messages.Reverse($"קבלה מספר\n\n"));
+                    p.Add($"{Value}");
 
                     return p;
+                case "refund":
+                    {
+                        p.Font = new iTextSharp.text.Font(baseFont, 40);
+                        p.Alignment = Element.ALIGN_CENTER;
+                        p.Add(Messages.Reverse($"זיכוי מספר\n\n{Value}\n\n"));
+                        return p;
+                    }
                 case "client":
                     p.Font = new iTextSharp.text.Font(baseFont, 20);
                     p.Alignment = Element.ALIGN_RIGHT;
-                    p.Add(Messages.Reverse($"לקוח:\t{Client.GetFullName()}\nעובד:\t{Worker.GetFullName()}\n\n"));
+                    p.Add(Messages.Reverse($"לקוח:\t{Person.GetName(GetColValue("client").ToString())}\nעובד:\t{Person.GetName(GetColValue("worker").ToString())}\n\n"));
                     return p;
+                case "price":
+                    {
+                        p.Font = new iTextSharp.text.Font(baseFont, 20);
+                        p.Alignment = Element.ALIGN_RIGHT;
+                        p.Add(Messages.Reverse($"סכום של:\n"));
+                        p.Add($"{GetTotal()}\n{Messages.Reverse("שקלים חדשים")}");
+                        return p;
+                    }
                 case "list":
                     break;
                 case "signiture":
@@ -369,7 +428,7 @@ namespace Cosmetic_App.Tables
         }
         internal bool Save()
         {
-            bool result = Insert();
+            bool result = Update();
             if (result)
                 result &= SaveCart();
             return result;
@@ -378,12 +437,23 @@ namespace Cosmetic_App.Tables
         {
             SortCart();
             bool result= true;
-
+            List<Products> products = new List<Products>();
             foreach (Cart c in shopingCart)
             {
-                result &= c.Insert();
+                c.Table = Database_Names.Cart;
+                if (Products.IsTreatment((int)c.GetColValue(Database_Names.Cart_Columes[2])) == false)
+                {
+                    Products p = Products.GetProduct((int)c.GetColValue(2));
+                    p.SetColValue(0, (int)c.GetColValue(2));
+                    p.ReduceInventory((int)c.GetColValue(3));
+                    products.Add(p);
+                    result &= c.Update();
+                }
             }
-
+            if (result)
+                foreach (Products p in products)
+                    p.Update();
+            Products.Reload();
             return result;
         }
 
@@ -400,6 +470,74 @@ namespace Cosmetic_App.Tables
         internal string GetCartTime(Cart item)
         {
             throw new NotImplementedException();
+        }
+
+        internal List<Calender_Table> GetApooitments()
+        {
+            List<Row> list = Access.getObjects(SQL_Queries.Select(Database_Names.Calendrer,new Condition(Database_Names.Calender_Columes[4],Value)));
+            List<Calender_Table> appoitments = new List<Calender_Table>();
+            if (list != null)
+                foreach (Row row in list)
+                {
+                    appoitments.Add(new Calender_Table(row));
+                }
+            else
+                return null;
+            return appoitments;
+        }
+
+        internal List<Cart> GetShopingCart()
+        {
+            List<Row> list = Access.getObjects(SQL_Queries.Select(Database_Names.Cart, new Condition(Database_Names.Cart_Columes[1], (int)Value)));
+            List<Cart> shopingcart = new List<Cart>();
+            if (list != null)
+                foreach (Row row in list)
+                {
+                    shopingcart.Add(new Cart(row));
+                }
+            else
+                return null;
+            return shopingcart;
+        }
+
+        internal bool IsPaid()
+        {
+            return (bool)GetColValue(Database_Names.Income_Columes[5]);
+        }
+        public static List<Income> GetIncomes(DateTime start, DateTime end)
+        {
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Income, Database_Names.Income_Columes[6], start, end));
+            List<Income> list = new List<Income>();
+            foreach(Row row in rows)
+                list.Add(new Income(row));
+            return list;
+
+        }
+
+        internal static List<Income> getIncomes(bool status)
+        {
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Income, new Condition(Database_Names.Income_Columes[5],status)));
+            List<Income> list = new List<Income>();
+            foreach (Row row in rows)
+                list.Add(new Income(row));
+            return list;
+        }
+        internal static List<Income> getIncomes(string id,bool paid)
+        {
+            List<Condition> conditions = new List<Condition>() {
+                 new Condition(Database_Names.Income_Columes[5], paid),
+                 new Condition(Database_Names.Income_Columes[2],id)
+            };
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Income,conditions,"and"));
+            List<Income> list = new List<Income>();
+            foreach (Row row in rows)
+                list.Add(new Income(row));
+            return list;
+        }
+
+        internal bool BackUp(string fileName)
+        {
+            return Access.Execute(SQL_Queries.Insert(Database_Names.Backup, Row.Columes));
         }
     }
 }

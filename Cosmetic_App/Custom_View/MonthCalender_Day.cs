@@ -26,6 +26,7 @@ namespace Cosmetic_App
         {
             label1.Text = day.ToString();
             label1.Tag = day;
+            this.Tag = day; 
             treatments_label.Tag = day;
             tablelayout.Tag = day;
         }
@@ -33,6 +34,7 @@ namespace Cosmetic_App
         {
             label1.Tag = tag;
             treatments_label.Tag=tag;
+            tablelayout.Tag=tag;
             this.Tag= tag;
 
         }

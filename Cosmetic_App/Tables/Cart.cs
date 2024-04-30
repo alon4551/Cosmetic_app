@@ -16,16 +16,24 @@ namespace Cosmetic_App
             Value = GetNewIndex();
             SetColValue(0, Value);
         }
-
+        public Cart(Row row) : base(row) 
+        {
+            Table = row.Table;
+            Value = row.GetColValue(0);
+            Product = new Products((int)row.GetColValue(Database_Names.Cart_Columes[2]));
+        }
         public Cart(int id) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
             Grab(id);
-            Product = new Products((int)GetColValue(2));
+            Product = Products.GetProduct((int)GetColValue(2));
+            Table = Database_Names.Cart;
+            Value = GetColValue(0);
         }
         public void Grab(object id)
         {
             base.Grab(id);
             Product = new Products((int)(GetColValue(2)));
+            
         }
             public Cart(DB_Object obj) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
@@ -33,7 +41,7 @@ namespace Cosmetic_App
             Value = obj.Value;
             SetColValue(0, Value);
             Row = obj.Row;
-            Product = new Products((int)GetColValue(2));
+            Product =  Products.GetProduct((int)GetColValue(2));
         }
         public Cart(int order,int product ) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
@@ -41,7 +49,7 @@ namespace Cosmetic_App
             SetColValue(0, Value);
             SetProduct(product);
             SetOrder_Id(order);
-            Product.Grab(product);
+            Product = Products.GetProduct(product);
         }
         public Cart(int order, Products product) : base(Database_Names.Cart, Database_Names.Cart_Columes)
         {
@@ -72,6 +80,10 @@ namespace Cosmetic_App
             int amount = GetAmount();
             SetAmount(amount - 1);
         }
+        public void Reduce(int amount)
+        {
+            SetAmount(GetAmount() - amount);
+        }
 
         internal void Incrase(int count)
         {
@@ -83,6 +95,23 @@ namespace Cosmetic_App
             return (int)Product.GetPrice();
         }
 
-  
+        internal bool IsTreatment()
+        {
+            return Product.IsTreatment();
+        }
+
+        internal static List<Cart> GetItems(int order_id)
+        {
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Cart,new Condition(Database_Names.Cart_Columes[1],order_id)));
+            List<Cart> list=new List<Cart>();
+            foreach(Row row in rows)
+                list.Add(new Cart(row));
+            return list;
+        }
+
+        internal void AddAmount(int v)
+        {
+            SetColValue(Database_Names.Cart_Columes[3],GetAmount()+ v);
+        }
     }
 }

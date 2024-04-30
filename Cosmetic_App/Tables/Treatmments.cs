@@ -10,6 +10,8 @@ namespace Cosmetic_App.Tables
 {
     public class Treatments : DB_Object
     {
+        public static List<Treatments> All = GrabAll();
+       
         public Treatments():base(Database_Names.Treatments, Database_Names.Treatment_Columes) { }
         public Treatments(int id):base(Database_Names.Treatments, Database_Names.Treatment_Columes) 
         {
@@ -28,6 +30,18 @@ namespace Cosmetic_App.Tables
             foreach (DB_Object obj in list)
                 treatments.Add(new Treatments(obj));
             return treatments;
+        }
+        public static Treatments GetTreatment(int id)
+        {
+            foreach(Treatments treatment in All)
+                if((int)treatment.Value == id)
+                    return treatment;
+            return null;
+        }
+
+        internal static void ReloadList()
+        {
+            All = GrabAll();
         }
     }
 }

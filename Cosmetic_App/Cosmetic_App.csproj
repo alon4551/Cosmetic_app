@@ -14,7 +14,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,9 +22,10 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -164,6 +165,12 @@
     <Compile Include="Custom_View\CartView.Designer.cs">
       <DependentUpon>CartView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom_View\Cart_Schedule_View.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\Cart_Schedule_View.Designer.cs">
+      <DependentUpon>Cart_Schedule_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom_View\DisplayHour.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,6 +201,12 @@
     <Compile Include="Custom_View\ProductView.Designer.cs">
       <DependentUpon>ProductView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom_View\stat_item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom_View\stat_item.Designer.cs">
+      <DependentUpon>stat_item.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom_View\StoreProductView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -205,6 +218,12 @@
     </Compile>
     <Compile Include="Custom_View\DayApooitment_view.Designer.cs">
       <DependentUpon>DayApooitment_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreatePassword.Designer.cs">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Orders_Dashboard.cs">
       <SubType>Form</SubType>
@@ -272,6 +291,12 @@
     <Compile Include="Forms\Product_Profile.Designer.cs">
       <DependentUpon>Product_Profile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Schedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Schedule.Designer.cs">
+      <DependentUpon>Schedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchPerson.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,12 +321,19 @@
     <Compile Include="Forms\Signature.Designer.cs">
       <DependentUpon>Signature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Statistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Statistic.Designer.cs">
+      <DependentUpon>Statistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Store.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Store.Designer.cs">
       <DependentUpon>Store.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tables\backup.cs" />
     <Compile Include="Tables\Calender_Table.cs" />
     <Compile Include="Tables\Cart.cs" />
     <Compile Include="Tables\Income.cs" />
@@ -344,6 +376,9 @@
     <EmbeddedResource Include="Custom_View\CartView.resx">
       <DependentUpon>CartView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\Cart_Schedule_View.resx">
+      <DependentUpon>Cart_Schedule_View.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\DisplayHour.resx">
       <DependentUpon>DisplayHour.cs</DependentUpon>
     </EmbeddedResource>
@@ -359,11 +394,17 @@
     <EmbeddedResource Include="Custom_View\ProductView.resx">
       <DependentUpon>ProductView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Custom_View\stat_item.resx">
+      <DependentUpon>stat_item.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\StoreProductView.resx">
       <DependentUpon>StoreProductView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom_View\DayApooitment_view.resx">
       <DependentUpon>DayApooitment_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreatePassword.resx">
+      <DependentUpon>CreatePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Orders_Dashboard.resx">
       <DependentUpon>Orders_Dashboard.cs</DependentUpon>
@@ -401,6 +442,9 @@
     <EmbeddedResource Include="Forms\Product_Profile.resx">
       <DependentUpon>Product_Profile.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Schedule.resx">
+      <DependentUpon>Schedule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchPerson.resx">
       <DependentUpon>SearchPerson.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Signature.resx">
       <DependentUpon>Signature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Statistic.resx">
+      <DependentUpon>Statistic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Store.resx">
       <DependentUpon>Store.cs</DependentUpon>

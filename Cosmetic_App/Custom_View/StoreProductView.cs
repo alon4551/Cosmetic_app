@@ -17,6 +17,11 @@ namespace Cosmetic_App.Custom_View
         {
             InitializeComponent();
         }
+        public StoreProductView(Products p)
+        {
+            InitializeComponent();
+            SetInformation(p);
+        }
         public void SetInformation(Products product)
         {
             name_box.Text = product.getName();
@@ -33,6 +38,9 @@ namespace Cosmetic_App.Custom_View
             button1.Click += handler;
         }
 
-      
+        internal void disable_cancel()
+        {
+            button1.Enabled = false;
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Cosmetic_App.Forms
 {
     public partial class Product_Profile : Form
     {
-        Products Product = new Products();
+        Products Products = new Products();
         public Product_Profile()
         {
             InitializeComponent();
@@ -22,12 +22,12 @@ namespace Cosmetic_App.Forms
         public Product_Profile(bool IsTreatment)
         {
             InitializeComponent();
-            Product.SetIsTreatment(IsTreatment);
+            Products.SetIsTreatment(IsTreatment);
         }
         public Product_Profile(int id)
         {
             InitializeComponent();
-            Product.Grab(id);
+            Products.Grab(id);
         }
         
         private void Product_Profile_Load(object sender, EventArgs e)
@@ -44,11 +44,11 @@ namespace Cosmetic_App.Forms
         public void Load_Information()
         {
 
-            StateLayout(Product.IsTreatment());
-            if (Product.IsExist())
+            StateLayout(Products.IsTreatment());
+            if (Products.IsExist())
             {
-                Input.Load_TextBox_Information(product_profile_layout, Product);
-                StateProduct(Product.IsTreatment());
+                Input.Load_TextBox_Information(product_profile_layout, Products);
+                StateProduct(Products.IsTreatment());
                 
             }
 
@@ -74,10 +74,10 @@ namespace Cosmetic_App.Forms
         {
             amount.Enabled = state;
             if (state)
-                amount.Text = Product.Treatment.GetDuration();
+                amount.Text = Products.Treatment.GetDuration();
             else
             {
-                amount.Text = Product.getInventory().ToString();
+                amount.Text = Products.getInventory().ToString();
                 add_layout_table.Visible = true;
                 label7.Visible = true;
             }
@@ -102,7 +102,9 @@ namespace Cosmetic_App.Forms
             if (result)
             {
                 if (SaveProduct())
+                {
                     MessageBox.Show("good");
+                }
                 else
                     MessageBox.Show("ohh ohh");
                 this.Close();
@@ -112,31 +114,38 @@ namespace Cosmetic_App.Forms
         {
 
             foreach (TextBox box in product_profile_layout.Controls.OfType<TextBox>())
-                Product.SetColValue(box.Name, box.Text);
-            if (Product.IsTreatment())
+                Products.SetColValue(box.Name, box.Text);
+            if (Products.IsTreatment())
             {
-                Product.SetInvetory(0);
-                Product.Treatment.SetColValue("duration", int.Parse(amount.Text));
+                Products.SetInvetory(0);
+                Products.Treatment.SetColValue("duration", int.Parse(amount.Text));
             }
             else
-                Product.SetInvetory(int.Parse(amount.Text));
-            if (!Product.IsExist())
+                Products.SetInvetory(int.Parse(amount.Text));
+            if (!Products.IsExist())
             {
-                Product.SetColValue("id", Product.Value);
-                if (Product.IsTreatment())
-                    Product.Treatment.SetColValue("id", Product.Value);
+                Products.SetColValue("id", Products.Value);
+                if (Products.IsTreatment())
+                    Products.Treatment.SetColValue("id", Products.Value);
             }
             else
-                Product.SetInvetory(Product.getInventory() + int.Parse(count.Text));
-           return Product.Update();
+                Products.SetInvetory(Products.getInventory() + int.Parse(count.Text));
+            if (Products.Update())
+            {
+                Products.RealoadList();
+                if (Products.IsTreatment())
+                    Treatments.ReloadList();
+                return true;
+            }
+            return false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Product.IsExist())
+            if (Products.IsExist())
                 if (DialogResult.Yes == MessageBox.Show("האם אתה בטוח שאתה מעוניין למחוק את רשומה, אחרי שתמחוק מידע המקושר למוצר ימחק בהתאם", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
                 {
-                    if (Product.Delete())
+                    if (Products.Delete())
                     {
                         MessageBox.Show("מוצר / טיפול נמחק מהמערכת");
                     }

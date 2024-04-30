@@ -25,7 +25,17 @@ namespace Cosmetic_App.Custom_View
             Setstate(state);
             Day.Text = "";
         }
-
+        public DayApooitment_view(DateTime day, int state,int displaytime)
+        {
+            InitializeComponent();
+            if (day.Year != date.Year)
+            {
+                Day.Text = day.Day.ToString();
+                Day.Tag = day;
+                this.Tag = day;
+            }
+                Setstate(state);
+        }
         public DayApooitment_view(DateTime day,int state)
         {
             InitializeComponent();

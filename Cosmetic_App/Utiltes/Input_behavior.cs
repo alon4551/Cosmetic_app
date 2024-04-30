@@ -7,6 +7,7 @@ using Org.BouncyCastle.Asn1.IsisMtt.X509;
 using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.SymbolStore;
 using System.Drawing;
 using System.Linq;
@@ -60,10 +61,13 @@ namespace Cosmetic_App
                 case "Label":return (obg as Label).Tag;
                 case "TextBox":return (obg as TextBox).Tag;
                 case "Button":return (obg as Button).Tag;
+                case "ComboBox":return (obg as ComboBox).Tag;
                 case "table_product_layout":return (obg as TableLayoutPanel).Tag;
                 case "Person_Profile_View":return (obg as Person_Profile_View).Tag;
                 case "DayApooitment_view": return (obg as DayApooitment_view).Tag;
                 case "ProductView":return (obg as ProductView).Tag;
+                case "Cart_Schedule_View": return (obg as Cart_Schedule_View).Tag;
+                case "TableLayoutPanel":return (obg as TableLayoutPanel).Tag;
                 default:
                     {
                         return null;

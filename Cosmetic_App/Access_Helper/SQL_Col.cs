@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Col
 {
@@ -58,6 +59,8 @@ public class Col
     /// <returns></returns>
     public string Value_SQL_Syntax()
     {
+        if (_value is DateTime)
+            return $"#{_value.ToString()}#";
         return _value is string ? $"'{_value.ToString()}'" : $"{_value.ToString()}";
     }
 

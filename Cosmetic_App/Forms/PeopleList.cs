@@ -28,9 +28,9 @@ namespace Cosmetic_App
             Status = Clients;
            Reload();
         }
-        private void Fetch()
+        private  void Fetch()
         {
-            All = Person.GetAllPeople();
+            All =  Person.GetAllPeople();
             workers = Workers.GetAllWorkers();
             bool state = true;
             foreach (Person person in All)
@@ -49,13 +49,19 @@ namespace Cosmetic_App
         {
             Reload();
         }
-        public void Reload()
+        public async void Reload()
         {
             Fetch();
             if (Status)
+            {
                 selecedFilter = Person.GetAllClients();
+                label8.Text = "חיפוש לקוחות";
+            }
             else
+            {
                 selecedFilter = workers;
+                label8.Text = "חיפוש עובדים";
+            }
             LoadList(selecedFilter);
             if (selected_id != "")
                 Load_Information(new Person(selected_id));
@@ -148,46 +154,22 @@ namespace Cosmetic_App
             }
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex != -1)
+            {
+                selected_id = selecedFilter[comboBox1.SelectedIndex].GetColValue(0).ToString();
+                Load_Information(selecedFilter[comboBox1.SelectedIndex]);
+            }
+        }
+
         public void LoadList(List<Person> list)
         {
-           list_layout.Controls.Clear();
-           foreach(Person person in list)
-            {
-                Person_Profile_View view = new Person_Profile_View();
-                view.SetData(person.GetColValue(0).ToString(), person.GetFullName());
-                view.Click += new EventHandler(ClickPersonProfile);
-                view.SetCLickEvent(new EventHandler(ClickPersonProfile));
-                list_layout.Controls.Add(view);
-            }
+            comboBox1.Items.Clear();
+            foreach (Person person in list)
+                comboBox1.Items.Add($"{person.GetFullName()}, {person.GetColValue(0)}");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (filter_textbox.Text == "")
-                LoadList(selecedFilter);
-            else
-            {
-                filter.Clear();
-                foreach( Person person in All)
-                {
-                    bool type = true;
-                    foreach (char c in filter_textbox.Text)
-                        if(c< '0' || c> '9')
-                            type = false;
-                    if (type) {
-                        if (person.Value.ToString().StartsWith(filter_textbox.Text))
-                            filter.Add(person);
-                    }
-                    else
-                    {
-                        if(person.GetFullName().Contains(filter_textbox.Text))
-                            filter.Add(person);
-                    }
-                }
-                LoadList(filter);
-
-            }
-        }
         public void ClickPersonProfile(object sender,EventArgs e)
         {
             selected_id = Input.GetTag(sender).ToString();
@@ -204,6 +186,7 @@ namespace Cosmetic_App
         public void Load_Information(Person person)
         {
             Input.Load_TextBox_Information(information_layout_table, person);
+            id.Text = person.GetColValue(0).ToString();
             foreach (Person worker in workers)
                 if (worker.Value.ToString() == selected_id)
                 {

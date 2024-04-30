@@ -29,10 +29,13 @@ namespace Cosmetic_App.Forms
             if (treatment_list)
             {
                 Selected_List = Products.GetAllTreatments();
+                label2.Text = "חיפוש טיפולים";
+                
             }
             else
             {
                 Selected_List = Products.GetAllMerchandise();
+                label2.Text = "חיפוש מוצרים";
             }
             select_catagory = treatment_list ? 1 : 0;
         }
@@ -42,15 +45,9 @@ namespace Cosmetic_App.Forms
         }
         private void Load_List(List<Products> list) 
         {
-            s.Controls.Clear();
+            comboBox1.Items.Clear();
             foreach(Products p in list) 
-            {
-                ProductView view = new ProductView();
-                view.SetData(p);
-
-                view.SetAction(Click_Product_View,keybored_click);
-                s.Controls.Add(view);
-            }
+                comboBox1.Items.Add(p.getName());
         }
         private void Load_Information()
         {
@@ -146,25 +143,12 @@ namespace Cosmetic_App.Forms
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
-            {
-                filter = false;
-                Load_List(Selected_List);
-            }
-            else
-            {
-                filter = true;
-                filter_list.Clear();
-                foreach (Products p in Selected_List)
-                {
-                    if (p.getName().Contains(textBox1.Text))
-                    { filter_list.Add(p); }
-                }
-                Load_List(filter_list);
-            }
-               
+            if (comboBox1.SelectedIndex == -1) return;
+            Selected_Object = select_catagory == 1 ? Products.AllTreatments[comboBox1.SelectedIndex] : Products.AllMerchndice[comboBox1.SelectedIndex];
+            Load_Information();
         }
+        
     }
 }

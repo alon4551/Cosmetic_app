@@ -9,12 +9,12 @@ using System.IO;
 using System.Drawing;
 public class Access
 {
-    private static string ConnectionStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=db.accdb;Persist Security Info=False;";
+    private static string ConnectionStr = "Provider=Microsoft.ACE.OLEDB.16.0;Data Source=db.accdb;Persist Security Info=False;";
     private static string Error;
-    private static OleDbCommand OleCommand;
-    private static OleDbConnection Connection = new OleDbConnection(ConnectionStr);
-    private static OleDbDataReader Reader;
-    private static void ConnectionState(bool state)
+    public static OleDbCommand OleCommand;
+    public static OleDbConnection Connection = new OleDbConnection(ConnectionStr);
+    public static OleDbDataReader Reader;
+    public static void ConnectionState(bool state)
     {
 
         try
@@ -46,7 +46,6 @@ public class Access
             ConnectionState(false);
             return false;
         }
-        ConnectionState(false);
         return true;
 
     }
@@ -61,7 +60,7 @@ public class Access
         {
             ConnectionState(true);
             OleCommand = new OleDbCommand(command, Connection);
-            Reader = OleCommand.ExecuteReader();
+             Reader = OleCommand.ExecuteReader();
             while (Reader.Read())
             {
                 Row row = new Row();
@@ -79,7 +78,6 @@ public class Access
                 Rows.Add(row);
             }
             Reader.Close();
-            ConnectionState(false);
             return Rows;
 
         }

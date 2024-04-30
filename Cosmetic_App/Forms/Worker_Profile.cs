@@ -111,6 +111,8 @@ namespace Cosmetic_App
                     Worker.SetColValue("admin", false);
                 if (Worker.Update())
                 {
+                    Person.ReloadList();
+                    Workers.ReloadList();
                     MessageBox.Show("סיסמא עודכנה במערכת");
                     Reload(Worker.GetColValue("id").ToString());
                 }
@@ -165,6 +167,7 @@ namespace Cosmetic_App
                     Worker.SetColValue("admin", !Worker.GetAdmin());
                     if (Worker.Update())
                     {
+                        Workers.ReloadList();
                         MessageBox.Show("העובד הפך למנהל מערכת");
                     }
                  
@@ -194,6 +197,7 @@ namespace Cosmetic_App
                 if (!verification.result)
                     return;
                 Worker.Delete();
+                Workers.ReloadList();
                 MessageBox.Show("עובד נמחק");
                 this.Close();
             }

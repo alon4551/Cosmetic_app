@@ -16,15 +16,14 @@ namespace Cosmetic_App.Forms
 {
     public partial class Orders_Dashboard : Form
     {
-        List<Income> AllOrders = Income.GrabAll(), UrjentOrders,filter_list = new List<Income>();
+        List<Income> UnPaid = Income.getIncomes(false),Paid=Income.getIncomes(true),filter_list = new List<Income>();
         Income SelectedOrder;
         Workers Worker;
-        bool filter = false, urjent_filter = true;
+        bool filter = false, paid = true;
         public Orders_Dashboard(string worker_id)
         {
             InitializeComponent();
-            SortOrders();
-            Load_List(UrjentOrders);
+            Load_List();
             if (worker_id == "")
                 worker_id = "0";
             Worker = new Workers(worker_id);
@@ -32,50 +31,22 @@ namespace Cosmetic_App.Forms
         }
         public void Reload()
         {
-            AllOrders = Income.GrabAll();
-            SortOrders();
-            Load_List(UrjentOrders);
+            UnPaid = Income.getIncomes(false);
+            Paid = Income.getIncomes(true);
+            Load_List();
             if(Order_list.Items.Count > 0)
                 Order_list.SelectedIndex = 0;
             else
                 ClearOrderInformation();
            
         }
-        public void SortOrders()
-        {
-            UrjentOrders = new List<Income>();
-            foreach(Income income in AllOrders) 
-            {
-                if(!income.IsShopingCartScheduale())
-                {
-                    UrjentOrders.Add(income);
-                }
-            }
-        }
 
-        private void AllOrder_Radio_CheckedChanged(object sender, EventArgs e)
-        {
-            filter = false;
-            search_id_box.Text = "";
-             urjent_filter= false;
-            Load_List(AllOrders);
-            ClearOrderInformation();
-        }
 
-        private void UrjentOrder_Radio_CheckedChanged(object sender, EventArgs e)
-        {
-            filter = false;
-            search_id_box.Text = "";
-            urjent_filter = true;
-            Load_List(UrjentOrders);
-            ClearOrderInformation();
-        }
         private void ClearOrderInformation()
         {
             
             Cart_View_Box.Items.Clear();
             Input.Clear_Textbox_Information(tableLayoutPanel7);
-            Input.Clear_Textbox_Information(tableLayoutPanel8);
 
         }
         private void Order_list_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,10 +55,10 @@ namespace Cosmetic_App.Forms
                     SelectedOrder = filter_list[Order_list.SelectedIndex];
             else
             {
-                if (urjent_filter)
-                    SelectedOrder = UrjentOrders[Order_list.SelectedIndex];
+                if (paid)
+                    SelectedOrder = Paid[Order_list.SelectedIndex];
                 else
-                    SelectedOrder = AllOrders[Order_list.SelectedIndex];
+                    SelectedOrder = UnPaid[Order_list.SelectedIndex];
             }
             Load_Order_Information(SelectedOrder);
         }
@@ -100,6 +71,7 @@ namespace Cosmetic_App.Forms
             date_box.Text = order.GetPurchaceDate();
             total_box.Text = $"{order.GetTotal()} ש''ח";
             Cart_View_Box.Items.Clear();
+            checkBox1.Checked = order.IsPaid();
             foreach (Cart c in order.GetCart())
             {
                 ListViewItem item = new ListViewItem();
@@ -127,23 +99,29 @@ namespace Cosmetic_App.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool tempPaid = paid,tempfilter=filter;
+            int tempIndex = Order_list.SelectedIndex,tempClient=comboBox1.SelectedIndex;
             using(Order_Edit order = new Order_Edit((int)SelectedOrder.Value))
             {
                 this.Hide();
                 order.ShowDialog();
-                Reload();
-                AllOrder_Radio.Checked = true;
                 this.Show();
-                SelectOrder((int)SelectedOrder.Value);
-
+               
+                if(tempPaid)
+                    paid_radio_btn.Checked = true;
+                else
+                    unpoaid_radio_btn.Checked = true;
+                if (filter)
+                    comboBox1.SelectedIndex = tempClient;
+                Order_list.SelectedIndex = tempIndex;
             }
+            Reload();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             int id = App_Process.NewOrder(Worker.Value.ToString(),this);
             Reload();
-            Load_List(AllOrders);
             SelectOrder(id);
         }
 
@@ -154,80 +132,106 @@ namespace Cosmetic_App.Forms
             if (SelectedOrder.IsTreatmentSchedule(item))
             {
                 Calender_Table appoitment = SelectedOrder.GetAppoitment((int)item.Value);
-                treatment_date_box.Text = appoitment.GetDate();
-                worker_treatment_box.Text = appoitment.getWorkerName();
-                treatment_time_box.Text = appoitment.GetTime();
+
             }
             else
             {
-                treatment_date_box.Text = "";
-                worker_treatment_box.Text = "";
-                treatment_time_box.Text = "";
             }
         }
 
-        private void Search_Order_By_Date_Click(object sender, EventArgs e)
-        {
-            filter_list.Clear();
-            filter = true;
-            foreach (Income income in AllOrders)
-                if (income.GetPurchaceDate().Contains(dateTimePicker1.Value.ToShortDateString()))
-                    filter_list.Add(income);
-            Load_List(filter_list);
-        }
 
-        private void search_id_box_TextChanged(object sender, EventArgs e)
-        {
-            ClearOrderInformation();
-            AllOrder_Radio.Checked = false;
-            UrjentOrder_Radio.Checked = false;
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            ClearOrderInformation();
-            AllOrder_Radio.Checked = false;
-            UrjentOrder_Radio.Checked = false;
-        }
-
-        private void search_id_box_Click(object sender, EventArgs e)
-        {
-            ClearOrderInformation();
-            AllOrder_Radio.Checked = false;
-            UrjentOrder_Radio.Checked = false;
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("האם בטוח שאתה רוצה למחוק את ההזמנה?");
             if (SelectedOrder.Delete())
                 MessageBox.Show("הזמנה נמחקה");
+            filter = false;
+            unpoaid_radio_btn.Checked = true;
             Reload();
         }
 
-        private void Search_Oreder_By_Id_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            filter_list.Clear();
-            if (search_id_box.Text != "")
+            using(Store store =new Store((int)SelectedOrder.Value))
             {
-                filter = true;
-                foreach (Income income in AllOrders)
-                    if (income.Value.ToString().Contains(search_id_box.Text))
-                        filter_list.Add(income);
-                Load_List(filter_list);
-                if (filter_list.Count == 1)
-                {
-                    SelectedOrder = filter_list[0];
-                    Load_Order_Information(SelectedOrder);
-                }
+                store.ShowDialog();
+                Reload();
             }
         }
 
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex > 0)
+            {
+                string id = Person.Clients[comboBox1.SelectedIndex-1].GetColValue(0).ToString();
+                filter_list = Income.getIncomes(id, paid);
+                filter = true;
+                Load_List();
+            }
+            else
+            {
+                filter = false;
+                Load_List();
+            }
+
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (paid_radio_btn.Checked)
+            {
+                paid = true;
+
+            }
+            Load_List();
+        }
+
+        private void upoaid_radio_btn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (unpoaid_radio_btn.Checked)
+            {
+                paid = false;
+                
+            }
+            Load_List();
+        }
+
+        private void Orders_Dashboard_Load(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("אף לקוח");
+            foreach(Person person in Person.Clients)
+                comboBox1.Items.Add(person.GetFullName() + "," + person.GetColValue(0));
+
+        }
+
+
         private void SelectOrder(int id)
         {
-            for(int i = 0;i<AllOrders.Count;i++)
+            List<Income> list;
+            if (filter)
+                list = filter_list;
+            else
             {
-                if ((int)AllOrders[i].Value == id)
+                if (paid)
+                    list = Paid;
+                else
+                    list = UnPaid;
+            }
+            for(int i = 0;i<list.Count;i++)
+            {
+                if ((int)list[i].Value == id)
                 {
                     if(Order_list.Items.Count>i)
                     Order_list.SelectedIndex = i;
@@ -238,8 +242,23 @@ namespace Cosmetic_App.Forms
             }
             
         }
-        public void Load_List(List<Income> list)
+        public void Load_List()
         {
+
+            List<Income> list=new List<Income>();
+            if (filter)
+            {
+                string id = Person.Clients[comboBox1.SelectedIndex - 1].GetColValue(0).ToString();
+                filter_list = Income.getIncomes(id, paid);
+                list = filter_list;
+            }
+            else
+            {
+                if (paid)
+                    list = Paid;
+                else
+                    list = UnPaid;
+            }
             Order_list.Items.Clear();
             int i = 0;
             foreach(Income income in list)

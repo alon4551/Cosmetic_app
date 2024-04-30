@@ -23,8 +23,8 @@ namespace Cosmetic_App
 
         private void ManageShifts_Load(object sender, EventArgs e)
         {
-            date_label.Text = DateTime.Now.ToShortDateString();
-            Clock_Label.Text = DateTime.Now.ToLongTimeString();
+            date_label.Text =$"\nבוקר טוב, היום {DateTime.Now.ToShortDateString()}";
+            Clock_Label.Text = $"שעה:{DateTime.Now.ToLongTimeString()}";
             Load_Information();
             timer.Interval = 1000;
             timer.Tick += new EventHandler(this.t_Tick);
@@ -64,7 +64,7 @@ namespace Cosmetic_App
             else
                 time += ss;
             //update label
-            Clock_Label.Text = time;
+            Clock_Label.Text = $"שעה:{time}";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -80,6 +80,8 @@ namespace Cosmetic_App
                 else
                 {
                     MessageBox.Show("אתה כבר עבדת במשמרת היום, אם יש בעיה אנא גש למנהל שישנה את פרטי המערכת ");
+                    clockin_button.Enabled = false;
+                    clockout_button.Enabled = false;
                 }
             }
 

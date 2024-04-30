@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cosmetic_App
 {
@@ -14,10 +15,30 @@ namespace Cosmetic_App
         Cart Item { get; set; } = new Cart();
         Person Client { get; set; } = new Person();
         Workers Worker { get; set; } = new Workers();
+        public Products Product { get; set; } = null;
+
         public Calender_Table():base(Database_Names.Calendrer,Database_Names.Calender_Columes) { }
+        public Calender_Table(Row row) : base(Database_Names.Calendrer, Database_Names.Calender_Columes) {
+            Row = row;
+            Table = Database_Names.Calendrer;
+            Value = row.GetColValue(0);
+            Field = row.Columes[0].GetField();
+            Reload();
+        }
         public Calender_Table(DB_Object obj):base(obj) 
         {
             Reload();
+        }
+        public Calender_Table(string worker_id,string client_id,string cart_id,string order_id,string day,string time) : base(Database_Names.Calendrer, Database_Names.Calender_Columes)
+        {
+            Table = Database_Names.Calendrer;
+            SetColValue(1, client_id);
+            SetColValue(2, worker_id);
+            SetColValue(3, cart_id);
+            SetColValue(4, order_id);
+            SetColValue(5, day);
+            SetColValue(6, time);
+            SetColValue(7, DateTime.Parse(day).Date);
         }
         public Calender_Table(int id) : base(Database_Names.Calendrer, Database_Names.Calender_Columes)
         {
@@ -28,8 +49,8 @@ namespace Cosmetic_App
         {
             Grab(Value);
             Item.Grab((int)GetColValue(3));
-            Client.Grab(GetColValue(Database_Names.Calender_Columes[1]));
-            Worker.Grab(GetColValue(Database_Names.Calender_Columes[2]).ToString());
+            Client = Person.GetPerson(GetColValue(Database_Names.Calender_Columes[1]).ToString());
+            Worker = Workers.GetWorker(GetColValue(Database_Names.Calender_Columes[2]).ToString());
         }
         public static List<Row> GetApoitmentsInfomation(string date)
         {
@@ -44,10 +65,10 @@ namespace Cosmetic_App
             foreach (DB_Object obj in list)
             {
                 r = new Row(obj.Row.Columes);
-                worker = new Workers(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
-                client = new Person(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
+                worker = Workers.GetWorker(obj.GetColValue(Database_Names.Calender_Columes[2]).ToString());
+                client = Person.GetPerson(obj.GetColValue(Database_Names.Calender_Columes[1]).ToString());
                 cart = new Cart(int.Parse(obj.GetColValue(Database_Names.Calender_Columes[3]).ToString()));
-                product = new Products(int.Parse(cart.GetColValue(Database_Names.Cart_Columes[2]).ToString()));
+                product = Products.GetProduct(int.Parse(cart.GetColValue(Database_Names.Cart_Columes[2]).ToString()));
                 r.AddColume(new Col("client_name", client.GetFullName()));
                 r.AddColume(new Col("worker_name", worker.Person.GetFullName()));
                 DateTime time = DateTime.Parse(r.GetColValue(Database_Names.Calender_Columes[6]).ToString());
@@ -62,6 +83,29 @@ namespace Cosmetic_App
         public static int TreatmentsInDay(DateTime time)
         {
            return GetApoitmentsInfomation(time.ToShortDateString()).Count;
+        }
+        public static List<Calender_Table> GetAppoitments(int order_id)
+        {
+            Calender_Table calender = new Calender_Table();
+            List<Calender_Table> list = new List<Calender_Table>();
+            foreach (DB_Object obj in calender.Grab(Database_Names.Calender_Columes[4], order_id, Database_Names.Calendrer))
+                list.Add(new Calender_Table(obj));
+            return list;
+        }
+        public static List<Calender_Table> GetAppoitments(string date,string worker_id)
+        {
+            Calender_Table calender = new Calender_Table();
+            List<Calender_Table> list = new List<Calender_Table>();
+            List<Condition> conditions =new List<Condition>()
+            {
+                new Condition(Database_Names.Calender_Columes[2],worker_id),
+                new Condition(Database_Names.Calender_Columes[5],date)
+                
+            };
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Calendrer, conditions, "AND"));
+            foreach (Row row in rows)
+                list.Add(new Calender_Table(row));
+            return list;
         }
         public static List<Calender_Table> GetAppoitments(string date)
         {
@@ -79,14 +123,27 @@ namespace Cosmetic_App
         }
         public DateTime GetApooitmentEndingTime()
         {
-            DateTime day = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
-            DateTime time = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[6]).ToString());
-            DateTime selected = new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
-            return selected.AddMinutes(double.Parse(Item.Product.GetDuration())) ;
+            DateTime day, time, selected;
+            day = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[5]).ToString());
+            time = DateTime.Parse(GetColValue(Database_Names.Calender_Columes[6]).ToString());
+            selected = new DateTime(day.Year, day.Month, day.Day, time.Hour, time.Minute, 0);
+            if(Item.Product != null)
+            return selected.AddMinutes(double.Parse(Item.Product.GetDuration()));
+            else
+                return selected.AddMinutes(double.Parse(Product.GetDuration()));
         }
         internal int GetDuration()
         {
+            try
+            {
             return int.Parse(Item.Product.GetDuration());
+
+            }
+            catch
+            {
+                Cart item = new Cart((int)GetColValue(Database_Names.Calender_Columes[3]));
+                return int.Parse(Products.GetDuration(item.GetProductId()));
+            }
         }
 
         internal string getTreatmentInformation()
@@ -140,6 +197,7 @@ namespace Cosmetic_App
         {
             SetColValue(Database_Names.Calender_Columes[5],selectTime.ToShortDateString());
             SetColValue(Database_Names.Calender_Columes[6],selectTime.ToShortTimeString());
+            SetColValue(Database_Names.Calender_Columes[7], selectTime.Date);
         }
         internal Products GetProduct()
         {
@@ -154,7 +212,7 @@ namespace Cosmetic_App
 
         internal void setWorker(string worker_id)
         {
-            Worker = new Workers(worker_id);
+            Worker = Workers.GetWorker(worker_id);
             SetColValue(Database_Names.Calender_Columes[2], worker_id);
         }
 
@@ -178,6 +236,39 @@ namespace Cosmetic_App
         internal string GetDate()
         {
             return GetColValue(5).ToString();
+        }
+
+        internal void Fetch()
+        {
+
+        }
+        public bool Update()
+        {
+            if (base.Update())
+            {
+                return true;
+            }
+            else
+            {
+                Delete();
+                return Insert();
+            }
+        }
+        internal DateTime getSchedualeTreatment()
+        {
+
+            DateTime Date = DateTime.Parse(GetColValue(5).ToString()),time =DateTime.Parse(GetColValue(6).ToString());
+            return new DateTime(Date.Year,Date.Month,Date.Day,time.Hour,time.Minute,time.Second);
+        }
+        public static List<Calender_Table> GetApooitments(DateTime start, DateTime end)
+        {
+            List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Calendrer, Database_Names.Calender_Columes[7], start, end));
+            List<Calender_Table> list=new List<Calender_Table>();
+            foreach(Row row in rows)
+            {
+                list.Add(new Calender_Table(row));
+            }
+            return list;
         }
     }
 }

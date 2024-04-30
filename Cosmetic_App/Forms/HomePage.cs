@@ -24,7 +24,7 @@ namespace Cosmetic_App
         {
             int i = 0;
             calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
-
+            Products.CheckInventory();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,31 +48,40 @@ namespace Cosmetic_App
         private void הזמנהחדשהToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewOrder(Workers.LogedWorker.Value.ToString(),this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
         }
 
         private void לקוחחדשToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewPerson(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
         }
 
         private void עובדחדשToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewWorker(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
         }
 
         private void מוצרטיפולחדשToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewProduct(this,false);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
         }
 
         private void clients_tool_item_Click(object sender, EventArgs e)
         {
             App_Process.Clients(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
         }
 
         private void טיפולחדשToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewProduct(this, true);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
         }
 
         private void Workers_tool_item_Click(object sender, EventArgs e)
@@ -108,6 +117,8 @@ namespace Cosmetic_App
         private void הזמנותToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.Order_Dashborad(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
         }
 
         private void הוצאותToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,11 +128,30 @@ namespace Cosmetic_App
         private void הוצאהחדשהToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.NewExpance(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
         }
 
         private void כלההוצאותToolStripMenuItem_Click(object sender, EventArgs e)
         {
             App_Process.Expance_Dashboard(this);
+        }
+
+        private void סטטיסטיקהToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            App_Process.Statisteics(this);
+            calender.DisplayDays_OnCalender(tableLayoutPanel6, label8, calender.CalenderSize, calender.Click);
+
+        }
+
+        private void חדשToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HomePage_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
     }
 }

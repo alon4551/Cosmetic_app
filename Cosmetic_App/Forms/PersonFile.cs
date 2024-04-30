@@ -55,6 +55,7 @@ namespace Cosmetic_App
             {
                 MessageBox.Show("פרטי אדם נשמר במערכת");
                 Status_Save = true;
+                Person.ReloadList();
                 this.Close();
             }
             else
@@ -70,7 +71,8 @@ namespace Cosmetic_App
             foreach (TextBox box in Profile_Layout.Controls.OfType<TextBox>())
                 Person.SetColValue(box.Name, box.Text);
             Person.SetColValue(birthday.Name, birthday.Text);
-            return Person.Update();
+            return Person.Save();
+
         }
         private bool DeleteProfile()
         {
@@ -85,6 +87,7 @@ namespace Cosmetic_App
             if (DeleteProfile())
             {
                 MessageBox.Show("בן האדם נמחק");
+                Person.ReloadList();
                 this.Close();
             }
         }

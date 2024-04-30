@@ -53,6 +53,10 @@ public class DB_Object
         else
             return db.GetColValue(field);
     }
+    public void AddCol(string field,object value)
+    {
+        Row.Columes.Add(new Col(field, value));
+    }
     public void SetColValue(int index,object value) 
     {
         Row.Columes[index].Set(value);
@@ -98,7 +102,7 @@ public class DB_Object
             records.Add(new DB_Object(Table, row));
         return records;
     }
-    public  bool Grab(object id)
+    public bool Grab(object id)
     {
         List<Row> rows = Access.getObjects(SQL_Queries.Select(Table, new Condition(Field, id)));
         foreach (Row r in rows)
@@ -202,7 +206,7 @@ public class DB_Object
     }
     public int GetNewIndex()
     {
-        List<Row> rows = Access.getObjects(SQL_Queries.Select(Table));
+        List<Row> rows = Access.getObjects(SQL_Queries.SelectAndOrderBy(Table, Row.Columes[0].GetField()));
         if (rows.Count == 0) return 0;
         return (int)rows[rows.Count-1].GetColValue(0)+1;
     }

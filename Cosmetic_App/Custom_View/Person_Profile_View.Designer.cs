@@ -41,7 +41,7 @@
             this.ID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ID.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ID.Location = new System.Drawing.Point(2, 2);
-            this.ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ID.Margin = new System.Windows.Forms.Padding(2);
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -54,7 +54,7 @@
             this.FullName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FullName.Font = new System.Drawing.Font("David", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.FullName.Location = new System.Drawing.Point(2, 43);
-            this.FullName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FullName.Margin = new System.Windows.Forms.Padding(2);
             this.FullName.Name = "FullName";
             this.FullName.ReadOnly = true;
             this.FullName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -98,7 +98,7 @@
             this.tableLayoutPanel1.Controls.Add(this.ID, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.04396F));
@@ -113,7 +113,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Person_Profile_View";
             this.Size = new System.Drawing.Size(235, 74);
             this.Load += new System.EventHandler(this.Person_Profile_View_Load);

@@ -13,9 +13,10 @@ namespace Cosmetic_App.Custom_View
 {
     public partial class Appoitment_view : UserControl
     {
-        public Appoitment_view()
+        public Appoitment_view(int orderId)
         {
             InitializeComponent();
+            button1.Tag = orderId;
         }
 
         public void SetDate(Row r)
@@ -31,6 +32,10 @@ namespace Cosmetic_App.Custom_View
         private void Appoitment_view_Load(object sender, EventArgs e)
         {
 
+        }
+        public void SetAction(EventHandler clickEvent)
+        {
+            button1.Click += clickEvent;
         }
 
     }
