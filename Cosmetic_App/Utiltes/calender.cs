@@ -27,7 +27,7 @@ namespace Cosmetic_App.Utiltes
             return DisplayTime;
         }
         public static void DisplayShifts_OnCalender(TableLayoutPanel panel, System.Windows.Forms.Label mouth, Size SelectedSize, EventHandler action,Workers worker)
-        {
+        {//displaing mouthly calender in homepage
             panel.Controls.Clear();
             mouth.Text = $@"חודש: {DisplayTime.Month}/{DisplayTime.Year} עובד {worker.GetFullName()} תעודת זהות {worker.GetColValue(0)}";
             int i,j;
@@ -74,7 +74,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void DisplayDays_OnCalender(TableLayoutPanel panel, System.Windows.Forms.Label mouth, Size SelectedSize,EventHandler action)
-        {
+        {//displing mouthly calender of schedule 
             panel.Controls.Clear();
             mouth.Text = $@"חודש: { DisplayTime.Month}/{DisplayTime.Year}";
             int i;
@@ -110,7 +110,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void Click(object sender, EventArgs e)
-        {
+        {//setting action click for each day so the selected day can be change on each click of day
             using (DayCalender day = new DayCalender())
             {
                 SetDay(Input.GetTag(sender).ToString());
@@ -118,7 +118,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void Display_Apooitments(FlowLayoutPanel panel)
-        {
+        {//displaying appoitments in daily calender
             panel.Controls.Clear();
 
             foreach(Row r in Apooitments)
@@ -130,7 +130,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void Display_Apooitments(FlowLayoutPanel panel,string id)
-        {
+        {//displaying appoitments in daily calender filter by worker
             panel.Controls.Clear();
 
             foreach (Row r in Apooitments)
@@ -145,7 +145,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void ClickAppoitmnet(object sender, EventArgs args)
-        {
+        {//setting action click for each appoitment to have the ability to pay 
             int id = (int)(sender as Button).Tag;
             Income income = new Income(id);
             if (!income.IsPaid())
@@ -161,15 +161,15 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void Reset()
-        {
+        {//reset to present day
             DisplayTime= DateTime.Now;
         }
         public static void SetDisplayTime(DateTime time)
-        {
+        {//reset to selected time
             DisplayTime = time;
         }
         public static void ChangeMouth(bool forward)
-        {
+        {//change mouth forward or backwars
             if (forward)
                 DisplayTime = DisplayTime.AddMonths(1);
             else
@@ -177,11 +177,11 @@ namespace Cosmetic_App.Utiltes
             
         }
         public static void SetDay(string day)
-        {
+        {//featching all appoitment of a date 
            Apooitments = Calender_Table.GetApoitmentsInfomation(new DateTime(DisplayTime.Year, DisplayTime.Month, int.Parse(day)).ToShortDateString());
         }
         public static void DisplayCalender(FlowLayoutPanel panel,System.Windows.Forms.Label mouth,Size size,EventHandler action)
-        {
+        {//displing all appoitment in scheduale window
             DayApooitment_view Day;
             panel.Controls.Clear();
             if(mouth != null)
@@ -220,13 +220,13 @@ namespace Cosmetic_App.Utiltes
         }
 
         public static void ClickDay(object sender, EventArgs e)
-        {
+        {//action for each day in a scheduale window
             DayApooitment_view view = (DayApooitment_view)sender;
             SelectApoitmentTime.SelectDay = view.date.ToShortDateString();
             
         }
         public static void DisplayWorkerAppoitments(FlowLayoutPanel panel,List<Calender_Table> appoitments,DateTime date)
-        {
+        {//disply daily calender time, filter by workers schedule
             panel.Controls.Clear();
             DateTime Time = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
             string displayDay = Time.ToShortDateString(), displayTime = "" ;
@@ -266,7 +266,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static int GetTimeSpan(DateTime time,DateTime start)
-        {
+        {//return hight of time span for disign and style
             TimeSpan onj = time.Subtract(start);
             int span = onj.Minutes + onj.Hours * 60;
             if (span > 60 || span < -60)

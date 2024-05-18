@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Custom_View
 {
     public partial class DayApooitment_view : UserControl
-    {
+    {//custom view of a day in a calender
         public DateTime date{ get; set; }
         public DayApooitment_view()
         {
@@ -57,7 +57,7 @@ namespace Cosmetic_App.Custom_View
             Day.Text= day;
         }
         public void Setstate(int state)//future:1  pressent:0 past:-1
-        {
+        {//changeing color if the day by current day
             switch (state)
             {
                 case -1:

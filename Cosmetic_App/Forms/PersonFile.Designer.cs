@@ -37,16 +37,10 @@
             this.Profile_Layout = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.birthday = new System.Windows.Forms.DateTimePicker();
-            this.email = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.phone = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lastname = new System.Windows.Forms.TextBox();
-            this.firstname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -57,16 +51,16 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.birthday = new System.Windows.Forms.DateTimePicker();
+            this.email = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.phone = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lastname = new System.Windows.Forms.TextBox();
+            this.firstname = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.id = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -161,19 +155,13 @@
             this.Profile_Layout.ColumnCount = 3;
             this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
             this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.2381F));
-            this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.Profile_Layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.Profile_Layout.Controls.Add(this.label3, 1, 0);
             this.Profile_Layout.Controls.Add(this.label6, 1, 10);
-            this.Profile_Layout.Controls.Add(this.birthday, 1, 7);
-            this.Profile_Layout.Controls.Add(this.email, 1, 11);
             this.Profile_Layout.Controls.Add(this.label1, 1, 2);
-            this.Profile_Layout.Controls.Add(this.phone, 1, 9);
             this.Profile_Layout.Controls.Add(this.label5, 1, 8);
             this.Profile_Layout.Controls.Add(this.label2, 1, 4);
-            this.Profile_Layout.Controls.Add(this.lastname, 1, 5);
-            this.Profile_Layout.Controls.Add(this.firstname, 1, 3);
             this.Profile_Layout.Controls.Add(this.label4, 1, 6);
-            this.Profile_Layout.Controls.Add(this.id, 1, 1);
             this.Profile_Layout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Profile_Layout.Location = new System.Drawing.Point(4, 3);
             this.Profile_Layout.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -199,10 +187,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label3.Location = new System.Drawing.Point(48, 0);
+            this.label3.Location = new System.Drawing.Point(51, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(15, 3);
+            this.label3.Size = new System.Drawing.Size(12, 3);
             this.label3.TabIndex = 5;
             this.label3.Text = "תעודת זהות";
             // 
@@ -210,65 +198,32 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label6.Location = new System.Drawing.Point(48, 30);
+            this.label6.Location = new System.Drawing.Point(51, 30);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(15, 3);
+            this.label6.Size = new System.Drawing.Size(12, 3);
             this.label6.TabIndex = 11;
             this.label6.Text = "דואר אלקטרוני";
-            // 
-            // birthday
-            // 
-            this.birthday.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.birthday.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.birthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday.Location = new System.Drawing.Point(48, 24);
-            this.birthday.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.birthday.Name = "birthday";
-            this.birthday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.birthday.RightToLeftLayout = true;
-            this.birthday.Size = new System.Drawing.Size(15, 26);
-            this.birthday.TabIndex = 16;
-            // 
-            // email
-            // 
-            this.email.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.email.Location = new System.Drawing.Point(48, 36);
-            this.email.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.email.Name = "email";
-            this.email.Size = new System.Drawing.Size(15, 26);
-            this.email.TabIndex = 10;
-            this.email.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(48, 6);
+            this.label1.Location = new System.Drawing.Point(51, 6);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 3);
+            this.label1.Size = new System.Drawing.Size(12, 3);
             this.label1.TabIndex = 1;
             this.label1.Text = "שם פרטי";
-            // 
-            // phone
-            // 
-            this.phone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.phone.Location = new System.Drawing.Point(48, 30);
-            this.phone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.phone.Name = "phone";
-            this.phone.Size = new System.Drawing.Size(15, 26);
-            this.phone.TabIndex = 8;
-            this.phone.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label5.Location = new System.Drawing.Point(48, 24);
+            this.label5.Location = new System.Drawing.Point(51, 24);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(15, 3);
+            this.label5.Size = new System.Drawing.Size(12, 3);
             this.label5.TabIndex = 9;
             this.label5.Text = "פאלפון";
             // 
@@ -276,53 +231,23 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Location = new System.Drawing.Point(48, 12);
+            this.label2.Location = new System.Drawing.Point(51, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 3);
+            this.label2.Size = new System.Drawing.Size(12, 3);
             this.label2.TabIndex = 3;
             this.label2.Text = "שם משפחה";
-            // 
-            // lastname
-            // 
-            this.lastname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lastname.Location = new System.Drawing.Point(48, 18);
-            this.lastname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.lastname.Name = "lastname";
-            this.lastname.Size = new System.Drawing.Size(15, 26);
-            this.lastname.TabIndex = 4;
-            this.lastname.Click += new System.EventHandler(this.TextBox_Click);
-            // 
-            // firstname
-            // 
-            this.firstname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.firstname.Location = new System.Drawing.Point(48, 12);
-            this.firstname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.firstname.Name = "firstname";
-            this.firstname.Size = new System.Drawing.Size(15, 26);
-            this.firstname.TabIndex = 2;
-            this.firstname.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label4.Location = new System.Drawing.Point(48, 18);
+            this.label4.Location = new System.Drawing.Point(51, 18);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 3);
+            this.label4.Size = new System.Drawing.Size(12, 3);
             this.label4.TabIndex = 7;
             this.label4.Text = "יום הולדת";
-            // 
-            // id
-            // 
-            this.id.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.id.Location = new System.Drawing.Point(48, 6);
-            this.id.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(15, 26);
-            this.id.TabIndex = 0;
-            this.id.TextChanged += new System.EventHandler(this.TextBox_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -426,19 +351,19 @@
             this.tableLayoutPanel6.ColumnCount = 3;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.761905F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.2381F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel6.Controls.Add(this.label7, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label8, 1, 10);
-            this.tableLayoutPanel6.Controls.Add(this.dateTimePicker1, 1, 7);
-            this.tableLayoutPanel6.Controls.Add(this.textBox1, 1, 11);
+            this.tableLayoutPanel6.Controls.Add(this.birthday, 1, 7);
+            this.tableLayoutPanel6.Controls.Add(this.email, 1, 11);
             this.tableLayoutPanel6.Controls.Add(this.label9, 1, 2);
-            this.tableLayoutPanel6.Controls.Add(this.textBox2, 1, 9);
+            this.tableLayoutPanel6.Controls.Add(this.phone, 1, 9);
             this.tableLayoutPanel6.Controls.Add(this.label10, 1, 8);
             this.tableLayoutPanel6.Controls.Add(this.label11, 1, 4);
-            this.tableLayoutPanel6.Controls.Add(this.textBox3, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.textBox4, 1, 3);
+            this.tableLayoutPanel6.Controls.Add(this.lastname, 1, 5);
+            this.tableLayoutPanel6.Controls.Add(this.firstname, 1, 3);
             this.tableLayoutPanel6.Controls.Add(this.label12, 1, 6);
-            this.tableLayoutPanel6.Controls.Add(this.textBox5, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.id, 1, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(4, 3);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -464,10 +389,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label7.Location = new System.Drawing.Point(48, 19);
+            this.label7.Location = new System.Drawing.Point(51, 19);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(304, 19);
+            this.label7.Size = new System.Drawing.Size(301, 19);
             this.label7.TabIndex = 5;
             this.label7.Text = "תעודת זהות";
             // 
@@ -475,65 +400,68 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label8.Location = new System.Drawing.Point(48, 399);
+            this.label8.Location = new System.Drawing.Point(51, 399);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(304, 19);
+            this.label8.Size = new System.Drawing.Size(301, 19);
             this.label8.TabIndex = 11;
             this.label8.Text = "דואר אלקטרוני";
             // 
-            // dateTimePicker1
+            // birthday
             // 
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTimePicker1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(48, 269);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(304, 26);
-            this.dateTimePicker1.TabIndex = 16;
+            this.birthday.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.birthday.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.birthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.birthday.Location = new System.Drawing.Point(51, 269);
+            this.birthday.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.birthday.Name = "birthday";
+            this.birthday.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.birthday.RightToLeftLayout = true;
+            this.birthday.Size = new System.Drawing.Size(301, 26);
+            this.birthday.TabIndex = 16;
+            this.birthday.Tag = "birthday";
             // 
-            // textBox1
+            // email
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(48, 421);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(304, 26);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Click += new System.EventHandler(this.TextBox_Click);
+            this.email.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.email.Location = new System.Drawing.Point(51, 421);
+            this.email.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(301, 26);
+            this.email.TabIndex = 10;
+            this.email.Tag = "email";
+            this.email.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label9.Location = new System.Drawing.Point(48, 95);
+            this.label9.Location = new System.Drawing.Point(51, 95);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(304, 19);
+            this.label9.Size = new System.Drawing.Size(301, 19);
             this.label9.TabIndex = 1;
             this.label9.Text = "שם פרטי";
             // 
-            // textBox2
+            // phone
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(48, 345);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(304, 26);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.Click += new System.EventHandler(this.TextBox_Click);
+            this.phone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.phone.Location = new System.Drawing.Point(51, 345);
+            this.phone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.phone.Name = "phone";
+            this.phone.Size = new System.Drawing.Size(301, 26);
+            this.phone.TabIndex = 8;
+            this.phone.Tag = "phone";
+            this.phone.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label10.Location = new System.Drawing.Point(48, 323);
+            this.label10.Location = new System.Drawing.Point(51, 323);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(304, 19);
+            this.label10.Size = new System.Drawing.Size(301, 19);
             this.label10.TabIndex = 9;
             this.label10.Text = "פאלפון";
             // 
@@ -541,53 +469,56 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label11.Location = new System.Drawing.Point(48, 171);
+            this.label11.Location = new System.Drawing.Point(51, 171);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(304, 19);
+            this.label11.Size = new System.Drawing.Size(301, 19);
             this.label11.TabIndex = 3;
             this.label11.Text = "שם משפחה";
             // 
-            // textBox3
+            // lastname
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(48, 193);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(304, 26);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.Click += new System.EventHandler(this.TextBox_Click);
+            this.lastname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lastname.Location = new System.Drawing.Point(51, 193);
+            this.lastname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lastname.Name = "lastname";
+            this.lastname.Size = new System.Drawing.Size(301, 26);
+            this.lastname.TabIndex = 4;
+            this.lastname.Tag = "lastname";
+            this.lastname.Click += new System.EventHandler(this.TextBox_Click);
             // 
-            // textBox4
+            // firstname
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(48, 117);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(304, 26);
-            this.textBox4.TabIndex = 2;
-            this.textBox4.Click += new System.EventHandler(this.TextBox_Click);
+            this.firstname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.firstname.Location = new System.Drawing.Point(51, 117);
+            this.firstname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.firstname.Name = "firstname";
+            this.firstname.Size = new System.Drawing.Size(301, 26);
+            this.firstname.TabIndex = 2;
+            this.firstname.Tag = "firstname";
+            this.firstname.Click += new System.EventHandler(this.TextBox_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label12.Location = new System.Drawing.Point(48, 247);
+            this.label12.Location = new System.Drawing.Point(51, 247);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(304, 19);
+            this.label12.Size = new System.Drawing.Size(301, 19);
             this.label12.TabIndex = 7;
             this.label12.Text = "יום הולדת";
             // 
-            // textBox5
+            // id
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(48, 41);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(304, 26);
-            this.textBox5.TabIndex = 0;
-            this.textBox5.TextChanged += new System.EventHandler(this.TextBox_Click);
+            this.id.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.id.Location = new System.Drawing.Point(51, 41);
+            this.id.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.id.Name = "id";
+            this.id.Size = new System.Drawing.Size(301, 26);
+            this.id.TabIndex = 0;
+            this.id.Tag = "id";
+            this.id.TextChanged += new System.EventHandler(this.TextBox_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -691,16 +622,10 @@
         private System.Windows.Forms.TableLayoutPanel Profile_Layout;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker birthday;
-        private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox phone;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox lastname;
-        private System.Windows.Forms.TextBox firstname;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -710,16 +635,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker birthday;
+        private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox phone;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox lastname;
+        private System.Windows.Forms.TextBox firstname;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;

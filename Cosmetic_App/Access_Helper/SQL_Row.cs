@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Row {
+public class Row {//represent a record in access DB
 
     public List<Col> Columes { get; set; } = new List<Col>();
     public string Table { get; set; }

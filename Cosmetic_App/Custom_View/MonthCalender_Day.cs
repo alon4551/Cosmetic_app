@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App
 {
     public partial class MonthCalender_Day:UserControl
-    {
+    {//custom view in homepage calender for each day
         public MonthCalender_Day()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace Cosmetic_App
         {
             treatments_label.Text = message;
         }
-        public void DateColor(int state)//-1 passed 0 today 1 mean future
+        public void DateColor(int state)//coloring custom view by the Date consider the realtime date -1 passed 0 today 1 mean future
         {
             switch (state)
             {
@@ -58,7 +58,7 @@ namespace Cosmetic_App
             }
         }
         public void SetAction(EventHandler handler)
-        {
+        {//setting action if user click one of the 
             treatments_label.Click += handler;
             label1.Click += handler;
             tablelayout.Click += handler;

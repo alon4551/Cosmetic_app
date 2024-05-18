@@ -30,7 +30,7 @@ namespace Cosmetic_App.Forms
                 
         }
         public void Reload()
-        {
+        {//reloading and featching information from DB
             UnPaid = Income.getIncomes(false);
             Paid = Income.getIncomes(true);
             Load_List();
@@ -43,14 +43,14 @@ namespace Cosmetic_App.Forms
 
 
         private void ClearOrderInformation()
-        {
+        {//clearing order information window
             
             Cart_View_Box.Items.Clear();
             Input.Clear_Textbox_Information(tableLayoutPanel7);
 
         }
         private void Order_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//displaing order when order is selected form the list
             if (filter)
                     SelectedOrder = filter_list[Order_list.SelectedIndex];
             else
@@ -64,7 +64,7 @@ namespace Cosmetic_App.Forms
         }
 
         public void Load_Order_Information(Income order)
-        {
+        {//loading order information
             label2.Text = $"הזמנה מספר {order.Value}";
             customer_name_box.Text = order.GetClientName();
             worker_name_box.Text = order.GetWorkerName();
@@ -98,7 +98,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//displing order edit window if user want to change information about the order
             bool tempPaid = paid,tempfilter=filter;
             int tempIndex = Order_list.SelectedIndex,tempClient=comboBox1.SelectedIndex;
             using(Order_Edit order = new Order_Edit((int)SelectedOrder.Value))
@@ -119,14 +119,14 @@ namespace Cosmetic_App.Forms
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        { // opening process of new order
             int id = App_Process.NewOrder(Worker.Value.ToString(),this);
             Reload();
             SelectOrder(id);
         }
 
         private void Cart_View_Box_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { 
             if (Cart_View_Box.SelectedItems.Count != 1) return;
             Cart item = (Cart)Cart_View_Box.SelectedItems[0].Tag;
             if (SelectedOrder.IsTreatmentSchedule(item))
@@ -142,7 +142,7 @@ namespace Cosmetic_App.Forms
 
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {// deleteing order from DB
             MessageBox.Show("האם בטוח שאתה רוצה למחוק את ההזמנה?");
             if (SelectedOrder.Delete())
                 MessageBox.Show("הזמנה נמחקה");
@@ -152,7 +152,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button6_Click(object sender, EventArgs e)
-        {
+        {//opening new process of payment order
             using(Store store =new Store((int)SelectedOrder.Value))
             {
                 store.ShowDialog();
@@ -166,7 +166,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { // filtering orders by client
             if (comboBox1.SelectedIndex > 0)
             {
                 string id = Person.Clients[comboBox1.SelectedIndex-1].GetColValue(0).ToString();
@@ -188,7 +188,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
+        {//filter order by if paied
             if (paid_radio_btn.Checked)
             {
                 paid = true;
@@ -198,7 +198,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void upoaid_radio_btn_CheckedChanged(object sender, EventArgs e)
-        {
+        {//filter order by if not paied
             if (unpoaid_radio_btn.Checked)
             {
                 paid = false;
@@ -208,7 +208,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void Orders_Dashboard_Load(object sender, EventArgs e)
-        {
+        {//loading information 
             comboBox1.Items.Clear();
             comboBox1.Items.Add("אף לקוח");
             foreach(Person person in Person.Clients)
@@ -218,7 +218,7 @@ namespace Cosmetic_App.Forms
 
 
         private void SelectOrder(int id)
-        {
+        {//selecting order
             List<Income> list;
             if (filter)
                 list = filter_list;
@@ -243,8 +243,7 @@ namespace Cosmetic_App.Forms
             
         }
         public void Load_List()
-        {
-
+        {// loading order list 
             List<Income> list=new List<Income>();
             if (filter)
             {

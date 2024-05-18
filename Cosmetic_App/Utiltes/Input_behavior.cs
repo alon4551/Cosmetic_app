@@ -20,11 +20,11 @@ namespace Cosmetic_App
     public static class Input
     {
         public static void TextChangeAfterError(object sender, EventArgs e)
-        {
+        {//reset waring after failue input 
             Reset((TextBox) sender);
         }
         public static void Reset(TextBox input,Label hint)
-        {
+        {//reseting color and waring label
             input.BackColor = Color.White;
             hint.Text = "";
         }
@@ -37,7 +37,7 @@ namespace Cosmetic_App
             hint.Text = "";
         }
         public static bool Verify(TextBox input,Label hint)
-        {
+        {//verify input and styleing in case of failue
             if (Verification.Text(input.Text, input.Name) == false)
             {
                 input.BackColor = Color.Red;
@@ -55,7 +55,7 @@ namespace Cosmetic_App
             return true;
         }
          public static object GetTag(object obg)
-        {
+        {//return the tag value for each element 
             switch (obg.GetType().Name)
             {
                 case "Label":return (obg as Label).Tag;
@@ -75,12 +75,12 @@ namespace Cosmetic_App
             }
         }
         public static void Clear_Textbox_Information(TableLayoutPanel layout)
-        {
+        {//clearing all text from input in a form
             foreach(TextBox box in layout.Controls.OfType<TextBox>())
                 box.Text = "";
         }
         public static void Load_TextBox_Information(TableLayoutPanel layout,DB_Object obj)
-        {
+        {//putting all infomation from object in the form 
             foreach(TextBox box in layout.Controls.OfType<TextBox>())
             {
                 box.Clear();

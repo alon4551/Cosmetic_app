@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Cosmetic_App.Custom_View
 {
     public partial class Person_Profile_View : UserControl
-    {
+    {// a custom view of list of users in DB
         string Id_Person;
 
         public Person_Profile_View()

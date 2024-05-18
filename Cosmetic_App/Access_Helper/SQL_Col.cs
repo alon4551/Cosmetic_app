@@ -90,7 +90,8 @@ public class Col
         int i = 0;
         foreach (Col update in Values)
         {
-            syntax += $"{update._field}={update.Value_SQL_Syntax()}";
+            if (update._value == null) continue;
+            syntax += $"{update._field} = {update.Value_SQL_Syntax()}";
             if (i++ != Values.Count - 1)
                 syntax += $" {seperator} ";
         }
@@ -102,7 +103,7 @@ public class Col
     /// <param name="Values">List of strings</param>
     /// <param name="seperator">the seperator</param>
     /// <returns></returns>
-    public static string Values_SQL_Syntax(List<string> Values, string seperator)
+    public static string Values_SQL_Syntax(List<string> Values, string seperator)//returns the sql syntax of the values
     {
         string syntax = "";
         int i = 0;

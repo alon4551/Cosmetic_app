@@ -20,7 +20,7 @@ namespace Cosmetic_App
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//verify if acount is manager
             result = Workers.Verify_Account_Admin(id.Text, password.Text);
             if (result)
                 MessageBox.Show("פרטי התחברות תקינים, אפשר להמשיך");
@@ -30,7 +30,7 @@ namespace Cosmetic_App
         }
 
         private void password_KeyDown(object sender, KeyEventArgs e)
-        {
+        {//trigier verify account when user click the 'enter' key
             if(e.KeyCode == Keys.Enter)
                 button1_Click(null, null);
         }

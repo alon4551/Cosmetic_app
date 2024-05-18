@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Cosmetic_App.Utiltes
 {
     internal class Messages
-    {
+    {//these are universeal messages to the user
         public static string IncorectID_Error_TextBox { get; } = "תעודת הזהות שהכנסת אינה תקינה";
         public static string IncorectPassword_Error_TextBox { get; } = "סיסמא לא נכונה";
         public static string IncorectPrice_Error_TextBox { get; } = "המחיר שהכנס אינו תקין";
@@ -15,7 +15,7 @@ namespace Cosmetic_App.Utiltes
         public static string IncorectNull_Error_TextBox { get; } = "השדה אינו יכול להיות ריק";
         public static string IncorectCount_Error_TextBox { get; } = "רק מספרים מלאים";
         public static string Get(string type)
-        {
+        {//return error message by type of field
             type = type.ToLower();
             switch (type)
             {
@@ -35,7 +35,7 @@ namespace Cosmetic_App.Utiltes
             return "";
         }
         public static string Reverse(string message)
-        {
+        {//reverse charavters to hebrew language
             string[] lines = message.Split('\n');
 
             for (int i = 0; i < lines.Length; i++)

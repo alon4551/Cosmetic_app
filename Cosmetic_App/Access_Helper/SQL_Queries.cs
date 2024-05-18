@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class SQL_Queries
+public class SQL_Queries //giving me the correct string syntax sql queries, Each Function return is a sql query
 {
    
-    private static string SQL_Syntax(object item)
+    private static string SQL_Syntax(object item)//return correct string syntax by values types
     {
         if(item == null) return "";
         switch (item.GetType().ToString())
@@ -21,7 +21,7 @@ public class SQL_Queries
             case "System.DateTime":
                 {
                     DateTime time = (DateTime)item;
-                    return $"#{time.Year}-{time.Month}-{time.Day}#";
+                    return $"#{time.Day}-{time.Month}-{time.Year}#";
                 }
             default:
                 {

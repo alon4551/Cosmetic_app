@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 
-public class Condition
+public class Condition// representing  the Condition in access helper file
 {
-    private Col Value { get; set; }
-    private string Condition_Type { get; set; } = "=";
+    private Col Value { get; set; } // the field and value
+    private string Condition_Type { get; set; } = "="; // the condition
     public Condition(Col value, string condition)
     {
         Value = value;
@@ -38,10 +38,10 @@ public class Condition
         return Condition_Type;
     }
 
-    public string SQL_Syntax() {
+    public string SQL_Syntax() {//return a string condition with correct syntax
         return $"{Value.GetField()} {Condition_Type} {Value.Value_SQL_Syntax()}";
     }
-    public static string SQL_Syntax(List<Condition> Conditions, string seperat)
+    public static string SQL_Syntax(List<Condition> Conditions, string seperat)//return a string conditions with correct syntax
     {
         string Sql_Conditions = $"{seperat} ";
         int i = 0;
@@ -54,7 +54,7 @@ public class Condition
         }
         return Sql_Conditions.Trim(seperat.ToCharArray()).Trim();
     }
-    public static string SQL_Syntax(List<List<Condition>> Conditions, string innerSeperate, string outtersparat)
+    public static string SQL_Syntax(List<List<Condition>> Conditions, string innerSeperate, string outtersparat)//return a string conditions with correct syntax
     {
         string Sql_Conditions = $"{outtersparat} ";
         int i = 0;

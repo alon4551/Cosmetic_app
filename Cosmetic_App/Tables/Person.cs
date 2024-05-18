@@ -12,36 +12,36 @@ using System.Threading.Tasks;
 namespace Cosmetic_App.Tables
 {
     public class Person: DB_Object
-    {
+    {//Class Reprsenting People Table 
         public static List<Person> All = GetAllPeople(), Clients = GetClients();
         public Person() : base(Database_Names.People, Database_Names.People_Columes) { }
         public Person(string id) : base(Database_Names.People, Database_Names.People_Columes) { Grab(id); }
         public Person(Row row) : base(row) { }
         public Person(DB_Object dB_) : base(dB_) { }
         public static Person GetPerson(string id)
-        {
+        {//return person from DB
             foreach (Person person in All)
                 if(person.Value.ToString() == id)   
                     return person;
             return null;
         }
         public static string GetName(string id)
-        {
+        {//return person name from DB
             foreach (Person person in All)
                 if (person.GetColValue(0).ToString() == id)
                     return person.GetFullName();
             return "";
         }
         public static object GetColValue(string id, string field)
-        {
+        {//return value from people table in DB
             return GetColValue(Database_Names.People, Database_Names.People_Columes, id, field);
         }
         public string GetFullName()
-        {
+        {//return fullname of person
             return GetColValue("firstname") + " " + GetColValue("lastname");
         }
         public static List<Person> GetClients()
-        {
+        {//return all client from DB
             List<Person> list = new List<Person>();
             List<Row> rows = Access.getObjects(SQL_Queries.Seperate(Database_Names.People, Database_Names.Workers, Database_Names.Workers_Columes[0]));
             foreach (Row row in rows)
@@ -49,7 +49,7 @@ namespace Cosmetic_App.Tables
             return list;
         }
         public static List<Person> GetAllClients()
-        {
+        {//return all client from DB
             List<Person> allClients = new List<Person>();
 
             bool found;
@@ -67,7 +67,7 @@ namespace Cosmetic_App.Tables
             return allClients;
         }
         public static  List<Person>GetAllPeople()
-        {
+        {//return all people from DB
             Person person = new Person() ;
             List<Person> list = new List<Person>();
             foreach (DB_Object p in person.GrabAll())
@@ -75,7 +75,7 @@ namespace Cosmetic_App.Tables
             return list;
         }
         public static  List<Person> GetAllPeopleAndOrderByName()
-        {
+        {//get all people from DB order by name 
             Person person = new Person();
             List<Person> list = new List<Person>();
             foreach (Row p in Access.getObjects(SQL_Queries.SelectAndOrderBy(Database_Names.People, Database_Names.People_Columes[2])))
@@ -83,21 +83,21 @@ namespace Cosmetic_App.Tables
             return list;
         }
         public bool Delete()
-        {
+        {//delete person from DB
             if(Value.ToString()=="0")
                 return false;
             bool result = Access.Execute(SQL_Queries.Delete(Database_Names.Workers, new Condition(Field, Value)));
             return result & base.Delete();
         }
         internal Person Search(string text)
-        {
+        {//return person from DB
             foreach(Person person in All)
                 if(person.Value.ToString()==text)
                     return person;
             return null;
         }
         public bool Save()
-        {
+        {//save person information to DB
             if (IsExist(Row.GetColValue(0)))
                 return  Update();
             else
@@ -106,7 +106,7 @@ namespace Cosmetic_App.Tables
             }
         }
         internal static async void ReloadList()
-        {
+        {//featching all People from DB
             All =  GetAllPeople();
         }
     }

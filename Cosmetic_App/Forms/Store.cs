@@ -33,7 +33,7 @@ namespace Cosmetic_App.Forms
                 allNames.Add(person.GetFullName());
         }
         public Store(int Order_id)
-        {
+        {//getting order information
             InitializeComponent();
             foreach (Person person in People)
                 allNames.Add(person.GetFullName());
@@ -41,10 +41,11 @@ namespace Cosmetic_App.Forms
             ShopingCart = Order.GetShopingCart();
         }
         private void Store_Load(object sender, EventArgs e)
-        {
+        {//loading store window by order
             Income_label.Text = $"קבלה מספר {Order.Value} תאריך {Order.GetPurchaceDate()}";
             Load_Products_List(products);
-            Load_Client_list(People);
+            //Load_Client_list(People);
+            textBox2.Text = Order.GetClientName();
             RelaodView();
             
         }
@@ -53,7 +54,7 @@ namespace Cosmetic_App.Forms
             LoadShopingCart();
         }
         public void Load_Products_List(List<Products> list)
-        {
+        {//loading product list from DB so customer can add the to cart
             Products_Store_Layout.Controls.Clear();
             foreach(Products p in list)
             {
@@ -65,7 +66,7 @@ namespace Cosmetic_App.Forms
             }
         }
         public void LoadShopingCart()
-        {
+        {//loading shoping cart to window
             Cart_layout.Controls.Clear();
             int total = 0;
             int i = 0;
@@ -85,7 +86,7 @@ namespace Cosmetic_App.Forms
             total_box.Text = total + "ש''ח";
         }
         public void RemoveClick(object sender, EventArgs e)
-        {
+        {//removing item from cart
             CartView view = (CartView)((System.Windows.Forms.Button)sender).Tag;
             foreach (Cart item in ShopingCart)
             {
@@ -104,7 +105,7 @@ namespace Cosmetic_App.Forms
             RelaodView();
         }
         public void AddButtonClick(object sender, EventArgs e)
-        {
+        {//adding product to cart
             System.Windows.Forms.Button button = sender as System.Windows.Forms.Button;
             Products product = button.Tag as Products;
             Cart item;
@@ -132,7 +133,7 @@ namespace Cosmetic_App.Forms
             RelaodView();
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+        {//filter product list by text
             Filter = new List<Products>();
             if (textBox1.Text != "")
             {
@@ -148,7 +149,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//payment and creating invoce to the order
             DialogResult result= MessageBox.Show("האם אתה בטוח בהצעת המחיר הזאת?","",MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
@@ -162,16 +163,17 @@ namespace Cosmetic_App.Forms
                             {
                                 Order.SetCart(ShopingCart);
                                 Order.SetColValue(Database_Names.Income_Columes[5], true);
+                                Order.SetColValue(6, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day));
                                 if (Order.Save())
                                 {
                                     Order.CreateInvoce(browse.FileName, window.signture);
-                                    Order.BackUp(browse.FileName);
+                                    Order.BackUp();
                                     finish = true;
                                     Products.CheckInventory();
                                     this.Close();
                                 }
                                 else
-                                    MessageBox.Show("error in database");
+                                    MessageBox.Show("שגיאה");
                             }
                         }
                     else
@@ -185,7 +187,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//signing the payment
             using (Signature window = new Signature())
             {
                 window.ShowDialog();
@@ -203,7 +205,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {//createing new person in 
             using(PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
@@ -214,7 +216,7 @@ namespace Cosmetic_App.Forms
         }
 
         public void Load_Client_list(List<Person> list)
-        {
+        {//loading people list
             foreach (Person person in list)
             {
                 textBox2.Text = (person.GetFullName());

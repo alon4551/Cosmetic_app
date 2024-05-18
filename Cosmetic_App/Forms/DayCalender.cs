@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App
 {
     public partial class DayCalender : Form
-    {
+    {//display appoitments in a day filter by worker
 
         public DayCalender()
         {
@@ -36,12 +36,10 @@ namespace Cosmetic_App
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//redisplay appoitment in a worker
             if (comboBox1.SelectedIndex != -1)
-              //  calender.DisplayWorkerAppoitments(flowLayoutPanel1, Workers.list[comboBox1.SelectedIndex].GetAppoitments(calender.GetSelectedDate().ToShortDateString()), calender.GetSelectedDate());
             calender.Display_Apooitments(flowLayoutPanel1, Workers.list[comboBox1.SelectedIndex].Value.ToString());
             else
-               // calender.DisplayWorkerAppoitments(flowLayoutPanel1, Workers.LogedWorker.GetAppoitments(calender.GetSelectedDate().ToShortDateString()), calender.GetSelectedDate());
             calender.Display_Apooitments(flowLayoutPanel1, Workers.LogedWorker.Value.ToString());
         }
     }

@@ -14,9 +14,7 @@ namespace Cosmetic_App.Utiltes
     public static class gmail_helper
     {
         private static string senderEmail = "appcosmetic@gmail.com";
-        //Person.GetColValue("0","email").ToString(); nipeqzygbxgndbpj
         private static string senderPassword = "Cosmetic@321";
-           // Workers.GetColValue("0","password").ToString();
         public static void SendMail(string recipientEmail, string Message)
         {
             MailMessage message = new MailMessage(senderEmail, recipientEmail)

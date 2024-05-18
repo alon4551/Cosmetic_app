@@ -30,7 +30,7 @@ namespace Cosmetic_App.Forms
 
         }
         private void LoadStatLayout()
-        {
+        {//calulateing sum of product and treatments
             order_box.Text=orders.Count.ToString();
             treatments_box.Text = apooitments.Count.ToString();
             int sum= 0;
@@ -44,7 +44,7 @@ namespace Cosmetic_App.Forms
 
         }
         private void LoadOrderProductsList(string name)
-        {
+        {//createing custom view of statistic information of products in selected dates 
             flowLayoutPanel1.Controls.Clear();
             SortedProducts.Clear();
 
@@ -94,8 +94,10 @@ namespace Cosmetic_App.Forms
            
         }
         private  void FeatchLists()
-        {
-             orders = Income.GetIncomes(start_date.Value.Date, end_date.Value.Date);
+        {//getting statistic infomation from filter dates and disply them
+            DateTime start =new DateTime(start_date.Value.Day+2000, start_date.Value.Month, start_date.Value.Year-2000);
+            DateTime end = new DateTime(start_date.Value.Day+2000, start_date.Value.Month, start_date.Value.Year-2000);
+            orders = Income.GetIncomes(start, end);
             Items.Clear();
             list.Clear();
             foreach (Income order in orders)
@@ -146,13 +148,13 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//search statistic from spesific dates
             FeatchLists();
             LoadStatLayout();
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
-        {
+        {//filter product form rest of list
             LoadOrderProductsList(filter_name_box.Text);
         }
     }

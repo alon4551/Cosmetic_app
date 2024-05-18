@@ -12,7 +12,7 @@ namespace Cosmetic_App.Audit
     public class Verification
     {
         public static bool Text(string text, string type)
-        {
+        {//verify if input was corectly typed
             text = text.Trim();
             if( text.Contains("'"))
                 return false;
@@ -50,7 +50,7 @@ namespace Cosmetic_App.Audit
             return false;
         }
         private static bool VerifyNumber(string price)
-        {
+        {//verify if phone number is currect
             if(price=="") return false;
             foreach (char c in price)
             {
@@ -62,7 +62,7 @@ namespace Cosmetic_App.Audit
             return true;
         }
         private static bool VerifyBirthday(string text)
-        {
+        {//verify if birthday is currect
             try
             {
                DateTime.Parse(text);
@@ -76,7 +76,7 @@ namespace Cosmetic_App.Audit
         }
 
         private static bool VerifyEmail(string email)
-        {
+        {//verify if email is currect
             string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
             Regex regex = new Regex(pattern);
@@ -84,7 +84,7 @@ namespace Cosmetic_App.Audit
         }
 
         private static bool VerifyId(string id)
-        {
+        {//verify if israeli Id is currect
             if(id.Length!=9||!IsNumeric(id))
                 return false;
             int total = 0;
@@ -102,7 +102,7 @@ namespace Cosmetic_App.Audit
             return total == 0;
         }
         private static bool IsNumeric(string input)
-        {
+        {//return if text has digits in text
             foreach (char c in input)
                 if (!char.IsDigit(c))
                     return false;

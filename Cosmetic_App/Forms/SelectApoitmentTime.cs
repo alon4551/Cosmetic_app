@@ -28,7 +28,7 @@ namespace Cosmetic_App.Forms
         public string Selected_Worker { get; set; } = Workers.LogedWorker.Value.ToString();
         public DateTime Selected_Date { get;set; }
         public SelectApoitmentTime()
-        {
+        {//loading information for a new appoitment
             InitializeComponent();
             worker_comboBox.Items.Clear();
             foreach(Workers worker in Workers.list)
@@ -48,7 +48,7 @@ namespace Cosmetic_App.Forms
             Reload();
         }
         public SelectApoitmentTime(int product,string client,Calender_Table Appoitment)
-        {
+        {//loading information for an exsisting appoitment 
             InitializeComponent();
             foreach (Workers worker in Workers.list)
             {
@@ -85,7 +85,7 @@ namespace Cosmetic_App.Forms
             Reload();
         }
         public SelectApoitmentTime(int product, string client, List<Calender_Table> appoitments)
-        {
+        {//loading information for an exisiting apooitments
             InitializeComponent();
             Product.Grab(product);
             month_label.Text = $"קביעת תור ל{client} עבור {Product.getName()}";
@@ -99,19 +99,19 @@ namespace Cosmetic_App.Forms
         }
 
         public void Display()
-        {
+        {//display the mouthly calender in the and daily calender
             calender.DisplayCalender(calender_layout, null,calender.ApooitmentSize,ClickOnDay);
             calender.DisplayWorkerAppoitments(dailycalender,Appooitments,DateTime.Parse(SelectDay));
 
         }
         private void ClickOnDay(object sender, EventArgs arg)
-        {
+        {//changeing the selected date and redisplay calenders
             DateTime time = (DateTime)Input.GetTag(sender);
             Apooitment_Picker.Value = time;
             Reload();
         }
         private void Reload()
-        {
+        {//reload the information and redisplay the information
             string worker_id = Workers.LogedWorker.Value.ToString() ;
             if(worker_comboBox.SelectedIndex !=-1)
                 worker_id = Workers.list[worker_comboBox.SelectedIndex].Value.ToString();
@@ -127,12 +127,12 @@ namespace Cosmetic_App.Forms
 
     
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
+        {//redisplay the information when date is change
             Reload();
         }
 
         private void ReloadEndTime()
-        {
+        { // showing when treatment is going to end depand on starting time
             ending_time.Text = starting_time.Value.AddMinutes(double.Parse(Product.GetDuration())).ToShortTimeString();
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//selecting starting time of appoitment
             DateTime Ending = starting_time.Value.AddMinutes(double.Parse(Product.GetDuration()));
             if(starting_time.Value.Subtract(DateTime.Now).Ticks<0)
             {

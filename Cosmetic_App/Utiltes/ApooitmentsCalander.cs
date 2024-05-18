@@ -15,7 +15,7 @@ namespace Cosmetic_App.Utiltes
         private static List<Row> Apooitments = new List<Row>();
         public static int AppoitmentHight = 100;
         public static void DisplayCalender(FlowLayoutPanel panel, Label mouth)
-        {
+        {//display mounthly calender home page and schedule
             DayApooitment_view Day;
             panel.Controls.Clear();
             mouth.Text = $@"תאריך: {DisplayTime.Month}/{DisplayTime.Year}";
@@ -40,13 +40,13 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void ClickDay(object sender, EventArgs e)
-        {
+        {//change day by clicking one of the dates in calender
             DayApooitment_view view = (DayApooitment_view)sender;
             SelectApoitmentTime.SelectDay = view.date.ToShortDateString();
 
         }
         public static void DisplayWorkerAppoitments(FlowLayoutPanel panel, List<Calender_Table> appoitments, DateTime date)
-        {
+        {//displaing worker dayliy calender splited by hour
             panel.Controls.Clear();
             DateTime Time = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
             string displayDay = Time.ToShortDateString();
@@ -79,7 +79,7 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static int GetTimeSpan(DateTime time, DateTime start)
-        {
+        {//return time span to calualte hight and styling the dayliy calender
             TimeSpan onj = time.Subtract(start);
             int span = onj.Minutes + onj.Hours * 60;
             if (span > 60 || span < -60)
@@ -90,11 +90,11 @@ namespace Cosmetic_App.Utiltes
             }
         }
         public static void Reset()
-        {
+        {//reset to present date
             DisplayTime = DateTime.Now;
         }
         public static void ChangeMouth(bool forward)
-        {
+        {//changeing mouth forward or backword
             if (forward)
                 DisplayTime = DisplayTime.AddMonths(1);
             else
@@ -102,7 +102,7 @@ namespace Cosmetic_App.Utiltes
 
         }
         public static void SetDay(string day)
-        {
+        {//featching and reloading all appoitments from a selected date
             Apooitments = Calender_Table.GetApoitmentsInfomation(new DateTime(DisplayTime.Year, DisplayTime.Month, int.Parse(day)).ToShortDateString());
         }
     }

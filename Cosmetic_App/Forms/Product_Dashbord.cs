@@ -24,7 +24,7 @@ namespace Cosmetic_App.Forms
             Selected_List = Products.GrabAll();
         }
         public Product_Dashbord(bool treatment_list)
-        {
+        {//loading information depand on the user requset
             InitializeComponent();
             if (treatment_list)
             {
@@ -44,13 +44,13 @@ namespace Cosmetic_App.Forms
             Reload();
         }
         private void Load_List(List<Products> list) 
-        {
+        {//loading name list to chose
             comboBox1.Items.Clear();
             foreach(Products p in list) 
                 comboBox1.Items.Add(p.getName());
         }
         private void Load_Information()
-        {
+        {//Load information on selected product / treatment
             Input.Load_TextBox_Information(product_table_layout, Selected_Object); ;
             if (Selected_Object.IsTreatment())
             {
@@ -69,13 +69,13 @@ namespace Cosmetic_App.Forms
 
         }
         private void Click_Product_View(object sender, EventArgs e)
-        {
+        {//load information of selectd product / treatment
             if (Input.GetTag(sender) == null) return;
             Selected_Object =(Products)Input.GetTag(sender);
            Load_Information();
         }
         private void keybored_click(object sender, KeyEventArgs key)
-        {
+        {//loading information when user moves between products / treatments
             
             if(key.KeyData == Keys.Down)
             {
@@ -87,7 +87,7 @@ namespace Cosmetic_App.Forms
             }
         }
         private void ChangeIndex(bool forward)
-        {
+        {//loading information depand on index products / treatments
             int index = Selected_List.IndexOf(Selected_Object);
           
             if(forward)
@@ -111,7 +111,7 @@ namespace Cosmetic_App.Forms
             Load_Information();
         }
         private void NewProduct_Click(object sender, EventArgs e)
-        {
+        {//createing a new product / treatment
             bool state = select_catagory == 1 ? true : false;
             using (Product_Profile profile = new Product_Profile(state))
             {
@@ -120,7 +120,7 @@ namespace Cosmetic_App.Forms
             }
         }
         public void Reload()
-        {
+        {//reloading information
             if (select_catagory == -1)
                 Selected_List = Products.GetAllProducts();
             else if (select_catagory == -0)
@@ -134,7 +134,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//changeing product / treatment window
             if (Selected_Object == null) return;
             using (Product_Profile profile = new Product_Profile((int)Selected_Object.Value))
             {
@@ -144,7 +144,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//loading information depand on index products / treatments
             if (comboBox1.SelectedIndex == -1) return;
             Selected_Object = select_catagory == 1 ? Products.AllTreatments[comboBox1.SelectedIndex] : Products.AllMerchndice[comboBox1.SelectedIndex];
             Load_Information();

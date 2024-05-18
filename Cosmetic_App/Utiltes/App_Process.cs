@@ -13,7 +13,7 @@ namespace Cosmetic_App.Utiltes
     public static class App_Process
     {
         public static int NewOrder(string worker_id, Control control)
-        {
+        {//opening process of new order
             control.Hide();
             using (Schedule edit = new Schedule())
             {
@@ -24,7 +24,7 @@ namespace Cosmetic_App.Utiltes
             return -1;
         }
         public static void Statisteics( Control control)
-        {
+        {//opening process of showing stats
             control.Hide();
             using (Statistic edit = new Statistic())
             {
@@ -34,7 +34,7 @@ namespace Cosmetic_App.Utiltes
             control.Show();
         }
         public static string NewPerson(Control control)
-        {
+        {//opening process of new person in application
             if (control != null)
                 control.Hide();
            
@@ -51,7 +51,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void Clients(Control control)
-        {
+        {//opening process of showing all clients
             control.Hide();
             using(PeopleList Dashborad = new PeopleList(true))
             {
@@ -62,7 +62,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void ClockInOrOut(HomePage control)
-        {
+        {//opening process of shifts window
             control.Hide();
             using(ClockShifts checkin = new ClockShifts())
             {
@@ -83,7 +83,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void NewProduct(Control control,bool isTreatment)
-        {
+        {//opening process of new product in application
             if (control != null)
                 control.Hide();
             using (Product_Profile profile = new Product_Profile(isTreatment))
@@ -98,7 +98,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void NewWorker(Control control)
-        {
+        {//opening process of new worker in application
             control.Hide();
             string id;
             using (SearchPerson search = new SearchPerson())
@@ -118,7 +118,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void Order_Dashborad(Control control)
-        {
+        {//opening process of orders dashbord
             control.Hide();
             using(Orders_Dashboard dashboard = new Orders_Dashboard(Tables.Workers.LogedWorker.Value.ToString()))
             {
@@ -128,7 +128,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void Products(Control control,bool state)
-        {
+        {//opening process of all merch or all treatment (depand on the state,true - treatment,false- merch)
             control.Hide();
             using(Product_Dashbord dashbord =new Product_Dashbord(state))
             {
@@ -140,7 +140,7 @@ namespace Cosmetic_App.Utiltes
             control.Show();
         }
         internal static void Product(Control control,int id)
-        {
+        {//opening process of editing a product
             control.Hide();
             using (Product_Profile profile = new Product_Profile(id))
             {
@@ -155,7 +155,7 @@ namespace Cosmetic_App.Utiltes
         }
 
         internal static void Workers(Control control)
-        {
+        {//opening process of all workers
             control.Hide();
             using (PeopleList Dashborad = new PeopleList(false))
             {
@@ -165,7 +165,7 @@ namespace Cosmetic_App.Utiltes
             control.Show();
         }
         public static void ForgetPassword(string id)
-        {
+        {//opening process of forgeting worker password
             using (Manager_Verification verification = new Manager_Verification())
             {
                 verification.ShowDialog();

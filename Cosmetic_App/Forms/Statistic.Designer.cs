@@ -123,8 +123,9 @@
             // 
             // start_date
             // 
+            this.start_date.CustomFormat = "dd/MM/yyyy";
             this.start_date.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.start_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.start_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.start_date.Location = new System.Drawing.Point(432, 22);
             this.start_date.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.start_date.Name = "start_date";
@@ -147,8 +148,9 @@
             // 
             // end_date
             // 
+            this.end_date.CustomFormat = "dd/MM/yyyy";
             this.end_date.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.end_date.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.end_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.end_date.Location = new System.Drawing.Point(106, 22);
             this.end_date.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.end_date.Name = "end_date";

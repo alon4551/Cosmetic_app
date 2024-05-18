@@ -4,6 +4,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -16,23 +17,23 @@ using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 namespace Cosmetic_App.Tables
 {
     public class Income:DB_Object
-    {
+    {//Object represeting Income Table, connected to People, Worker,Cart,Calender Tables
         Person Client { get; set; } = new Person();
         Workers Worker { get; set; } = new Workers();
         List<Products> Cart {  get; set; } = new List<Products>();
         List<Cart> shopingCart { get; set; }=new List<Cart>();
         List<Calender_Table> Apooitments { get; set; } = new List<Calender_Table>();
+        //
         public Income() : base(Database_Names.Income,Database_Names.Income_Columes)
-        {
+        {//inislaizeing new Income object
             Table = Database_Names.Income;
             Value =GetNewIndex();
             SetColValue(0, Value);
             SetColValue(4, DateTime.Now.ToShortDateString() + " " +DateTime.Now.ToShortTimeString());
             SetColValue(5, false);
-            SetColValue(6, DateTime.Now);
         }
         public Income(Row r) : base(r)
-        {
+        {//createing new income object based on r data
             Table = Database_Names.Income;
             Value = r.GetColValue(0);
             Worker = Workers.GetWorker(GetColValue("worker").ToString());
@@ -42,7 +43,7 @@ namespace Cosmetic_App.Tables
             Apooitments = GrabApooitments((int)Value);
         }
         public static List<Income> GrabAll()
-        {
+        {//featching all incomes from DB
             List<DB_Object> list = DB_Object.GrabAll(Database_Names.Income);
             List<Income> all = new List<Income>();
             foreach(DB_Object obj in list)
@@ -50,7 +51,7 @@ namespace Cosmetic_App.Tables
             return all;
         }
         public Income(DB_Object obj) : base(obj)
-        {
+        {//createing new Income object based data from obj
             Value =obj.Value;
             SetColValue(0, Value);
             Table = Database_Names.Income;
@@ -61,11 +62,11 @@ namespace Cosmetic_App.Tables
             Apooitments = GrabApooitments((int)Value);
         }
         public Income (int id):base(Database_Names.Income, Database_Names.Income_Columes)
-        {
+        {//featching income from DB based id value
             Grab(id);
         }
         public bool Grab(int id)
-        {
+        {//getting order from DB
             Value = id;
             bool result =base.Grab(id);
             Worker = Workers.GetWorker(GetColValue("worker").ToString());
@@ -76,18 +77,18 @@ namespace Cosmetic_App.Tables
             return result;
         }
         public void ReloadApooitments()
-        {
+        {//reloading appoitment from DB
             Apooitments = GrabApooitments((int)Value);
         }
         private List<Calender_Table> GrabApooitments(int id)
-        {
+        {//getting all appoitment from DB
             List<Calender_Table> apooitments = new List<Calender_Table>();
             foreach (DB_Object obj in Grab(Database_Names.Calender_Columes[4], id, Database_Names.Calendrer))
                 apooitments.Add(new Calender_Table((int)obj.Value));
             return apooitments;
         }
         private List<Products> GrabOrderCart(int id)
-        {
+        {//getting all cart from DB
             List<Products> products = new List<Products>();
             foreach (DB_Object obj in Grab(Database_Names.Cart_Columes[1], id, Database_Names.Cart))
             {
@@ -98,14 +99,14 @@ namespace Cosmetic_App.Tables
             return products;
         }
         public List<Cart> GetOrderCart(int id)
-        {
+        {//getting shoping cart of order
             List<Cart> cart = new List<Cart>();
             foreach (DB_Object obj in Grab(Database_Names.Cart_Columes[1], id, Database_Names.Cart))
                 cart.Add(new Cart(obj));
             return cart;
         }
         public bool IsShopingCartScheduale()
-        {
+        {//returning if all the appoitments of order are schdule
             int count;
             bool state = true;
             foreach(Cart item in shopingCart)
@@ -117,7 +118,7 @@ namespace Cosmetic_App.Tables
                         count = 0;
                         foreach (Calender_Table appoitment in Apooitments)
                             if (appoitment.GetColValue(3).ToString() == item.Value.ToString())
-                                count++;
+                             count++;
                         if (count != item.GetAmount())
                             state = false;
                     }
@@ -135,35 +136,35 @@ namespace Cosmetic_App.Tables
             return state;
         }
         public List<Cart> GetCart()
-        {
+        {//return shoping cart
             return shopingCart;
         }
         public void AddItem(Products item)
-        {
+        {//adding item to shoping cart
             Cart cart =new Cart((int)Value, item);
             cart.SetAmount(1);
             cart.Insert();
             shopingCart.Add(cart);
         }
         public void RemoveItem(int index)
-        {
+        {//removing item from shoping cart
             shopingCart[index].Delete();
             shopingCart.RemoveAt(index);
         }
-        public void SetClient(string id){
+        public void SetClient(string id){//setting client to order
             Client = Person.GetPerson(id);
             SetColValue(2, id);
         }
-        public void SetClient(Person person){
+        public void SetClient(Person person){//setting client to order
             Client = person;
             SetColValue(2, person.Value);
         }
-        public void SetWorker(string id) {
+        public void SetWorker(string id) {//setting worker to order
             Worker = Workers.GetWorker(id);
             SetColValue(3, id); 
         }
-        public void SetCart(int id) { Cart = GrabOrderCart(id); }
-        public void SetCart(List<Cart> cart) {
+        public void SetCart(int id) { Cart = GrabOrderCart(id); }//seeting shoping cart
+        public void SetCart(List<Cart> cart) {//setting shoping cart to order
             shopingCart = cart;
             int total = 0;
             foreach (Cart cartItem in shopingCart)
@@ -174,35 +175,35 @@ namespace Cosmetic_App.Tables
         public string GetClientName() { return Client.GetFullName(); }
         public string GetWorkerName() { return Worker.GetFullName(); }
  
-        public Products GetProduct(int id)
+        public Products GetProduct(int id)//return product infomation from shoping cart
         {
             foreach (Products Product in Cart)
                 if ((int)Product.Value == id)
                     return Product;
             return null;
         }
-        public Calender_Table GetAppoitment(int product_id)
+        public Calender_Table GetAppoitment(int product_id)//returning appoitment information from  shoping cart
         {
             foreach(Calender_Table appoitment in Apooitments)
                 if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3])==product_id)
                     return appoitment;
             return null;
         }
-        public Calender_Table Get_Apooitment(int Cart_id)
+        public Calender_Table Get_Apooitment(int Cart_id)//getting appotment information form shoping cart
         {
             foreach (Calender_Table appoitment in Apooitments)
                 if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3]) == Cart_id)
                     return appoitment;
             return null;
         }
-        public int GetAppoitmentId(int Cart_id)
+        public int GetAppoitmentId(int Cart_id)//getting appotment information form shoping cart
         {
             foreach (Calender_Table appoitment in Apooitments)
                 if ((int)appoitment.GetColValue(Database_Names.Calender_Columes[3]) == Cart_id)    
                     return (int)appoitment.Value;
             return -1;
         }
-        public bool IsTreatmentSchedule(int cart_id)
+        public bool IsTreatmentSchedule(int cart_id)//checking if appotment form shoping cart is schedule
         {
             foreach (Calender_Table appoitment in Apooitments)
             {
@@ -211,7 +212,7 @@ namespace Cosmetic_App.Tables
             }
             return false;
         }
-        public bool IsTreatmentSchedule(Cart cart)
+        public bool IsTreatmentSchedule(Cart cart)//checking if appotment form shoping cart is schedule
         {
             foreach(Calender_Table appoitment in Apooitments)
             {
@@ -227,10 +228,10 @@ namespace Cosmetic_App.Tables
         }
 
         internal void Relaod()
-        {
+        {//reload information from DB
             Grab((int)Value);
         }
-        public void CreateRefund(string path)
+        public void CreateRefund(string path)//creating refund PDF file 
         {
             Document doc = new Document(PageSize.A5);
             try
@@ -251,11 +252,10 @@ namespace Cosmetic_App.Tables
             {
 
                 doc.Close();
-
-                MessageBox.Show("OK");
+                MessageBox.Show($"טופס זיכוי נמצא בכתובת\n{path}");
             }
         }
-        public void CreateInvoce(string path,object signture)
+        public void CreateInvoce(string path,object signture)//create invoce PDF file
         {
             Document doc = new Document(PageSize.A5);
             try
@@ -278,12 +278,12 @@ namespace Cosmetic_App.Tables
             {
                 
                 doc.Close();
-                
-                MessageBox.Show("OK");
+
+                MessageBox.Show($"טופס קבלה נמצא בכתובת\n{path}");
             }
 
         }
-        public Paragraph getSignature(Bitmap signatureBitmap)
+        public Paragraph getSignature(Bitmap signatureBitmap)//getting signature frm client
         {
             Paragraph p =new Paragraph();
             int size = 128;
@@ -303,7 +303,7 @@ namespace Cosmetic_App.Tables
 
             return p;
         }
-        public PdfPTable GetList()
+        public PdfPTable GetList()//create list of shoping cart in invoce PDF file
         {
             PdfPTable table = new PdfPTable(4);
             table.AddCell(getCell(GetElements( Messages.Reverse("מחיר")),"header"));
@@ -328,7 +328,7 @@ namespace Cosmetic_App.Tables
             return table;
         }
         private PdfPCell getCell(Paragraph message, string type)
-        {
+        {//returning style of pdf files
             PdfPCell cell = new PdfPCell(message);
             switch (type) {
                 case "header":
@@ -347,12 +347,12 @@ namespace Cosmetic_App.Tables
             return cell;
         }
         public int GetTotal()
-        {
+        {//return sum of order
             return (int)GetColValue("total");
         }
 
         public Paragraph GetElements(string type)
-        {
+        {//create the paragarf of pdf files
             Paragraph p = new Paragraph();
             BaseFont baseFont = BaseFont.CreateFont("c:/windows/fonts/david.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             string message;
@@ -406,7 +406,7 @@ namespace Cosmetic_App.Tables
         }
 
         private void SortCart()
-        {
+        {//sorting shoping cart 
             List<Cart> SortedCart = new List<Cart>();
             foreach(Cart item in shopingCart)
             {
@@ -427,14 +427,14 @@ namespace Cosmetic_App.Tables
             shopingCart = SortedCart;
         }
         internal bool Save()
-        {
+        {//saveing order in DB
             bool result = Update();
             if (result)
                 result &= SaveCart();
             return result;
         }
         internal bool SaveCart()
-        {
+        {//saveing shoping cart in DB
             SortCart();
             bool result= true;
             List<Products> products = new List<Products>();
@@ -473,7 +473,7 @@ namespace Cosmetic_App.Tables
         }
 
         internal List<Calender_Table> GetApooitments()
-        {
+        {//returning all appoitment of order 
             List<Row> list = Access.getObjects(SQL_Queries.Select(Database_Names.Calendrer,new Condition(Database_Names.Calender_Columes[4],Value)));
             List<Calender_Table> appoitments = new List<Calender_Table>();
             if (list != null)
@@ -487,7 +487,7 @@ namespace Cosmetic_App.Tables
         }
 
         internal List<Cart> GetShopingCart()
-        {
+        {//returning shoping cart of order
             List<Row> list = Access.getObjects(SQL_Queries.Select(Database_Names.Cart, new Condition(Database_Names.Cart_Columes[1], (int)Value)));
             List<Cart> shopingcart = new List<Cart>();
             if (list != null)
@@ -501,11 +501,11 @@ namespace Cosmetic_App.Tables
         }
 
         internal bool IsPaid()
-        {
+        {//returning if order was paid
             return (bool)GetColValue(Database_Names.Income_Columes[5]);
         }
         public static List<Income> GetIncomes(DateTime start, DateTime end)
-        {
+        {//returning all order filter by dates
             List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Income, Database_Names.Income_Columes[6], start, end));
             List<Income> list = new List<Income>();
             foreach(Row row in rows)
@@ -515,7 +515,7 @@ namespace Cosmetic_App.Tables
         }
 
         internal static List<Income> getIncomes(bool status)
-        {
+        {//returning all order filter by status paid/unpaid
             List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Income, new Condition(Database_Names.Income_Columes[5],status)));
             List<Income> list = new List<Income>();
             foreach (Row row in rows)
@@ -523,7 +523,7 @@ namespace Cosmetic_App.Tables
             return list;
         }
         internal static List<Income> getIncomes(string id,bool paid)
-        {
+        {//returning all order of client sorted by paid / not paid
             List<Condition> conditions = new List<Condition>() {
                  new Condition(Database_Names.Income_Columes[5], paid),
                  new Condition(Database_Names.Income_Columes[2],id)
@@ -534,9 +534,12 @@ namespace Cosmetic_App.Tables
                 list.Add(new Income(row));
             return list;
         }
-
-        internal bool BackUp(string fileName)
-        {
+        public DateTime GetDate()
+        {//returning purchae date of order
+            return (DateTime)GetColValue(6);
+        }
+        internal bool BackUp()
+        {//backup order in a diffrent DB
             return Access.Execute(SQL_Queries.Insert(Database_Names.Backup, Row.Columes));
         }
     }

@@ -21,7 +21,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void Load_list()
-        {
+        {// loading list of people in window
             comboBox1.Items.Clear();
             foreach (Person person in People)
                 comboBox1.Items.Add(person.GetFullName());
@@ -32,14 +32,14 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//choseing peoson and holding the information
             Selected = People[comboBox1.SelectedIndex];
             MessageBox.Show($"{Selected.GetFullName()} נבחר") ;
             this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//createing a new person in DB and selecting him
             using(PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();

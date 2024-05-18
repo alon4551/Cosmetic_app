@@ -23,13 +23,13 @@ namespace Cosmetic_App
             selecedFilter = All;
         }
         public PeopleList(bool Clients)
-        {
+        {//showing people / worker depand by the reqvest
            InitializeComponent();
             Status = Clients;
            Reload();
         }
         private  void Fetch()
-        {
+        {//featching information from DB
             All =  Person.GetAllPeople();
             workers = Workers.GetAllWorkers();
             bool state = true;
@@ -46,11 +46,11 @@ namespace Cosmetic_App
             }
         }
         private void PeopleList_Load(object sender, EventArgs e)
-        {
+        {// reloading information
             Reload();
         }
         public async void Reload()
-        {
+        { //reloading informaiton
             Fetch();
             if (Status)
             {
@@ -68,7 +68,7 @@ namespace Cosmetic_App
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//opening personal information about the selected person
             foreach(Person person in workers)
                 if(person.Value.ToString() == selected_id)
                 using (Worker_Profile profile = new Worker_Profile(selected_id))
@@ -86,7 +86,7 @@ namespace Cosmetic_App
         }
 
         private void אדםחדשToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//createing a new person process
             using (PersonFile profile = new PersonFile())
             {
                 profile.ShowDialog();
@@ -96,7 +96,7 @@ namespace Cosmetic_App
         }
 
         private void עובדחדשToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//creating a new person process
             using (Worker_Profile profile = new Worker_Profile())
             {
                 profile.ShowDialog();
@@ -106,7 +106,7 @@ namespace Cosmetic_App
         }
 
         private void להפוךלקוחלעובדToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//turning person to worker
             if (selected_id != "")
             {
                 foreach (Person person in workers)
@@ -133,7 +133,7 @@ namespace Cosmetic_App
         }
 
         private void להסירעובדממערכתToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//removeing worker from DB to reguler customer
            using (Manager_Verification verification = new Manager_Verification())
             {
                 verification.ShowDialog();
@@ -147,7 +147,7 @@ namespace Cosmetic_App
                         Reload();
                     }
                     else
-                        MessageBox.Show("error");
+                        MessageBox.Show("שגיאה");
                 }
                 else
                     MessageBox.Show("לצערי רק מנהל מערכת יכול להסיר את העובד מהמערכת");
@@ -155,7 +155,7 @@ namespace Cosmetic_App
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//selecting and showing person information
             if (comboBox1.SelectedIndex != -1)
             {
                 selected_id = selecedFilter[comboBox1.SelectedIndex].GetColValue(0).ToString();
@@ -164,14 +164,14 @@ namespace Cosmetic_App
         }
 
         public void LoadList(List<Person> list)
-        {
+        {//loading list of full names and id's
             comboBox1.Items.Clear();
             foreach (Person person in list)
                 comboBox1.Items.Add($"{person.GetFullName()}, {person.GetColValue(0)}");
         }
 
         public void ClickPersonProfile(object sender,EventArgs e)
-        {
+        {//loading information of selected person
             selected_id = Input.GetTag(sender).ToString();
             foreach (Person person in All) 
             {
@@ -184,7 +184,7 @@ namespace Cosmetic_App
             
         }
         public void Load_Information(Person person)
-        {
+        {//loading information of selected person
             Input.Load_TextBox_Information(information_layout_table, person);
             id.Text = person.GetColValue(0).ToString();
             foreach (Person worker in workers)

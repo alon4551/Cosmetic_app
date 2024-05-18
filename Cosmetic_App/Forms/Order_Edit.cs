@@ -35,13 +35,13 @@ namespace Cosmetic_App.Forms
             Load_Information();
         }
         private void Order_Dashbord_Load(object sender, EventArgs e)
-        {
+        {//load information in the window
             Load_Worker_List();
             Load_Information();
             
         }
         public void Load_Worker_List()
-        {
+        {//load the workers name in a list  
             worker_list.Items.Clear();
             foreach(Workers worker in workers)
                 worker_list.Items.Add(worker.GetFullName());
@@ -49,13 +49,13 @@ namespace Cosmetic_App.Forms
 
      
         public void AddButton(object sender, EventArgs e)
-        {
+        {//adding a treatment / product to cart
             Products item =(Products)Input.GetTag(sender);
             order.AddItem(item);
             Load_Information();
         }
         public void Load_Information()
-        {
+        {//loading order information to the window (product,treatments, client etc)
             order_id_box.Text = order.Value.ToString();
             Client_box.Text = order.GetClientName();
             Cart_list.Items.Clear();
@@ -78,7 +78,7 @@ namespace Cosmetic_App.Forms
             }
         }
         private void Cart_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//when user click one for order cart items it hold the item
             if (Cart_list.SelectedItems.Count !=1) return;
             int id = (int)Cart_list.SelectedItems[0].Tag;
             if (order.IsTreatmentSchedule(id))
@@ -96,7 +96,7 @@ namespace Cosmetic_App.Forms
 
         }
         public void Load_Product_Information()
-        {
+        {//when user click one for order cart items it shows the information 
             Item = Apooitment.GetItem();
             if (!Item.Product.IsTreatment())
             {
@@ -134,7 +134,7 @@ namespace Cosmetic_App.Forms
             }
         }
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//reschduale appoitment in an existing order
             Calender_Table appoitmentId = order.GetAppoitment((int)Item.Value);
             using (SelectApoitmentTime Select = new SelectApoitmentTime((int)Item.Product.Value, order.GetClientName(),appoitmentId))
             {
@@ -156,11 +156,11 @@ namespace Cosmetic_App.Forms
         }
 
         private void worker_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//setting the worker for the appoitment
             Apooitment.setWorker(workers[worker_list.SelectedIndex].Value.ToString());
         }
         private void SechdualeApoitment()
-        {
+        {//Sechdualeing Apoitment and check for nulls
             bool result = Apooitment.IsShedualeTimeExisit();
             if (result && worker_list.SelectedItem == "")
             {
@@ -188,7 +188,7 @@ namespace Cosmetic_App.Forms
                 MessageBox.Show("error");
         }
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//refund order product to the store
             int amount=int.Parse(textBox1.Text);
             try
             {
@@ -237,6 +237,7 @@ namespace Cosmetic_App.Forms
                         if(browse.ShowDialog() == DialogResult.OK)
                             refund.CreateRefund(browse.FileName);
                     }
+                    order.BackUp();
                     p.Update();
                     Products.Reload();
                     MessageBox.Show("זיכוי עבר בהצלחה");
@@ -254,8 +255,8 @@ namespace Cosmetic_App.Forms
         }
 
         private void Cart_list_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Delete)
+        {//removeing item in a cart
+            if(e.KeyCode == Keys.Delete && MessageBox.Show("האם אתה בטוח שאתה רוצה למחוק את המוצר הזה?")==DialogResult.OK)
             {
                 order.RemoveItem(Cart_list.SelectedIndices[0]);
             }

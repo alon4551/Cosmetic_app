@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Forms
 {
     public partial class CustomMessageBox : Form
-    {
+    {// a class not used in the project
         public string selected { get; set; } = "";
         public CustomMessageBox()
         {

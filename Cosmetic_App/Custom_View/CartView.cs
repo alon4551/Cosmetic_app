@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Custom_View
 {
     public partial class CartView : UserControl
-    {
+    {//custom view for a cart 
         public CartView()
         {
             InitializeComponent();

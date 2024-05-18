@@ -20,18 +20,18 @@ namespace Cosmetic_App.Forms
             InitializeComponent();
         }
         public Product_Profile(bool IsTreatment)
-        {
+        {//creating a new product / treatment
             InitializeComponent();
             Products.SetIsTreatment(IsTreatment);
         }
         public Product_Profile(int id)
-        {
+        {//getting the product / treatment
             InitializeComponent();
             Products.Grab(id);
         }
         
         private void Product_Profile_Load(object sender, EventArgs e)
-        {
+        {//loading information for selected product
             foreach (TextBox box in product_profile_layout.Controls.OfType<TextBox>())
             {
                 box.Click += Input.TextChangeAfterError;
@@ -43,7 +43,7 @@ namespace Cosmetic_App.Forms
         }
         public void Load_Information()
         {
-
+            //loading of exsiting product
             StateLayout(Products.IsTreatment());
             if (Products.IsExist())
             {
@@ -56,7 +56,7 @@ namespace Cosmetic_App.Forms
 
         }
         public void StateLayout(bool state)
-        {
+        {//changeing text depand of exisiting product is treatment or merchandice
            info_label.TextAlign = ContentAlignment.BottomRight;
            info_label.Dock = DockStyle.Fill;
             if (state)
@@ -71,7 +71,7 @@ namespace Cosmetic_App.Forms
             }
         }
         public void StateProduct(bool state)
-        {
+        {//changine visuals depand on exisiting product is treatment or merchandice 
             amount.Enabled = state;
             if (state)
                 amount.Text = Products.Treatment.GetDuration();
@@ -84,7 +84,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//saveing product or treatment in DB
             bool result = true;
             foreach (TextBox box in product_profile_layout.Controls.OfType<TextBox>())
             {
@@ -103,15 +103,16 @@ namespace Cosmetic_App.Forms
             {
                 if (SaveProduct())
                 {
-                    MessageBox.Show("good");
+                    
+                    MessageBox.Show("רשומה נרשמה בהצלחה");
                 }
                 else
-                    MessageBox.Show("ohh ohh");
+                    MessageBox.Show("שגיאה");
                 this.Close();
             }
         }
         public bool SaveProduct()
-        {
+        {//saveing product or treatment in DB
 
             foreach (TextBox box in product_profile_layout.Controls.OfType<TextBox>())
                 Products.SetColValue(box.Name, box.Text);
@@ -119,6 +120,7 @@ namespace Cosmetic_App.Forms
             {
                 Products.SetInvetory(0);
                 Products.Treatment.SetColValue("duration", int.Parse(amount.Text));
+                Products.Treatment.SetColValue(0, Products.GetColValue(0));
             }
             else
                 Products.SetInvetory(int.Parse(amount.Text));
@@ -141,7 +143,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//deleting treatment or product 
             if (Products.IsExist())
                 if (DialogResult.Yes == MessageBox.Show("האם אתה בטוח שאתה מעוניין למחוק את רשומה, אחרי שתמחוק מידע המקושר למוצר ימחק בהתאם", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
                 {
@@ -150,13 +152,13 @@ namespace Cosmetic_App.Forms
                         MessageBox.Show("מוצר / טיפול נמחק מהמערכת");
                     }
                     else
-                        MessageBox.Show("error");
+                        MessageBox.Show("שגיאה");
                     this.Close();
                 }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {
+        {//adding amout box
             try
             {
                 count.Text = (int.Parse(count.Text) + 1).ToString();
@@ -165,7 +167,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button2_Click_1(object sender, EventArgs e)
-        {
+        {//reducing amout box
             try
             {
                     count.Text = (int.Parse(count.Text) -1).ToString();

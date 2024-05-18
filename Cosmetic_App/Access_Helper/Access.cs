@@ -14,7 +14,7 @@ public class Access
     public static OleDbCommand OleCommand;
     public static OleDbConnection Connection = new OleDbConnection(ConnectionStr);
     public static OleDbDataReader Reader;
-    public static void ConnectionState(bool state)
+    public static void ConnectionState(bool state)//open's or close the connection to the DB
     {
 
         try
@@ -32,7 +32,7 @@ public class Access
 
 
 
-    public static bool Execute(string command)
+    public static bool Execute(string command)//executeing the command
     {
         try
         {
@@ -49,11 +49,11 @@ public class Access
         return true;
 
     }
-    public static string ExplaindError()
+    public static string ExplaindError()//explaing error if query failds
     {
         return Error;
     }
-    public static List<Row> getObjects(string command)
+    public static List<Row> getObjects(string command)//return DB records as List<Row> acording to query
     {
         List<Row> Rows = new List<Row>();
         try

@@ -26,7 +26,7 @@ namespace Cosmetic_App
             Worker.Grab(id);
         }
         public void Load_Personal_Information()
-        {
+        {//loading worker information
             if (!Worker.Person.IsEmpty())
             {
                 if (Worker.IsEmpty())
@@ -51,7 +51,7 @@ namespace Cosmetic_App
             }
         }
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//creating new person in DB
             PersonFile profile;
             if(Worker.Person.IsEmpty())
                 profile = new PersonFile();
@@ -61,7 +61,7 @@ namespace Cosmetic_App
             Reload(profile.GetId());
         }
         private void Reload(string id)
-        {
+        {//reloading infomation
             Worker.Grab(id);
             if (Worker.Person.IsEmpty())
             {
@@ -72,13 +72,13 @@ namespace Cosmetic_App
             Load_Worker_status();
         }
         private void Worker_Profile_Load(object sender, EventArgs e)
-        {
+        {//loading worker information
             Load_Personal_Information();
             Load_Worker_status();
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {//creating a new worker in DB
             DialogResult dialogResult;
             if (Worker.Person.IsEmpty())
             {
@@ -108,8 +108,7 @@ namespace Cosmetic_App
                 
                     Worker.SetColValue("id", Worker.Person.GetColValue("id"));
                     Worker.SetColValue("password", password.Text);
-                    Worker.SetColValue("admin", false);
-                if (Worker.Update())
+                if (Worker.UpdatePassword())
                 {
                     Person.ReloadList();
                     Workers.ReloadList();
@@ -117,7 +116,7 @@ namespace Cosmetic_App
                     Reload(Worker.GetColValue("id").ToString());
                 }
                 else
-                    MessageBox.Show("Error");
+                    MessageBox.Show("שגיאה");
                 
                 
 
@@ -125,11 +124,11 @@ namespace Cosmetic_App
         }
 
         private void password_TextChanged(object sender, EventArgs e)
-        {
+        {//if worker forget password it can be shown by manager
             Input.Reset((TextBox) sender);
         }
         private void Load_Worker_status()
-        {
+        {//showing worker status to the user and redisplay options 
             button1.Enabled = true;
             password_layout.Enabled = true;
             manager_table_layout.Enabled = true;
@@ -147,18 +146,18 @@ namespace Cosmetic_App
             else if (Worker.GetAdmin())
             {
                 label8.Text = "העובד הוא מנהל מערכת";
-                button1.Text = "להפוך עובד למנהל מערכת";
+                button1.Text = "להפוך לעובד";
             }
             else
             {
                 label8.Text = "העובד לא מנהל מערכת";
-                button1.Text = "להפוך מנהל מערכת לעובד רגיל";
+                button1.Text = "להפוך למנהל מערכת";
 
             }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {
+        {//turning worker to admin
             using (Manager_Verification verification = new Manager_Verification())
             {
                 verification.ShowDialog();
@@ -179,7 +178,7 @@ namespace Cosmetic_App
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//show worker password 
             using (Manager_Verification verification = new Manager_Verification())
             {
                 verification.ShowDialog();
@@ -190,7 +189,7 @@ namespace Cosmetic_App
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {
+        {//removeing worker from DB
             using (Manager_Verification verification = new Manager_Verification())
             {
                 verification.ShowDialog();

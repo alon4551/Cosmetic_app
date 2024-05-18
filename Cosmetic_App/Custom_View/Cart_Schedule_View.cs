@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Custom_View
 {
     public partial class Cart_Schedule_View : UserControl
-    {
+    {//custom view for a adding teartment to cart in scheduale window
 
         List<string> Names = new List<string>();
         public Cart_Schedule_View()
@@ -24,7 +24,7 @@ namespace Cosmetic_App.Custom_View
         }
         
         public Cart_Schedule_View(Cart cart, EventHandler SetDate, EventHandler Cancel,EventHandler setWorker)
-        {
+        {//setting all the information into the view
             InitializeComponent();
             Fetch();
             this.Tag = cart;

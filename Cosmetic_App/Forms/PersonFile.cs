@@ -36,21 +36,29 @@ namespace Cosmetic_App
             LoadPerson();
         }
         public void LoadPerson()
-        {
+        {//loading person information on window
             id.Enabled = true;
-            if (Person.IsEmpty()) return;
-            foreach(TextBox box in Profile_Layout.Controls.OfType<TextBox>())
-                box.Text = Person.GetColValue(box.Name).ToString();
-            birthday.Text = Person.GetColValue("birthday").ToString();
+            if (!Person.IsExist()) return;
+            foreach (TextBox box in tableLayoutPanel6.Controls.OfType<TextBox>())
+                try
+                {
+                    box.Text = Person.GetColValue(box.Tag.ToString()).ToString();
+                }
+                catch { }   
+            try
+            {
+                birthday.Text = Person.GetColValue("birthday").ToString();
+            }
+            catch { }
             if (Person.Value.ToString() == "0")
                 id.Enabled = false;
         }
         public void SetPerson(string id)
-        {
+        {//holding person information for furthe actions
             Person.Grab(id);
         }
         private void button3_Click(object sender, EventArgs e)
-        {
+        {//saveing person in DB
             if (SavePerson())
             {
                 MessageBox.Show("פרטי אדם נשמר במערכת");
@@ -59,27 +67,27 @@ namespace Cosmetic_App
                 this.Close();
             }
             else
-                MessageBox.Show("Error Human");
+                MessageBox.Show("שגיאה");
         }
         private bool SavePerson()
-        {
+        {//saveing person in DB
             bool result = true;
-            foreach (TextBox box in Profile_Layout.Controls.OfType<TextBox>())
+            foreach (TextBox box in tableLayoutPanel6.Controls.OfType<TextBox>())
                 result &= Input.Verify(box, null);
             if (result == false)
                 return false;
-            foreach (TextBox box in Profile_Layout.Controls.OfType<TextBox>())
-                Person.SetColValue(box.Name, box.Text);
-            Person.SetColValue(birthday.Name, birthday.Text);
+            foreach (TextBox box in tableLayoutPanel6.Controls.OfType<TextBox>())
+                Person.SetColValue(box.Tag.ToString(), box.Text);
+            Person.SetColValue(birthday.Tag.ToString(), birthday.Text);
             return Person.Save();
 
         }
         private bool DeleteProfile()
-        {
+        {//deleting person in DB
             return Person.Delete();
         }
         private void TextBox_Click(object sender, EventArgs e)
-        {
+        {//reset warning after changing input text
             Input.Reset((TextBox)sender);
         }
         private void button2_Click(object sender, EventArgs e)
@@ -93,7 +101,7 @@ namespace Cosmetic_App
         }
 
         private void PersonFile_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        {//saveing status information 
             Status_Save = false;
         }
 

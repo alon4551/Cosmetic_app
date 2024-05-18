@@ -69,7 +69,7 @@
             // menuStrip1
             // 
             this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.Ivory;
+            this.menuStrip1.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.menuStrip1.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -115,7 +115,7 @@
             this.הזמנהחדשהToolStripMenuItem.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.הזמנהחדשהToolStripMenuItem.Name = "הזמנהחדשהToolStripMenuItem";
             this.הזמנהחדשהToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.הזמנהחדשהToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.הזמנהחדשהToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.הזמנהחדשהToolStripMenuItem.Text = "הזמנה חדשה";
             this.הזמנהחדשהToolStripMenuItem.Click += new System.EventHandler(this.הזמנהחדשהToolStripMenuItem_Click);
             // 
@@ -124,7 +124,7 @@
             this.לקוחחדשToolStripMenuItem.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.לקוחחדשToolStripMenuItem.Name = "לקוחחדשToolStripMenuItem";
             this.לקוחחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.לקוחחדשToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.לקוחחדשToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.לקוחחדשToolStripMenuItem.Text = "לקוח חדש";
             this.לקוחחדשToolStripMenuItem.Click += new System.EventHandler(this.לקוחחדשToolStripMenuItem_Click);
             // 
@@ -133,7 +133,7 @@
             this.עובדחדשToolStripMenuItem.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.עובדחדשToolStripMenuItem.Name = "עובדחדשToolStripMenuItem";
             this.עובדחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.עובדחדשToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.עובדחדשToolStripMenuItem.Text = "עובד חדש";
             this.עובדחדשToolStripMenuItem.Click += new System.EventHandler(this.עובדחדשToolStripMenuItem_Click);
             // 
@@ -142,7 +142,7 @@
             this.מוצרטיפולחדשToolStripMenuItem.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.מוצרטיפולחדשToolStripMenuItem.Name = "מוצרטיפולחדשToolStripMenuItem";
             this.מוצרטיפולחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.מוצרטיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.מוצרטיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.מוצרטיפולחדשToolStripMenuItem.Text = "מוצר חדש";
             this.מוצרטיפולחדשToolStripMenuItem.Click += new System.EventHandler(this.מוצרטיפולחדשToolStripMenuItem_Click);
             // 
@@ -151,7 +151,7 @@
             this.טיפולחדשToolStripMenuItem.Font = new System.Drawing.Font("David", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.טיפולחדשToolStripMenuItem.Name = "טיפולחדשToolStripMenuItem";
             this.טיפולחדשToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.טיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.טיפולחדשToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
             this.טיפולחדשToolStripMenuItem.Text = "טיפול חדש";
             this.טיפולחדשToolStripMenuItem.Click += new System.EventHandler(this.טיפולחדשToolStripMenuItem_Click);
             // 
@@ -502,6 +502,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("David", 14.25F);
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;

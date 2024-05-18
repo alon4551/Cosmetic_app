@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Cosmetic_App.Utiltes
 {
     public static class Database_Names
-    {
+    {//this class is the fields and names in Access DB
         public static string People = "people";
         public static string Workers = "workers";
         public static string Clients = "clients";
@@ -32,7 +32,7 @@ namespace Cosmetic_App.Utiltes
         public static List<string> Shifts_Columes = new List<string>() { "id","worker","day","start_time","end_time" };
         public static List<string> Treatment_Columes = new List<string>() { "id","duration" };
         public static bool IsFieldInList(string value, List<string> fields)
-        {
+        {//return if field name is in the list
             foreach(string field in fields)
             {
                 if(field == value)

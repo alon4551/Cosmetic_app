@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class DataName
+public class DataName// a class that show's a List of Record as a Table Object, named by me as dataName
 {
     public List<Row> Table { get; set; }
     public string Table_Name { get; set; }
     public DataName() { }
-    public DataName(string table)
+    public DataName(string table)//get a table name and gets all the records of the name
     {
         Table_Name = table;
         Table = Access.getObjects(SQL_Queries.Select(table));
     }
-    public DataName(string table,Condition condition)
+    public DataName(string table,Condition condition)//get a table name and gets all the records by condition of the name
     {
         Table_Name = table;
         Table = Access.getObjects(SQL_Queries.Select(table,condition));
     }
-    public DataName(string table, List<Condition> conditions,string type)
+    public DataName(string table, List<Condition> conditions,string type)//get a table name and gets all the records by conditions with 'and' or 'or' opartor of the name
     {
         Table_Name = table;
         Table = Access.getObjects(SQL_Queries.Select(table, conditions,type));
     }
-    public void Join(string table)
+    public void Join(string table) //joining 2 tables with commen field into a single object
     {
         Table = Access.getObjects(SQL_Queries.SelfJoin(Table_Name, table, Table[0].GetColumes()[0].GetField()));
     }
-    public void Separate(string table)
+    public void Separate(string table)//exloding recods from a joind table 
     {
         Table = Access.getObjects(SQL_Queries.Seperate(Table_Name, table, Table[0].GetColumes()[0].GetField()));
     }
-    public void RemoveDuplicate(DataName data)
+    public void RemoveDuplicate(DataName data) //RemoveDuplicate
     {
         foreach(Row r in data.Table)
         {
@@ -44,7 +44,7 @@ public class DataName
                 }
         }
     }
-    public List<string> getNames(List<int> indexes)
+    public List<string> getNames(List<int> indexes)//getting a string form the table unified by records indexs
     {
         List<string> names = new List<string>();
         string name;
@@ -57,7 +57,7 @@ public class DataName
         }
         return names;
     }
-    public List<string> getNames(List<string> fields)
+    public List<string> getNames(List<string> fields) //getting a string form the table unified by records indexs
     {
         List<string> names = new List<string>();
         string name;
@@ -70,7 +70,7 @@ public class DataName
         }
         return names;
     }
-    public List<string> getNames(int index)
+    public List<string> getNames(int index)//getting a string form the table unified by records index
     {
         List<string> names = new List<string>();
         foreach (Row r in Table)

@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace Cosmetic_App
 {
-    public class Cart : DB_Object
+    public class Cart : DB_Object//class show a cart item in order shoping cart
     {
         public Products Product { get; set; }
         public Cart() : base(Database_Names.Cart, Database_Names.Cart_Columes) 
-        {
+        {//inislaizing new cart
             Value = GetNewIndex();
             SetColValue(0, Value);
         }
-        public Cart(Row row) : base(row) 
-        {
+        public Cart(Row row) : base(row)
+        {//inislaizing new cart with data
             Table = row.Table;
             Value = row.GetColValue(0);
             Product = new Products((int)row.GetColValue(Database_Names.Cart_Columes[2]));
         }
         public Cart(int id) : base(Database_Names.Cart, Database_Names.Cart_Columes)
-        {
+        {//inislaizing exsisting cart 
             Grab(id);
             Product = Products.GetProduct((int)GetColValue(2));
             Table = Database_Names.Cart;
             Value = GetColValue(0);
         }
         public void Grab(object id)
-        {
+        {//grabing exsiting cart from DB
             base.Grab(id);
             Product = new Products((int)(GetColValue(2)));
             
         }
             public Cart(DB_Object obj) : base(Database_Names.Cart, Database_Names.Cart_Columes)
-        {
+        {//copying cart information from ibject
             Table = Database_Names.Cart;
             Value = obj.Value;
             SetColValue(0, Value);
@@ -44,7 +44,7 @@ namespace Cosmetic_App
             Product =  Products.GetProduct((int)GetColValue(2));
         }
         public Cart(int order,int product ) : base(Database_Names.Cart, Database_Names.Cart_Columes)
-        {
+        {//createing new cart with inforamtion
             Value = GetNewIndex();
             SetColValue(0, Value);
             SetProduct(product);
@@ -52,7 +52,7 @@ namespace Cosmetic_App
             Product = Products.GetProduct(product);
         }
         public Cart(int order, Products product) : base(Database_Names.Cart, Database_Names.Cart_Columes)
-        {
+        {//createing new cart with inforamtion
             Value = GetNewIndex();
             SetColValue(0, Value);
             SetProduct((int)product.Value);
@@ -101,7 +101,7 @@ namespace Cosmetic_App
         }
 
         internal static List<Cart> GetItems(int order_id)
-        {
+        {//return all shoping cart items from order
             List<Row> rows = Access.getObjects(SQL_Queries.Select(Database_Names.Cart,new Condition(Database_Names.Cart_Columes[1],order_id)));
             List<Cart> list=new List<Cart>();
             foreach(Row row in rows)
@@ -110,7 +110,7 @@ namespace Cosmetic_App
         }
 
         internal void AddAmount(int v)
-        {
+        {//adding quantenty to cart {example 3 hand cream}
             SetColValue(Database_Names.Cart_Columes[3],GetAmount()+ v);
         }
     }

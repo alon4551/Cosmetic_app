@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Forms
 {
     public partial class CreatePassword : Form
-    {
+    {// createing new password for a new worker
         private string id;
         public CreatePassword(string id)
         {
@@ -23,7 +23,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//checking if the password inputs are identical and save's the password in DB
 
             bool result = Input.Verify(password, label3);
                 result&=Input.Verify(repassowrd,label5);
@@ -50,13 +50,13 @@ namespace Cosmetic_App.Forms
         }
 
         private void password_TextChanged(object sender, EventArgs e)
-        {
+        {//clearing warnning after changeing text
             (sender as TextBox).BackColor = Color.White;
             label3.Text = "";           
         }
 
         private void repassowrd_TextChanged(object sender, EventArgs e)
-        {
+        {//clearing warnning after changeing text
             (sender as TextBox).BackColor = Color.White;
             label5.Text = "";
         }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Custom_View
 {
     public partial class stat_item : UserControl
-    {
+    {// a custom view in product or treatment in a list
         public stat_item()
         {
             InitializeComponent();

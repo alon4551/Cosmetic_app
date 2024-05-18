@@ -31,6 +31,7 @@ namespace Cosmetic_App.Forms
             order.SetWorker(Workers.LogedWorker.Value.ToString());
             order.SetClient("0");
             order.SetColValue("total", 0);
+           
             order.Insert();
             textBox1.Text = order.Value.ToString();
             Featch_Information();
@@ -40,14 +41,14 @@ namespace Cosmetic_App.Forms
            
         }
         public void Reload()
-        {
+        {//reloading order information from DB 
             appoitments = order.GetApooitments();
             Featch_Information();
             Load_ShopingCart();
             Load_Client_List();
         }
         public async void Featch_Information()
-        {
+        {//featching informaiton from DB
             Clients = Person.GetAllPeople();
             appoitments = Calender_Table.GetAppoitments((int)order.Value);
             Treatments = Products.GetAllTreatments();
@@ -55,7 +56,7 @@ namespace Cosmetic_App.Forms
             Load_Treatment_List(Treatments);
         }
         public void Load_ShopingCart()
-        {
+        {//loading appoitment of order
             shoping_cart_layout.Controls.Clear();
             shoping_cart.Clear();
             foreach(Cart c in Shoping_Cart)
@@ -72,7 +73,7 @@ namespace Cosmetic_App.Forms
             }
         }
         public void Load_Treatment_List(List<Products> list)
-        {
+        {//loading treatment list names
             comboBox2.Items.Clear();
             foreach(Products p in list)
             {
@@ -80,7 +81,7 @@ namespace Cosmetic_App.Forms
             }
         }
         public void CLick_Treatment(object sender, EventArgs e)
-        {
+        {//adding treatment / product to shoping cart
             Products p = (Products)Input.GetTag(sender);
             if (p == null) p = (Products)sender;
             Cart c = new Cart((int)order.Value, p);
@@ -91,9 +92,11 @@ namespace Cosmetic_App.Forms
 
         }
         public string GetClientId()
-        {
+        {//return clientd Id from order
+            
             foreach(Person person in Clients)
             {
+                if (person.GetColValue(0).ToString() == "0") continue;
                 if (comboBox1.Text.Contains(person.GetColValue(0).ToString()))
                     return person.GetColValue(0).ToString();
             }
@@ -102,14 +105,14 @@ namespace Cosmetic_App.Forms
 
 
         public void Load_Client_List()
-        {
+        {//loading client list
             comboBox1.Items.Clear();
             foreach(Person person in Clients) {
                 comboBox1.Items.Add(person.GetFullName() +','+person.GetColValue(0));
             }
         }
         public Cart_Schedule_View GetView(Cart cart)
-        {
+        {//getting cart information from custom view
             Cart c;
             foreach (Cart_Schedule_View view in shoping_cart_layout.Controls.OfType<Cart_Schedule_View>())
             {
@@ -120,7 +123,7 @@ namespace Cosmetic_App.Forms
             return null;
         }
         public void SetWorker(object sender, EventArgs e)
-        {
+        {// setting worker to selected appoitment
             Cart c = (Cart)Input.GetTag(sender);
             foreach(Calender_Table apooitment in appoitments)
             {
@@ -132,7 +135,7 @@ namespace Cosmetic_App.Forms
             }
         }
        public void SetDate(object sender, EventArgs e)
-        {
+        {//schdualing appoitment
             Cart c = (Cart)Input.GetTag(sender);
             if (c == null) c = (Cart)sender;
             Calender_Table selected_apooitment = null;
@@ -181,14 +184,14 @@ namespace Cosmetic_App.Forms
         }
 
         private void new_client_btn_Click(object sender, EventArgs e)
-        {
-            if (App_Process.NewPerson(this) != "")
-                Reload();
+        {//createing new person process
+            App_Process.NewPerson(this);
+            Reload();
 
         }
 
         private void save_bbtn_Click(object sender, EventArgs e)
-        {
+        {//saving order in DB
             bool result = true;
             List<Calender_Table> list = order.GetApooitments();
             if (list != null)
@@ -222,52 +225,31 @@ namespace Cosmetic_App.Forms
                     MessageBox.Show("תהליך הושלם בהצלחה");
                     this.Close();
                 }
-                //result = true;
-                //foreach (Cart item in Shoping_Cart)
-                //{
-                //    result &= item.Insert();
-                //}
-                //if (result == false)
-                //{
-                //    foreach (Cart item in Shoping_Cart)
-                //        item.Delete();
-                //    MessageBox.Show("קרתה שגיאה");
-                //}
-                //else
-                //{
-                //    int i = 0;
-                //    foreach (Cart_Schedule_View view in shoping_cart_layout.Controls.OfType<Cart_Schedule_View>())
-                //    {
-                //        Calender_Table apooitment = new Calender_Table(Workers.list[view.Selected_worker()].Value.ToString(), Clients[comboBox1.SelectedIndex].Value.ToString(), Shoping_Cart[i].Value.ToString(), order.Value.ToString(), view.Day(), view.getTime()) ;
-                //        i++;
-
-                //    }
-                //}
                
             }
 
         }
 
         private void Schedule_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        {//closeing form and not saveing the order
             if (saved == false)
                 if (order.Delete())
                     MessageBox.Show("הזמנה לא נשמרה");
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//changeing clinet 
             if (comboBox1.SelectedIndex != -1)
                 order.SetClient(Clients[comboBox1.SelectedIndex].Value.ToString());
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
-        {
+        {// closeing form and not saveing the order
             Schedule_FormClosing(null, null);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {//not using the function
             if (comboBox2.SelectedIndex != -1)
                 label7.Text = Products.AllTreatments[comboBox2.SelectedIndex].getName() + ", " + Products.AllTreatments[comboBox2.SelectedIndex].GetPrice();
             else
@@ -275,13 +257,13 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//adding treatment to cart
             if(comboBox2.SelectedIndex!=-1)
                 CLick_Treatment(Products.AllTreatments[comboBox2.SelectedIndex], null);
         }
 
         public void Cancel(object sender, EventArgs e)
-        {
+        {//canceling one for the items
             Cart c =(Cart)Input.GetTag(sender);
             Shoping_Cart.Remove(c);
             c.Delete();

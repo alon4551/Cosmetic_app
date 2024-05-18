@@ -22,8 +22,8 @@ namespace Cosmetic_App
         }
 
         private void ManageShifts_Load(object sender, EventArgs e)
-        {
-            date_label.Text =$"\nבוקר טוב, היום {DateTime.Now.ToShortDateString()}";
+        {//loading window with indoramtion
+            date_label.Text =$"\nברוכים הבאים, היום {DateTime.Now.ToShortDateString()}";
             Clock_Label.Text = $"שעה:{DateTime.Now.ToLongTimeString()}";
             Load_Information();
             timer.Interval = 1000;
@@ -39,7 +39,7 @@ namespace Cosmetic_App
             clockout_button.Enabled=true;
         }
         private void t_Tick (object sender, EventArgs e)
-        {
+        {//clock ticing in the window
             int hh = DateTime.Now.Hour;
             int mm = DateTime.Now.Minute;
             int ss = DateTime.Now.Second;
@@ -68,7 +68,7 @@ namespace Cosmetic_App
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
+        {//checking on DB if the worker can clock in or out
             if (Input.Verify(id, inform_user_label))
             {
                 interaction_layout.Enabled = true;
@@ -88,37 +88,37 @@ namespace Cosmetic_App
 
         }
         private void SetButtons(bool Shift_State)
-        {
+        {//disableing button depance if the worker has clock in or out
             clockin_button.Enabled=Shift_State; 
             clockout_button.Enabled=!Shift_State;
         }
 
         private void clockin_button_Click(object sender, EventArgs e)
-        {
+        {//clock in in DB 
             if (Shifts.ClockIn(id.Text, DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString()))
-                MessageBox.Show("ok");
+                MessageBox.Show("משמרת נכנסה בהצלחה");
             else
-                MessageBox.Show("ohh no");
+                MessageBox.Show("תקלה");
             Load_Information();
         }
 
         private void clockout_button_Click(object sender, EventArgs e)
-        {
+        {//clock out in DB 
             if (Shifts.ClockOut(id.Text, DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString()))
-                MessageBox.Show("ok");
+                MessageBox.Show("משמרת עודכנה בהצלחה");
             else
-                MessageBox.Show("ohh no");
+                MessageBox.Show("תקלה");
             Load_Information();
         }
 
         private void id_KeyDown(object sender, KeyEventArgs e)
-        {
+        {//if in the textbox i press enter then i run the function that define if the worker need to clock in or out
             if(e.KeyCode == Keys.Enter)
                 button3_Click(null, null);
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//opening the shiftdashbord for the worker
             using (Shifts_Dashbored dashbored = new Shifts_Dashbored(id.Text))
             {
 

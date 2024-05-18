@@ -352,7 +352,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.53402F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.30159F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.01587F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.tableLayoutPanel7.Controls.Add(this.starting_time, 3, 1);
             this.tableLayoutPanel7.Controls.Add(this.ending_time, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.label2, 3, 0);
@@ -372,13 +372,13 @@
             this.starting_time.CustomFormat = "HH:mm";
             this.starting_time.Dock = System.Windows.Forms.DockStyle.Fill;
             this.starting_time.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.starting_time.Location = new System.Drawing.Point(180, 22);
+            this.starting_time.Location = new System.Drawing.Point(178, 22);
             this.starting_time.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.starting_time.Name = "starting_time";
             this.starting_time.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.starting_time.RightToLeftLayout = true;
             this.starting_time.ShowUpDown = true;
-            this.starting_time.Size = new System.Drawing.Size(129, 26);
+            this.starting_time.Size = new System.Drawing.Size(128, 26);
             this.starting_time.TabIndex = 0;
             this.starting_time.Value = new System.DateTime(2023, 11, 2, 8, 0, 0, 0);
             this.starting_time.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
@@ -389,18 +389,18 @@
             this.ending_time.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ending_time.Name = "ending_time";
             this.ending_time.ReadOnly = true;
-            this.ending_time.Size = new System.Drawing.Size(105, 26);
+            this.ending_time.Size = new System.Drawing.Size(104, 26);
             this.ending_time.TabIndex = 1;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(180, 0);
+            this.label2.Location = new System.Drawing.Point(178, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(129, 19);
+            this.label2.Size = new System.Drawing.Size(128, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "תחילת טיפול";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -413,7 +413,7 @@
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label10.Size = new System.Drawing.Size(105, 19);
+            this.label10.Size = new System.Drawing.Size(104, 19);
             this.label10.TabIndex = 3;
             this.label10.Text = "סיום טיפול";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

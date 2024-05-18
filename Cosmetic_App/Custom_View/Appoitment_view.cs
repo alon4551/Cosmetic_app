@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Cosmetic_App.Custom_View
 {
     public partial class Appoitment_view : UserControl
-    {
+    {// a custom view for Appoitment
         public Appoitment_view(int orderId)
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace Cosmetic_App.Custom_View
         }
 
         public void SetDate(Row r)
-        {
+        {//setting information by record
             string text;
             time.Text = $"{r.GetColValue(Database_Names.Calender_Columes[6])} - {r.GetColValue("ending").ToString()}" ;
             worker_name.Text = "עובד:"+r.GetColValue("worker_name").ToString();
@@ -33,7 +33,7 @@ namespace Cosmetic_App.Custom_View
         {
 
         }
-        public void SetAction(EventHandler clickEvent)
+        public void SetAction(EventHandler clickEvent)//adding action to button
         {
             button1.Click += clickEvent;
         }

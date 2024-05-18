@@ -67,9 +67,9 @@
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.07969F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.58698F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.14698F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.38058F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.47244F));
             this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.comboBox1, 1, 0);
@@ -86,34 +86,37 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Ivory;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Location = new System.Drawing.Point(6, 4);
             this.button1.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(60, 64);
+            this.button1.Size = new System.Drawing.Size(79, 69);
             this.button1.TabIndex = 0;
-            this.button1.Text = "בחירת אדם";
+            this.button1.Text = "בחירה";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 0);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(308, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 19);
+            this.label1.Size = new System.Drawing.Size(67, 77);
             this.label1.TabIndex = 0;
             this.label1.Text = "שם מלא";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // comboBox1
             // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(78, 4);
+            this.comboBox1.Location = new System.Drawing.Point(97, 4);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(169, 27);
+            this.comboBox1.Size = new System.Drawing.Size(199, 27);
             this.comboBox1.TabIndex = 2;
             // 
             // label2

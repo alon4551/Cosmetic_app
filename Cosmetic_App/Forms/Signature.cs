@@ -75,7 +75,7 @@ namespace Cosmetic_App.Forms
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {//saveing signture
             if (MessageBox.Show("האם זה חתימה מאושרת", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 signture = new Bitmap(panel1.Width, panel1.Height);
@@ -86,7 +86,7 @@ namespace Cosmetic_App.Forms
 
         }
         public Bitmap GetSignatureBitmap()
-        {
+        {//reset drawing panel
             signture.MakeTransparent(Color.White);
             return signture;
         }
